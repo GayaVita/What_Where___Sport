@@ -1,0 +1,56 @@
+.location {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  width: 45rem;
+  height: 18rem;
+  border: solid black;
+  margin-top: 4rem;
+}
+.location:hover {
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+.location_ul {
+  list-style-type: none;
+  text-align: left;
+  margin-top: 1rem;
+}
+.location_photo {
+  width: 20rem;
+  height: 15rem;
+  border-radius: 5%;
+}
+.location_picture {
+  position:relative;
+  display: flex;
+  align-items: center;
+}
+.location_price {
+  position: absolute;
+  top: 3rem;
+  left: -2rem;
+  padding: 8px;
+  background-color: pink;
+  border-radius: 5%;
+  font-weight: bold;
+}
+.location_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btnBookLocation {
+  margin-top: 1rem;
+}
+.btn_filter_category {
+  width: 15rem;
+}
+.isVisibleBtn {
+  display: flex;
+  flex-direction: column;
+}
+.btnCategory {
+  width: 14rem;
+}
