@@ -21,10 +21,10 @@ export default function UserLC(): JSX.Element {
             <Link to="/profile_form">Профиль</Link>
           </li>
           <li className={styles.left_form__link}>
-            <Link to="/profile_form">Создать активность</Link>
+            <Link to="/activity_form">Создать активность</Link>
           </li>
           <li className={styles.left_form__link}>
-            <Link to="/profile_form">Отклики</Link>
+            <Link to="/activity_list">Отклики</Link>
           </li>
         </ul>
       </div>

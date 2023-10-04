@@ -50,3 +50,7 @@ color: rgb(197, 197, 197);
 .left_form__svg {
   fill: rgb(197, 197, 197);
 }
+
+.left_form__svg :hover{
+  fill: rgb(197, 46, 46);
+}
