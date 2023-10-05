@@ -26,13 +26,23 @@ router.post("/registration", async (req, res) => {
         email,
         password: hash,
       });
-      req.session.login = newUser.login;
-      console.log(req.session.login);
+      //Денис
+      req.session.user ={
+        id: newUser.id,
+        //Денис
+      login: newUser.login
+      
+      } 
+        
+      console.log(req.session.user);
       req.session.save(() => {
         res.json({
           access: true,
           msg: "User created successful",
           login: req.session.login,
+          //Денис
+          id: req.session.id
+
         });
       });
     } else {
@@ -55,12 +65,21 @@ router.post("/login", async (req, res) => {
   } else {
     const checkPass = bcrypt.compare(password, checkEmail.password);
     if (checkPass) {
-      req.session.login = checkEmail.login;
+
+      // Денис
+      req.session.user ={
+        id: checkEmail.id,
+        login: checkEmail.login
+        } 
+
+
       req.session.save(() => {
         res.json({
           access: true,
           msg: "Password correct",
           login: req.session.login,
+            // Денис
+          id: req.session.id
         });
       });
     } else {
@@ -88,3 +107,6 @@ router.get("/logout", (req, res) => {
 });
 
 module.exports = router;
+
+
+
