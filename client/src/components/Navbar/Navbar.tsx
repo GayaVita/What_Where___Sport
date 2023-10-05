@@ -1,10 +1,20 @@
 import React from 'react';
-import './navbar.style.css';
-import { Link } from 'react-router-dom';
-import { IPropsLogin } from '../../types/types';
+import { IPropsLogin, IPropsNavbar } from '../../types/types';
 
-export default function Navbar({ user }: IPropsLogin) {
+export default function Navbar({ user, setUser }: IPropsNavbar) {
   console.log(user.login);
+
+  const logoutHandler = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/user/logout', {
+        credentials: 'include'
+      })
+      const res = await response.json()
+      setUser((pre)=> ({...pre, login: res.login, authLogin: false}))
+    } catch (error) {
+      console.log('Не смогли войти', error);
+    }
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -37,9 +47,9 @@ export default function Navbar({ user }: IPropsLogin) {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/user/logout">
+                <button className="nav-link" onClick={logoutHandler}>
                   Выйти
-                </a>
+                </button>
               </li>
             </ul>
           </div>

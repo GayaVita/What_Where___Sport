@@ -12,16 +12,18 @@ import LocationForm from './components/userLC/components_LC/location_form/Locati
 import EventCard from './components/userLC/components_LC/activity_events/EventCard';
 import Locations from './components/Locations/Locations';
 import { useAppSelector } from './store/hooks';
+import { ILogin } from './types/types';
 
 function App(): JSX.Element {
-    const { locations } = useAppSelector((store) => store.locations);
-    const [user, setUser] = useState({ login: '' });
-  console.log(locations);
-  
+  const { locations } = useAppSelector((store) => store.locations);
+  const [user, setUser] = useState<ILogin>({ login: '' });
+
   return (
     <div className="App">
       <Navbar user={user} />
       <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/access" element={<Registration setUser={setUser} />} />
         <Route path="/userLC" element={<UserLC />}>
           <Route path="profile_form" element={<ProfileForm />} />
           <Route path="location_form" element={<LocationForm />} />

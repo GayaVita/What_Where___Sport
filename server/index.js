@@ -7,7 +7,7 @@ const logger = require('morgan');
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 
-const acessRouter = require('./routes/access.router');
+const accessRouter = require('./routes/access.router');
 
 const sessionConfig = {
     name: 'SelfGameCookie',
@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(session(sessionConfig))
 
-app.use('/user', acessRouter);
+app.use('/user', accessRouter);
 app.use('/api/locations', locationRouter);
 
 app.listen(PORT, () => {

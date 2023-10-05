@@ -19,6 +19,7 @@ router.post("/registration", async (req, res) => {
   console.log(req.body);
   try {
     const checkUser = await User.findOne({ where: { email } });
+    console.log(checkUser);
     if (!checkUser) {
       const hash = await bcrypt.hash(password, 10);
       const newUser = await User.create({
@@ -33,6 +34,7 @@ router.post("/registration", async (req, res) => {
           access: true,
           msg: "User created successful",
           login: req.session.login,
+          id: newUser.id,
         });
       });
     } else {
@@ -47,6 +49,7 @@ router.post("/registration", async (req, res) => {
   }
 });
 
+//LOGIN
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const checkEmail = await User.findOne({ where: { email } });
@@ -61,6 +64,7 @@ router.post("/login", async (req, res) => {
           access: true,
           msg: "Password correct",
           login: req.session.login,
+          id: checkEmail.id,
         });
       });
     } else {
@@ -69,6 +73,11 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    res.clearCookie("SelfGameCookie").redirect("/");
+  });
+});
 router.patch("/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
   await user.update(req.body);
@@ -78,13 +87,6 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   await User.destroy({ where: { id: req.params.id } });
   res.sendStatus(200);
-});
-
-router.get("/logout", (req, res) => {
-  req.session.destroy((err) => {
-   res.clearCookie("SelfGameCookie");
-   res.redirect('/')
-  });
 });
 
 module.exports = router;

@@ -5,7 +5,8 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-export default function Login({ setUser }: IRegProps): JSX.Element {
+export default function Registration({ setUser }: IRegProps): JSX.Element {
+  
   const defaultInput = {
     login: '',
     email: '',
