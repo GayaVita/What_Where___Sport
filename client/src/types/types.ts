@@ -19,3 +19,7 @@ export interface IRegProps {
   setUser: Dispatch<SetStateAction<ILogin>>
 
 }
+
+export interface IPropsNavbar extends IRegProps{
+  user: ILogin;
+}
