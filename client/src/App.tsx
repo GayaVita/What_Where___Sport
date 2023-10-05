@@ -13,6 +13,15 @@ import EventCard from './components/userLC/components_LC/activity_events/EventCa
 
 function App(): JSX.Element {
   const [user, setUser] = useState({ login: '' });
+import './App.css';
+import UserLC from './components/userLC/UserLC';
+import Locations from './components/Locations/Locations';
+import { useAppSelector } from './store/hooks';
+
+function App(): JSX.Element {
+  const { locations } = useAppSelector((store) => store.locations);
+  console.log(locations);
+  
   return (
     <div className="App">
       <Navbar user={user} />
@@ -23,6 +32,8 @@ function App(): JSX.Element {
           <Route path="activity_form" element={<ActivityForm />} />
           <Route path="events" element={<EventCard />} />
         </Route>
+        <Route path="/userLC" element={<UserLC />} />
+        <Route path="/locations" element={<Locations />} />
       </Routes>
     </div>
   );

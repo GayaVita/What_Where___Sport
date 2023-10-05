@@ -23,6 +23,7 @@ const sessionConfig = {
 
 const app = express();
 const PORT = process.env.PORT || 3002;
+const locationRouter = require('./routes/locations.route');
 
 app.use(logger('dev'));
 app.use(cors({ credentials: true, origin: 'http://localhost:5173' }))
@@ -32,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionConfig))
 
 app.use('/user', acessRouter);
+app.use('/api/locations', locationRouter);
 
 app.listen(PORT, () => {
     console.log(`Server has started on PORT ${PORT}`);
