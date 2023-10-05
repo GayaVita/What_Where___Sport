@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getLocations } from '../thunkActions';
+import { getFilteredLocations, getLocations } from '../thunkActions';
 import { ILocation } from '../../components/types';
 
 // Define a type for the slice state
 export interface ILocationsState {
-  locations: ILocation[]
+  locations: ILocation[],
+  filteredLocations: ILocation[]
 }
 
 // Define the initial state using that type
 const initialState: ILocationsState = {
-  locations: []
+  locations: [],
+  filteredLocations: []
 }
 
 export const locationsSlice = createSlice({
@@ -22,6 +24,12 @@ export const locationsSlice = createSlice({
       getLocations.fulfilled,
       (state, action: PayloadAction<ILocation[]>) => {
         state.locations = action.payload;
+      }
+    );
+    builder.addCase(
+      getFilteredLocations.fulfilled,
+      (state, action: PayloadAction<ILocation[]>) => {
+        state.filteredLocations = action.payload;
       }
     );
   },
