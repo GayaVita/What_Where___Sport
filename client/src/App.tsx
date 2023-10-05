@@ -10,16 +10,12 @@ import ProfileForm from './components/userLC/components_LC/profile_form/ProfileF
 import ActivityForm from './components/userLC/components_LC/activity_form/ActivityForm';
 import LocationForm from './components/userLC/components_LC/location_form/LocationForm';
 import EventCard from './components/userLC/components_LC/activity_events/EventCard';
-
-function App(): JSX.Element {
-  const [user, setUser] = useState({ login: '' });
-import './App.css';
-import UserLC from './components/userLC/UserLC';
 import Locations from './components/Locations/Locations';
 import { useAppSelector } from './store/hooks';
 
 function App(): JSX.Element {
-  const { locations } = useAppSelector((store) => store.locations);
+    const { locations } = useAppSelector((store) => store.locations);
+    const [user, setUser] = useState({ login: '' });
   console.log(locations);
   
   return (
@@ -32,7 +28,6 @@ function App(): JSX.Element {
           <Route path="activity_form" element={<ActivityForm />} />
           <Route path="events" element={<EventCard />} />
         </Route>
-        <Route path="/userLC" element={<UserLC />} />
         <Route path="/locations" element={<Locations />} />
       </Routes>
     </div>
