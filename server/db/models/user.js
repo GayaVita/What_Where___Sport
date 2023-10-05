@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate( { Profile } ) {
-      this.belongsTo(Profile);
+      this.hasOne(Profile, { foreignKey: 'user_id' });
     }
   }
   User.init({

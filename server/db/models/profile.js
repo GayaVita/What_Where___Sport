@@ -5,7 +5,6 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
     static associate( { User, Activity }) {
-      this.hasOne(User, { foreignKey: 'user_id' } );
       this.hasMany(Activity, { foreignKey: 'profile_id' } );
     }
   }
