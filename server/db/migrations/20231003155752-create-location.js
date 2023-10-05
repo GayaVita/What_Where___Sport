@@ -11,7 +11,7 @@ module.exports = {
       },
       admin_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: {
             tableName: 'Admins',
@@ -46,7 +46,8 @@ module.exports = {
       coordinateY: {
         type: Sequelize.STRING
       },
-      profile_id_loc {
+      profile_id_loc: {
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: {
@@ -54,7 +55,7 @@ module.exports = {
           },
           key: 'id',
         },
-      }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -17,7 +17,12 @@ function App(): JSX.Element {
     <div className="App">
       <Navbar user={user} />
       <Routes>
-        <Route path="/userLC" element={<UserLC />} />
+        <Route path="/userLC" element={<UserLC />}>
+          <Route path="profile_form" element={<ProfileForm />} />
+          <Route path="location_form" element={<LocationForm />} />
+          <Route path="activity_form" element={<ActivityForm />} />
+          <Route path="events" element={<EventCard />} />
+        </Route>
       </Routes>
     </div>
   );

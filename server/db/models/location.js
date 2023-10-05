@@ -4,10 +4,10 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Location extends Model {
-    static associate( { Admin, Activity }) {
+    static associate( { Admin, Activity, Profile }) {
       this.belongsTo(Admin, { foreignKey: 'admin_id' });
       this.hasMany(Activity, {foreignKey: 'location_id'});
-      this.belongsTo(Profile, { foreignKey: 'profile_id_loc' });
+      this.belongsTo(Profile, {foreignKey: 'profile_id_loc'});
     }
   }
   Location.init({
