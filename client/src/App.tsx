@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import reactLogo from './assets/react.svg';
-import elbrusLogo from './assets/elbrus.svg';
 import './App.css';
 import UserLC from './components/userLC/UserLC';
+import ProfileForm from './components/userLC/components_LC/profile_form/ProfileForm';
+import ActivityForm from './components/userLC/components_LC/activity_form/ActivityForm';
+import LocationForm from './components/userLC/components_LC/location_form/LocationForm';
+import EventCard from './components/userLC/components_LC/activity_events/EventCard';
 
 function App(): JSX.Element {
   const [count, setCount] = useState(0);
@@ -11,7 +13,12 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <Routes>
-        <Route path="/userLC" element={<UserLC />} />
+        <Route path="/userLC" element={<UserLC />}>
+          <Route path="profile_form" element={<ProfileForm />} />
+          <Route path="location_form" element={<LocationForm /> } />
+          <Route path="activity_form" element={<ActivityForm /> } />
+          <Route path="events" element={<EventCard />} />
+        </Route>
       </Routes>
     </div>
   );

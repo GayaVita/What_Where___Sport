@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate( { Admin, Activity }) {
       this.belongsTo(Admin, { foreignKey: 'admin_id' });
       this.hasMany(Activity, {foreignKey: 'location_id'});
+      this.belongsTo(Profile, { foreignKey: 'profile_id_loc' });
     }
   }
   Location.init({
@@ -18,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     location_photo: DataTypes.STRING,
     location_category: DataTypes.STRING,
     location_contact: DataTypes.STRING,
+    profile_id_loc: DataTypes.INTEGER,
     coordinateX: DataTypes.STRING,
     coordinateY: DataTypes.STRING,
   }, {

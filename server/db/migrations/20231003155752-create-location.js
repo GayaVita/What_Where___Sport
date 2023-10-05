@@ -46,6 +46,15 @@ module.exports = {
       coordinateY: {
         type: Sequelize.STRING
       },
+      profile_id_loc {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Profiles',
+          },
+          key: 'id',
+        },
+      }
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

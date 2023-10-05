@@ -4,9 +4,10 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
-    static associate( { User, Activity }) {
+    static associate( { User, Activity, Location }) {
       this.hasOne(User, { foreignKey: 'user_id' } );
       this.hasMany(Activity, { foreignKey: 'profile_id' } );
+      this.hasMany(Location, { foreignKey: 'profile_id_loc' } );
     }
   }
   Profile.init({
@@ -22,3 +23,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Profile;
 };
+
+
