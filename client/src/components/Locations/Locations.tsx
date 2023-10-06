@@ -9,9 +9,12 @@ export default function Locations(): JSX.Element {
   const [filter, setFilter] = useState({
     location_district: '',
     location_category: '',
-  })
+  });
   const [isVisible, setIsVisible] = useState(false);
   const { locations, filteredLocations } = useAppSelector((store) => store.locations);
+  const [sortedLocations, setSortedLocations] = useState({
+    sortedLocations: locations
+  }); 
   const dispatch = useAppDispatch();
 
  useEffect(() => {
@@ -35,7 +38,25 @@ export default function Locations(): JSX.Element {
   }
 
   const resetFilteringLocations = () => {
-    getLocations();
+    setFilter({
+      location_district: '',
+      location_category: '',
+    })
+    dispatch(getFilteredLocations({
+      location_district: '',
+      location_category: '',
+    }))
+    setIsVisible(false);
+  }
+
+  const sortByPriceASC = () => {
+    const sortedLocations = [...locations].sort((a, b) => a.location_price - b.location_price);
+    setSortedLocations(sortedLocations);
+  }
+
+  const sortByPriceDESC = () => {
+    const sortedLocations = [...locations].sort((a, b) => b.location_price - a.location_price);
+    setSortedLocations(sortedLocations);
   }
 
   const toggleVisibility = () => {
@@ -44,7 +65,7 @@ export default function Locations(): JSX.Element {
 
   const uniqueCategories = [...new Set(locations.map((location) => location.location_category))];
 
-  const uniqueDistricts = [...new Set(locations.map((location) => location.location_district))];
+  const uniqueDistricts = [...new Set(locations.filter((el) => el.location_category === filter.location_category).map((location) => location.location_district))];
   
   return (
     <>
@@ -71,21 +92,18 @@ export default function Locations(): JSX.Element {
                 ))}
               </Form.Select>
               <div className={styles.btnsFilter}>
-                <Button className={styles.btnFind}variant="success" onClick={filteringLocations} >
-                  Найти
-                </Button>
                 <Button className={styles.btnReset}variant="success" onClick={resetFilteringLocations} >
                   Cбросить
+                </Button>
+                <Button className={styles.btnFind}variant="success" onClick={filteringLocations} >
+                  Найти
                 </Button>
               </div>
             </div>
             )}
-            <div className={styles.btnSort}>Сортировать по цене</div>
-     
-            <svg className={styles.sortUp} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z" /></svg>
-    
-            <svg className={styles.sortDown} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" /></svg>
-            
+            <div className={styles.btnSort}>Сортировать по цене</div>    
+              <svg className={styles.sortByPriceASC} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" onClick={sortUpLocations} ><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z" /></svg>    
+              <svg className={styles.sortByPriceDESC} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" onClick={sortDownLocations}><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" /></svg>         
             </div>
       <div className={styles.locationList}>
           {filteredLocations && 

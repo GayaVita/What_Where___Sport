@@ -20,7 +20,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          admin_id: null,
+          admin_id: 1,
           location_title: 'Футбольный манеж "Олимп"',
           location_address: 'ул. Гагарина, д. 311',
           location_district: 'г. Москва, ЗАО',
@@ -30,7 +30,7 @@ module.exports = {
           location_contact: '+7 (917) 148-85-40',
           coordinateX: null,
           coordinateY: null,
-          profile_id_loc: 1,
+          profile_id_loc: null,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

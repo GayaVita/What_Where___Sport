@@ -14,6 +14,7 @@
   font-family: "Montserrat";
   color: rgb(54,139,123);
   background-color: rgb(246,246,246);
+  border-radius: 0.7rem;
 }
 .location_large_title {
   margin-top: 2.5rem;
@@ -33,7 +34,7 @@
 .location_photo {
   width: 20rem;
   height: 15rem;
-  border-radius: 5%;
+  border-radius: 0.7rem;
 }
 .location_title {
   color: rgb(42, 105, 92);
@@ -51,7 +52,7 @@
   left: -2rem;
   padding: 8px;
   background-color: pink;
-  border-radius: 5%;
+  border-radius: 0.5rem;
   font-weight: bold;
   color: black;
   background-color: rgb(246,114,99);
@@ -107,8 +108,9 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  border-radius: 4%;
+  border-radius: 0.5rem;
   top: 2.4rem;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
 }
 .btnFind, .btnReset {
   background-color: rgb(54,139,123);
