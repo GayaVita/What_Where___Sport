@@ -8,3 +8,5 @@ export interface ILocation {
   location_price: number;
   location_contact: string;
 }
+
+

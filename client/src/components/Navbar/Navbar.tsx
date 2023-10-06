@@ -1,18 +1,29 @@
 import React from 'react';
-import './navbar.style.css';
+import { IPropsLogin, IPropsNavbar } from '../../types/types';
 import { Link } from 'react-router-dom';
-import { IPropsLogin } from '../../types/types';
 
-export default function Navbar({ user }: IPropsLogin) {
+export default function Navbar({ user, setUser }: IPropsNavbar) {
   console.log(user.login);
+
+  const logoutHandler = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/user/logout', {
+        credentials: 'include'
+      })
+      const res = await response.json()
+      setUser((pre)=> ({...pre, login: res.login, authLogin: false}))
+    } catch (error) {
+      console.log('Не смогли войти', error);
+    }
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       {user.login ? (
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             Главная
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -27,28 +38,33 @@ export default function Navbar({ user }: IPropsLogin) {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to="activities">
                   Активности
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/locations">
+                <Link className="nav-link" to="/locations">
                   Локации
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/user/logout">
+                <Link className="nav-link" to="/userLC">
+                  Личный кабинет
+                </Link>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={logoutHandler}>
                   Выйти
-                </a>
+                </button>
               </li>
             </ul>
           </div>
         </div>
       ) : (
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             Главная
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -63,19 +79,24 @@ export default function Navbar({ user }: IPropsLogin) {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to="#">
                   Активности
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/locations">
+                <Link className="nav-link" to="/locations">
                   Локации
-                </a>
+                </Link>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/access">
-                  Войти
+              {/* <li className="nav-item">
+                <a className="nav-link" href="/userLC">
+                  Личный кабинет
                 </a>
+              </li> */}
+              <li className="nav-item">
+                <Link className="nav-link" to="/access">
+                  Войти
+                </Link>
               </li>
             </ul>
           </div>

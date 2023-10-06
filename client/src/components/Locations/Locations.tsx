@@ -5,6 +5,7 @@ import { getFilteredLocations, getLocations } from '../../store/locationsSlices/
 import { Button, Form } from 'react-bootstrap';
 import { ILocation } from '../types';
 
+
 export default function Locations(): JSX.Element {
   const [filter, setFilter] = useState({
     location_district: '',

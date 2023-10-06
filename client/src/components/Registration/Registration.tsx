@@ -5,7 +5,8 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-export default function Login({ setUser }: IRegProps): JSX.Element {
+export default function Registration({ setUser }: IRegProps): JSX.Element {
+  
   const defaultInput = {
     login: '',
     email: '',
@@ -46,10 +47,11 @@ export default function Login({ setUser }: IRegProps): JSX.Element {
     if (result.msg) {
       setUser(result.login);
       setMessage(result.msg);
-      setUser((prev) => ({ ...prev, login: result.login }));
-      setTimeout(() => {
-        navigate('/');
-      }, 4000);
+      setUser((prev) => ({ ...prev, id: result.id, login: result.login }));
+      // setTimeout(() => {
+      //   navigate('/');
+      // }, 4000);
+      navigate('/');
     } else {
       setMessage(result.err);
     }
@@ -72,10 +74,11 @@ export default function Login({ setUser }: IRegProps): JSX.Element {
     console.log(result);
     if (result.msg) {
       setMessage(result.msg);
-      setUser((prev) => ({ ...prev, login: result.login }));
-      setTimeout(() => {
-        navigate('/');
-      }, 4000);
+      setUser((prev) => ({ ...prev, id: result.id, login: result.login }));
+      // setTimeout(() => {
+      //   navigate('/');
+      // }, 4000);
+      navigate('/');
     } else {
       setMessage(result.err);
     }

@@ -7,6 +7,7 @@ export interface IInput {
 }
 
 export interface ILogin {
+  id?: number | null;
   login: string;
 }
 
@@ -18,4 +19,8 @@ export interface IPropsLogin {
 export interface IRegProps {
   setUser: Dispatch<SetStateAction<ILogin>>
 
+}
+
+export interface IPropsNavbar extends IRegProps{
+  user: ILogin;
 }
