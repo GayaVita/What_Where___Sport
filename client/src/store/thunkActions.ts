@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { DOMEN_SERVER } from "../config/const";
 
 export const getLocations = createAsyncThunk("locations/all", async () => {
   try {
-    const locations = await fetch("http://localhost:3002/api/locations");
+    const locations = await fetch(`${DOMEN_SERVER}/api/locations`);
     return await locations.json();   
   } catch (error) {
     console.log(error);
@@ -23,3 +24,13 @@ export const getFilteredLocations = createAsyncThunk("filteredLocations/all", as
     console.log(error);
   }
 })
+
+export const getUsers = createAsyncThunk("users/all", async () => {
+  try {
+    const locations = await fetch(`${DOMEN_SERVER}/`);
+    return await locations.json();   
+  } catch (error) {
+    console.log(error);
+  }
+})
+

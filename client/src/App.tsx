@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import './App.css';
+// import './App.css';
 import UserLC from './components/userLC/UserLC';
 import Registration from './components/Registration/Registration';
 import Navbar from './components/Navbar/Navbar';
@@ -12,18 +12,24 @@ import LocationForm from './components/userLC/components_LC/location_form/Locati
 import EventCard from './components/userLC/components_LC/activity_events/EventCard';
 import Locations from './components/Locations/Locations';
 import { useAppSelector } from './store/hooks';
-import { ILogin } from './types/types';
+
+
+import { useAppDispatch } from './store/hooks';
+import { checkAuth } from './store/userSlice/thunkUser';
 
 function App(): JSX.Element {
-  const { locations } = useAppSelector((store) => store.locations);
-  const [user, setUser] = useState<ILogin>({ login: '' });
+  
+  const dispatch = useAppDispatch();
+ useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
 
   return (
     <div className="App">
-      <Navbar user={user} />
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/access" element={<Registration setUser={setUser} />} />
+        <Route path="/access" element={<Registration />} />
         <Route path="/userLC" element={<UserLC />}>
           <Route path="profile_form" element={<ProfileForm />} />
           <Route path="location_form" element={<LocationForm />} />
