@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Locations.css'
+import styles from './Locations.module.css';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getFilteredLocations, getLocations } from '../../store/thunkActions';
+import { getFilteredLocations, getLocations } from '../../store/locationsSlices/thunkActions';
 import { Button, Form } from 'react-bootstrap';
 import { ILocation } from '../types';
 
@@ -35,6 +35,10 @@ export default function Locations(): JSX.Element {
     setIsVisible(false);
   }
 
+  const resetFilteringLocations = () => {
+    getLocations();
+  }
+
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
@@ -45,80 +49,86 @@ export default function Locations(): JSX.Element {
   
   return (
     <>
-      <h1 className='location_large_title'>Площадки для занятий спортом</h1>
+        <h2 className={styles.location_large_title}>Площадки для занятий спортом</h2>
 
-      <div className='filter'>
-        <Button variant="success" onClick={() => {toggleVisibility(); handleFilter('')}}>
-          Фильтр
-        </Button>
-        {isVisible && (
-          <div className='isVisibleBtn'>
-            <Form.Select className="selectCategory" name='location_category' onChange={handleFilter}>
-              <option>Категория</option>
-              {/* {locations && 
-                locations.map((location: ILocation) => (
-                  <option key={location.id} value={location.location_category}>{location.location_category}</option>
-              ))} */}
-              {uniqueCategories && 
-                uniqueCategories.map((category) => (
-                  <option key={category} value={category}>{category}</option>
-              ))}
-            </Form.Select>
-            <Form.Select className="selectDistrict" name='location_district' onChange={handleFilter}>
-              <option>Округ</option>
-              {/* {locations && 
-                locations.map((location: ILocation) => (
-                  <option key={location.id} value={location.location_district}>{location.location_district}</option>
-              ))} */}
-                {uniqueDistricts && 
-                uniqueDistricts.map((district) => (
-                  <option key={district} value={district}>{district}</option>
-              ))}
-            </Form.Select>
-            <Button variant="success btnFind" onClick={filteringLocations} >
-              Найти
-            </Button>
-          </div>
-          )}
-          </div>
-    <div className='locationList'>
-        {filteredLocations && 
-        filteredLocations.map((location: ILocation) => (
-          <div key={location.id} className='location'>
-            <div className='location_picture'>
-              <img className='location_photo' src={location.location_photo} alt="place" />
-              <div className='location_price'>{location.location_price}руб./час</div>
+        <div className={styles.filter}>
+          <Button className={styles.btnFilter} variant="success" onClick={() => {toggleVisibility(); handleFilter('')}}>
+            Фильтр
+          </Button>
+          {isVisible && (
+            <div className={styles.isVisibleBtn}>
+              <Form.Select className={styles.selectCategory} name='location_category' onChange={handleFilter}>
+                <option>Категория</option>
+                {uniqueCategories && 
+                  uniqueCategories.map((category) => (
+                    <option key={category} value={category}>{category}</option>
+                ))}
+              </Form.Select>
+              <Form.Select className={styles.selectDistrict} name='location_district' onChange={handleFilter}>
+                <option>Округ</option>
+                  {uniqueDistricts && 
+                  uniqueDistricts.map((district) => (
+                    <option key={district} value={district}>{district}</option>
+                ))}
+              </Form.Select>
+              <div className={styles.btnsFilter}>
+                <Button className={styles.btnFind}variant="success" onClick={filteringLocations} >
+                  Найти
+                </Button>
+                <Button className={styles.btnReset}variant="success" onClick={resetFilteringLocations} >
+                  Cбросить
+                </Button>
+              </div>
             </div>
+            )}
+            <div className={styles.btnSort}>Сортировать по цене</div>
+     
+            <svg className={styles.sortUp} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z" /></svg>
+    
+            <svg className={styles.sortDown} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" /></svg>
             
-            <div className='location_info'>
-              <h5 className='location_title'>{location.location_title}</h5>
-                <ul className="location_ul">
-                  <li className="location_category">Категория: {location.location_category}</li>
-                  <li className="location_district">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-120v-560h240v-80l120-120 120 120v240h240v400H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z"/></svg> 
-                   {location.location_district}
-                  </li>
-                  <li className="location_address">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg> 
-                   {location.location_address}
-                  </li>
-                  <li className="location_contact">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"/>
-                    </svg>
-                     {location.location_contact}
-                    </li>
-                </ul>
-                <div className='btnBookLocationDiv'>
-                  <a href='https://t.me/+xdQ_Bp9MU6hkMDY6' target='_blank'>
-                  <button className='btn btn-success btnBookLocation'>Связаться</button>
-
-                  </a>
-                </div>
             </div>
-          </div>
-        )) 
-       }
-    </div>
+      <div className={styles.locationList}>
+          {filteredLocations && 
+          filteredLocations.map((location: ILocation) => (
+            <div key={location.id} className={styles.location}>
+              <div className={styles.location_picture}>
+                <img className={styles.location_photo} src={location.location_photo} alt="place" />
+                <div className={styles.location_price}>{location.location_price} руб./час</div>
+              </div>
+              
+              <div className={styles.location_info}>
+                <h5 className={styles.location_title}>{location.location_title}</h5>
+                  <ul className={styles.location_ul}>
+                    <li className={styles.location_category}>Категория: {location.location_category}</li>
+                    <li className={styles.location_district}>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-120v-560h240v-80l120-120 120 120v240h240v400H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z"
+                    fill="rgb(54,139,123)"/></svg> 
+                    {' '}{location.location_district}
+                    </li>
+                    <li className={styles.location_address}>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"
+                    fill="rgb(54,139,123)"/></svg> 
+                    {' '}{location.location_address}
+                    </li>
+                    <li className={styles.location_contact}>
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                      <path d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"
+                      fill="rgb(54,139,123)"/>
+                     </svg>
+                      {' '}{location.location_contact}
+                      </li>
+                  </ul>
+                  <div className={styles.btnBookLocationDiv}>
+                    <a href='https://t.me/+xdQ_Bp9MU6hkMDY6' target='_blank'>
+                    <button className={styles.btnBookLocation}>Связаться</button>
+                    </a>
+                  </div>
+              </div>
+            </div>
+          )) 
+          }
+      </div>
     </>
   )
 }

@@ -8,16 +8,17 @@
 }
 
 .form_location {
-  height: 700px;
+  height: 645px;
   width: 600px;
   padding-top: 30px;
   padding-bottom: 15px;
-  background-color: rgb(40, 45, 51);
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   border-radius: 20px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
 }
 .location_form__location {
   height: 400px;
@@ -33,25 +34,29 @@
   align-items: center;
   gap: 20px;
   width: 400px;
-  background-color: rgb(40, 45, 51);
+  background-color: white;
   border-radius: 10px;
-  
-  }
+}
 
-  .location_form__input {
-    width: 400px;
-    border-radius: 5px;
-  }
+.location_form__input {
+  width: 400px;
+  border-radius: 5px;
+  padding-left: 0.7rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
 
 .profile_form__button {
   /* margin-top: 10px; */
   padding-top: 10px;
   padding-bottom: 10px;
   align-self: center;
+  background-color: rgb(246,114,99);
+  border-color: unset;
 }
 
 .yandex_map {
-  background-color: chocolate;
+  background-color: rgb(236,240,239);
   height: 300px;
   width: 400px;
 }
