@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getFilteredLocations, getLocations } from '../thunkActions';
+import { getFilteredLocations, getLocations } from './thunkActions';
 import { ILocation } from '../../components/types';
 
 // Define a type for the slice state

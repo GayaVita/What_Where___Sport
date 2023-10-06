@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { locationsSlice } from './slices/locationsSlice'
+import { locationsSlice } from './locationsSlices/locationsSlice'
 
 
 export const store = configureStore({

@@ -7,12 +7,14 @@
 
 .left_form__wrapper {
   display: flex;
-  background-color: rgb(40, 45, 51);
+  /* background-color: rgb(40, 45, 51); */
+  background-color: rgb(246,114,99);
   width: 20vw;
   align-content: center;
   height: 100vh;
   padding-top: 30px;
   color: rgb(207, 223, 228);
+ 
 }
 
 .right_form__wrapper {

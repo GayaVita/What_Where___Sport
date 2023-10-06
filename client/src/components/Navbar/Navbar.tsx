@@ -32,7 +32,7 @@ export default function Navbar({ user }: IPropsLogin) {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/locations">
                   Локации
                 </a>
               </li>
@@ -68,7 +68,7 @@ export default function Navbar({ user }: IPropsLogin) {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/locations">
                   Локации
                 </a>
               </li>
