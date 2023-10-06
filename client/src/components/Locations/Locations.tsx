@@ -5,11 +5,12 @@ import { getFilteredLocations, getLocations } from '../../store/thunkActions';
 import { Button, Form } from 'react-bootstrap';
 import { ILocation } from '../types';
 
+
 export default function Locations(): JSX.Element {
   const [filter, setFilter] = useState({
     location_district: '',
     location_category: '',
-  })
+  });
   const [isVisible, setIsVisible] = useState(false);
   const { locations, filteredLocations } = useAppSelector((store) => store.locations);
   const dispatch = useAppDispatch();

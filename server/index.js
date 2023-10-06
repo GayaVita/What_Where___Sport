@@ -8,6 +8,7 @@ const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 
 const accessRouter = require('./routes/access.router');
+const profileRouter = require('./routes/profile.router');
 
 const sessionConfig = {
     name: 'SelfGameCookie',
@@ -34,6 +35,7 @@ app.use(session(sessionConfig))
 
 app.use('/user', accessRouter);
 app.use('/api/locations', locationRouter);
+app.use('/userLC', profileRouter);
 
 app.listen(PORT, () => {
     console.log(`Server has started on PORT ${PORT}`);

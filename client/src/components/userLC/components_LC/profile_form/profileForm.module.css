@@ -1,14 +1,14 @@
 .profile_form__wrapper {
   display: flex;
   flex-direction: column;
-   width: 400px;
+
   align-items: center;
   margin: 0 auto;
   width: 500px;
 }
 
 .form {
-  height: 310px;
+  height: 500px;
   width: 100%;
   padding-top: 30px;
   padding-bottom: 15px;

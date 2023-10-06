@@ -1,5 +1,6 @@
 import React from 'react';
 import { IPropsLogin, IPropsNavbar } from '../../types/types';
+import { Link } from 'react-router-dom';
 
 export default function Navbar({ user, setUser }: IPropsNavbar) {
   console.log(user.login);
@@ -20,9 +21,9 @@ export default function Navbar({ user, setUser }: IPropsNavbar) {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       {user.login ? (
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             Главная
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -37,14 +38,19 @@ export default function Navbar({ user, setUser }: IPropsNavbar) {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to="activities">
                   Активности
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/locations">
                   Локации
-                </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/userLC">
+                  Личный кабинет
+                </Link>
               </li>
               <li className="nav-item">
                 <button className="nav-link" onClick={logoutHandler}>
@@ -56,9 +62,9 @@ export default function Navbar({ user, setUser }: IPropsNavbar) {
         </div>
       ) : (
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             Главная
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -73,19 +79,24 @@ export default function Navbar({ user, setUser }: IPropsNavbar) {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to="#">
                   Активности
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="#">
                   Локации
-                </a>
+                </Link>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/access">
-                  Войти
+              {/* <li className="nav-item">
+                <a className="nav-link" href="/userLC">
+                  Личный кабинет
                 </a>
+              </li> */}
+              <li className="nav-item">
+                <Link className="nav-link" to="/access">
+                  Войти
+                </Link>
               </li>
             </ul>
           </div>

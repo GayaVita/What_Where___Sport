@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
 import styles from './profileForm.module.css';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { fetchProfile } from '../../../../store/profileSlice/asyncThunk';
 
 export type ProfileFormType = {
   user_name: string;
@@ -13,6 +15,9 @@ export type ProfileFormType = {
 };
 
 export default function ProfileForm(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const { profile } = useAppSelector((store) => store.profile);
+  console.log('profile', profile);
   const [formData, setFormData] = useState<ProfileFormType>({
     user_name: '',
     user_about: '',
@@ -24,6 +29,10 @@ export default function ProfileForm(): JSX.Element {
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const submitProfileHandler = () => {
+    dispatch(fetchProfile(formData));
+  }
 
   // const formSubmitHandler = (): void => {
   //   fetch('http://localhost:3002/', {
@@ -85,7 +94,7 @@ export default function ProfileForm(): JSX.Element {
           />
         </div>
 
-        <Button variant="secondary" type="button" className={styles.profile_form__button}>
+        <Button variant="secondary" type="button" className={styles.profile_form__button} onClick={submitProfileHandler}>
           Отправить
         </Button>
       </div>

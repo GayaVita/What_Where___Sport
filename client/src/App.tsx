@@ -16,15 +16,15 @@ import { ILogin } from './types/types';
 
 function App(): JSX.Element {
   const { locations } = useAppSelector((store) => store.locations);
-  const [user, setUser] = useState<ILogin>({ login: '' });
-
+  const [user, setUser] = useState<ILogin>({ id: null,login: '' });
+  console.log('user', user)
   return (
     <div className="App">
       <Navbar user={user} />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/access" element={<Registration setUser={setUser} />} />
-        <Route path="/userLC" element={<UserLC />}>
+        <Route path="/userLC" element={<UserLC user={user} />}>
           <Route path="profile_form" element={<ProfileForm />} />
           <Route path="location_form" element={<LocationForm />} />
           <Route path="activity_form" element={<ActivityForm />} />

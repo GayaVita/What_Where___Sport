@@ -40,7 +40,7 @@ router.post("/registration", async (req, res) => {
         res.json({
           access: true,
           msg: "User created successful",
-          login: req.session.login,
+          login: req.session.user.login,
           id: newUser.id,
         });
       });
@@ -77,7 +77,7 @@ router.post("/login", async (req, res) => {
         res.json({
           access: true,
           msg: "Password correct",
-          login: req.session.login,
+          login: req.session.user.login,
           id: checkEmail.id,
         });
       });

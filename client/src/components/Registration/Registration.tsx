@@ -48,9 +48,10 @@ export default function Registration({ setUser }: IRegProps): JSX.Element {
       setUser(result.login);
       setMessage(result.msg);
       setUser((prev) => ({ ...prev, login: result.login }));
-      setTimeout(() => {
-        navigate('/');
-      }, 4000);
+      // setTimeout(() => {
+      //   navigate('/');
+      // }, 4000);
+      navigate('/');
     } else {
       setMessage(result.err);
     }
@@ -73,10 +74,11 @@ export default function Registration({ setUser }: IRegProps): JSX.Element {
     console.log(result);
     if (result.msg) {
       setMessage(result.msg);
-      setUser((prev) => ({ ...prev, login: result.login }));
-      setTimeout(() => {
-        navigate('/');
-      }, 4000);
+      setUser((prev) => ({ ...prev, id: result.id, login: result.login }));
+      // setTimeout(() => {
+      //   navigate('/');
+      // }, 4000);
+      navigate('/');
     } else {
       setMessage(result.err);
     }

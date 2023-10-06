@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { locationsSlice } from './slices/locationsSlice'
+import { profileSlice } from './profileSlice/slice'
 
 
 export const store = configureStore({
-  reducer: { locations: locationsSlice.reducer }
+  reducer: { 
+    locations: locationsSlice.reducer,
+    profile: profileSlice.reducer,
+  }
 })
 
 
