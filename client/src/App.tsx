@@ -20,7 +20,7 @@ function App(): JSX.Element {
   console.log('user', user)
   return (
     <div className="App">
-      <Navbar user={user} />
+      <Navbar user={user} setUser={setUser} />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/access" element={<Registration setUser={setUser} />} />

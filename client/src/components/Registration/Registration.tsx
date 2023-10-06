@@ -47,7 +47,7 @@ export default function Registration({ setUser }: IRegProps): JSX.Element {
     if (result.msg) {
       setUser(result.login);
       setMessage(result.msg);
-      setUser((prev) => ({ ...prev, login: result.login }));
+      setUser((prev) => ({ ...prev, id: result.id, login: result.login }));
       // setTimeout(() => {
       //   navigate('/');
       // }, 4000);
