@@ -2,10 +2,11 @@ import { IInput, IRegProps } from '../../types/types';
 import './reg.style.css';
 import type { MouseEvent, ChangeEvent } from 'react';
 import React, { useState } from 'react';
-
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { fetchUserRegister,fetchUserLogin } from '../../store/userSlice/sliceUser';
 import { useNavigate } from 'react-router-dom';
 
-export default function Registration({ setUser }: IRegProps): JSX.Element {
+export default function Registration(): JSX.Element {
   
   const defaultInput = {
     login: '',
@@ -13,6 +14,9 @@ export default function Registration({ setUser }: IRegProps): JSX.Element {
     password: '',
   };
 
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate()
+  // const { error } = useAppSelector(store => store.userSlice);
   const [show, setShow] = useState(false);
   const [inputs, setInputs] = useState<IInput>(defaultInput);
   const [message, setMessage] = useState('');
@@ -28,63 +32,25 @@ export default function Registration({ setUser }: IRegProps): JSX.Element {
   };
 
   //REGISTRATION
-  const navigate = useNavigate();
 
-  const signInButton = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
-    e.preventDefault();
-    console.log(e.target);
-    const response = await fetch('http://localhost:3000/user/registration', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify(inputs),
-    });
-    console.log(response);
-    const result = await response.json();
-    console.log(result);
-    if (result.msg) {
-      setUser(result.login);
-      setMessage(result.msg);
-      setUser((prev) => ({ ...prev, id: result.id, login: result.login }));
-      // setTimeout(() => {
-      //   navigate('/');
-      // }, 4000);
-      navigate('/');
-    } else {
-      setMessage(result.err);
+  const signInButton = async (): Promise<void> => {   
+    const resultAction = await dispatch(fetchUserRegister(inputs))
+    if (fetchUserRegister.fulfilled.match(resultAction)) {
+      navigate('/')
     }
   };
 
     //LOGIN
-  const signUpButton = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
-    e.preventDefault();
-    console.log(e.target);
-    const response = await fetch('http://localhost:3000/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify(inputs),
-    });
-    console.log(response);
-    const result = await response.json();
-    console.log(result);
-    if (result.msg) {
-      setMessage(result.msg);
-      setUser((prev) => ({ ...prev, id: result.id, login: result.login }));
-      // setTimeout(() => {
-      //   navigate('/');
-      // }, 4000);
-      navigate('/');
-    } else {
-      setMessage(result.err);
+  const signUpButton = async (): Promise<void> => {
+    const resultAction = await dispatch(fetchUserLogin(inputs))
+    if (fetchUserLogin.fulfilled.match(resultAction)) {
+      navigate('/')
     }
+   
   };
 
   return (
+    <div className='regContainer'>
     <div className={show ? 'container right-panel-active' : 'container'} id="container">
       <div className="form-container sign-up-container">
         <form action="#">
@@ -180,6 +146,7 @@ export default function Registration({ setUser }: IRegProps): JSX.Element {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

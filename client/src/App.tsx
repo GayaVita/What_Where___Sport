@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
@@ -12,27 +12,23 @@ import LocationForm from './components/userLC/components_LC/location_form/Locati
 import EventCard from './components/userLC/components_LC/events/EventCardLC/EventCardLC';
 import Locations from './components/Locations/Locations';
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { ILogin } from './types/types';
+import { checkAuth } from './store/userSlice/thunkUser';
 import { getUserProfile } from './store/profileSlice/asyncThunk';
 
 function App(): JSX.Element {
-  const { locations } = useAppSelector((store) => store.locations);
-  const [user, setUser] = useState<ILogin>({ id: '',login: '' });
-  // console.log('user', user)
-
   const dispatch = useAppDispatch();
 
-  React.useEffect(() => {
-    // dispatch(checkAuth());
+  useEffect(() => {
+    dispatch(checkAuth());
     dispatch(getUserProfile());
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
     <div className="App">
-      <Navbar user={user} setUser={setUser} />
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/access" element={<Registration setUser={setUser} />} />
+        <Route path="/access" element={<Registration />} />
         <Route path="/userLC" element={<UserLC user={user} />}>
           <Route path="profile_form" element={<ProfileForm />} />
           <Route path="location_form" element={<LocationForm user={user} />} />
@@ -42,6 +38,7 @@ function App(): JSX.Element {
         <Route path="/locations" element={<Locations />} />
       </Routes>
     </div>
+
   );
 }
 

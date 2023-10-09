@@ -9,15 +9,13 @@ router.get("/", async (req, res) => {
   res.json(users);
 });
 
-router.get("/:id", async (req, res) => {
-  const user = await User.findByPk(req.params.id);
-  res.json(user);
-});
-
 router.post("/registration", async (req, res) => {
-  const { login, email, password } = req.body;
-  console.log(req.body);
   try {
+<<<<<<< HEAD
+    const { login, email, password } = req.body;
+    if (!(login || email || password)) {
+      return res.status(400).json({ message: "Please provide all fields" });
+=======
     const checkUser = await User.findOne({ where: { email } });
     console.log(checkUser);
     if (!checkUser) {
@@ -50,14 +48,42 @@ router.post("/registration", async (req, res) => {
         err: "User already created",
         login: req.session.login,
       });
+>>>>>>> dev
     }
-  } catch (err) {
-    console.log("Something wrong", err);
+    const hashpass = await bcrypt.hash(password, 10);
+    const [user, created] = await User.findOrCreate({
+      where: { email },
+      defaults: { login, password: hashpass },
+    });
+    if (!created) {
+      return res.status(401).json({ message: "User already exists" });
+    }
+    const newUser = JSON.parse(JSON.stringify(user));
+    delete newUser.password;
+    req.session.user = {
+      id: user.id,
+      login: user.login,
+      email: user.email,
+    };
+    return res.json({
+      id: newUser.id,
+      login: newUser.login,
+      email: newUser.email,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
   }
 });
 
 //LOGIN
 router.post("/login", async (req, res) => {
+<<<<<<< HEAD
+  try {
+    const { email, password } = req.body;
+    if (!(email || password)) {
+      return res.status(400).json({ message: "Please provide all fields" });
+=======
   const { email, password } = req.body;
   const checkEmail = await User.findOne({ where: { email } });
   if (!checkEmail) {
@@ -83,15 +109,54 @@ router.post("/login", async (req, res) => {
       });
     } else {
       res.json({ access: false, err: "Wrong password" });
+>>>>>>> dev
     }
+    const foundUser = await User.findOne({ where: { email } });
+    if (!foundUser) {
+      return res.status(401).json({ message: "User does not exist" });
+    }
+    if (!(foundUser && (await bcrypt.compare(password, foundUser.password)))) {
+      return res.status(401).json({ message: "Invalid password" });
+    }
+    const user = JSON.parse(JSON.stringify(foundUser));
+    delete user.password;
+    req.session.user = {
+      id: user.id,
+      login: user.login,
+      email: user.email,
+    };
+    return res.json({
+      id: user.id,
+      login: user.login,
+      email: user.email,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
   }
 });
 
 router.get("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    res.clearCookie("SelfGameCookie").redirect("/");
-  });
+  try {
+    req.session.destroy(() => {
+      res.clearCookie("SelfGameCookie").redirect("/");
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
+
+router.get("/checkAuth", async (req, res) => {
+  if (req.session?.user?.id) {
+    return res.json({
+      id: req.session.user.id,
+      login: req.session.user.login,
+      email: req.session.user.email,
+    });
+  }
+  return res.sendStatus(401);
+});
+
 router.patch("/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
   await user.update(req.body);
@@ -101,6 +166,11 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   await User.destroy({ where: { id: req.params.id } });
   res.sendStatus(200);
+});
+
+router.get("/:id", async (req, res) => {
+  const user = await User.findByPk(req.params.id);
+  res.json(user);
 });
 
 module.exports = router;

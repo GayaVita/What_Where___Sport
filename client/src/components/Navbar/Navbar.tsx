@@ -1,25 +1,23 @@
-import React from 'react';
-import { IPropsLogin, IPropsNavbar } from '../../types/types';
+import React, { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { fetchUserLogout } from '../../store/userSlice/thunkUser';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-export default function Navbar({ user, setUser }: IPropsNavbar) {
-  console.log(user.login);
+export default function Navbar() {
+  const { user } = useAppSelector((store) => store.user);
+  console.log(user);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const logoutHandler = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/user/logout', {
-        credentials: 'include'
-      })
-      const res = await response.json()
-      setUser((pre)=> ({...pre, login: res.login, authLogin: false}))
-    } catch (error) {
-      console.log('Не смогли войти', error);
-    }
-  }
+  const logoutHandler = async (): Promise<void> => {
+    await dispatch(fetchUserLogout());
+    navigate('/');
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      {user.login ? (
+      {user?.login ? (
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             Главная
