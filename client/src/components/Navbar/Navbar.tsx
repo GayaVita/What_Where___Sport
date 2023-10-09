@@ -1,30 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchUserLogout } from '../../store/userSlice/thunkUser';
-import { AsyncThunkAction, Dispatch, AnyAction } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
   const { user } = useAppSelector((store) => store.user);
   console.log(user);
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const logoutHandler = async (): Promise<void> => {   
     await dispatch(fetchUserLogout())
       navigate('/')
     }
-
-  // const logoutHandler = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:3000/user/logout', {
-  //       credentials: 'include',
-  //     });
-  //     const res = await response.json();
-  //     setUser((pre) => ({ ...pre, login: res.login, authLogin: false }));
-  //   } catch (error) {
-  //     console.log('Не смогли войти', error);
-  //   }
-  // };
 
   return (
     <div>
@@ -82,7 +70,7 @@ export default function Navbar() {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
+                  <a className="nav-link " aria-current="page" href="#">
                     Активности
                   </a>
                 </li>
@@ -104,7 +92,5 @@ export default function Navbar() {
     </div>
   );
 }
-function dispatch(arg0: AsyncThunkAction<void, void, { state?: unknown; dispatch?: Dispatch<AnyAction> | undefined; extra?: unknown; rejectValue?: unknown; serializedErrorType?: unknown; pendingMeta?: unknown; fulfilledMeta?: unknown; rejectedMeta?: unknown; }>) {
-  throw new Error('Function not implemented.');
-}
+
 

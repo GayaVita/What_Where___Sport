@@ -50,6 +50,7 @@ export default function Registration(): JSX.Element {
   };
 
   return (
+    <div className='regContainer'>
     <div className={show ? 'container right-panel-active' : 'container'} id="container">
       <div className="form-container sign-up-container">
         <form action="#">
@@ -145,6 +146,7 @@ export default function Registration(): JSX.Element {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

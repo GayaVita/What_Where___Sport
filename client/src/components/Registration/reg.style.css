@@ -1,6 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
+.regContainer {
+	height: 500px;
+	width: 600px;
+	overflow: ;
+}
+
+
 h1 {
 	font-weight: bold;
 	margin: 0;
@@ -81,8 +88,7 @@ input {
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
 	overflow: hidden;
-	width: 200px;
-	height: 200px;
+
 
 
 }
@@ -98,6 +104,7 @@ input {
 	left: 0;
 	width: 50%;
 	z-index: 2;
+	
 }
 
 .container.right-panel-active .sign-in-container {
