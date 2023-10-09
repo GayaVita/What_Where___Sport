@@ -29,7 +29,7 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/access" element={<Registration />} />
-        <Route path="/userLC" element={<UserLC user={user} />}>
+        <Route path="/userLC" element={<UserLC />}>
           <Route path="profile_form" element={<ProfileForm />} />
           <Route path="location_form" element={<LocationForm />} />
           <Route path="activity_form" element={<ActivityForm />} />
