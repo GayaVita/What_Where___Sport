@@ -4,10 +4,10 @@ const { User } = require("../db/models");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  const users = await User.findAll({});
-  res.json(users);
-});
+// router.get("/", async (req, res) => {
+//   const users = await User.findAll({});
+//   res.json(users);
+// });
 
 router.post("/registration", async (req, res) => {
   try {
@@ -74,15 +74,24 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/logout", (req, res) => {
-  try {
-    req.session.destroy(() => {
-      res.clearCookie("SelfGameCookie").redirect("/");
-    });
-  } catch (err) {
-    console.log(err);
-  }
+// router.get("/logout", (req, res) => {
+  // try {
+  //   req.session.destroy(() => {
+  //     res.clearCookie("SelfGameCookie").redirect("/");
+  //   });
+  // } catch (err) {
+  //   console.log(err);
+  // }
+// });
+
+
+
+router.get('/logout', (req, res) => {
+  res.clearCookie('SelfGameCookie');
+  req.session.destroy();
+  res.sendStatus(200);
 });
+
 
 router.get("/checkAuth", async (req, res) => {
   if (req.session?.user?.id) {
@@ -95,20 +104,20 @@ router.get("/checkAuth", async (req, res) => {
   return res.sendStatus(401);
 });
 
-router.patch("/:id", async (req, res) => {
-  const user = await User.findByPk(req.params.id);
-  await user.update(req.body);
-  res.json(user);
-});
+// router.patch("/:id", async (req, res) => {
+//   const user = await User.findByPk(req.params.id);
+//   await user.update(req.body);
+//   res.json(user);
+// });
 
-router.delete("/:id", async (req, res) => {
-  await User.destroy({ where: { id: req.params.id } });
-  res.sendStatus(200);
-});
+// router.delete("/:id", async (req, res) => {
+//   await User.destroy({ where: { id: req.params.id } });
+//   res.sendStatus(200);
+// });
 
-router.get("/:id", async (req, res) => {
-  const user = await User.findByPk(req.params.id);
-  res.json(user);
-});
+// router.get("/:id", async (req, res) => {
+//   const user = await User.findByPk(req.params.id);
+//   res.json(user);
+// });
 
 module.exports = router;

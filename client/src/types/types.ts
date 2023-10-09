@@ -7,7 +7,7 @@ export interface IInput {
 }
 
 export interface ILogin {
-  id?: number | null;
+  id?: number | string;
   login: string;
 }
 

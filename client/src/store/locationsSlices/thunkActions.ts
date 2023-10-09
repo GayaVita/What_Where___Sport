@@ -3,8 +3,7 @@ import { DOMEN_SERVER } from "../../config/const";
 
 export const getLocations = createAsyncThunk("locations/all", async () => {
   try {
-    const locations = await fetch(`${DOMEN_SERVER}/api/locations`);
-    // const locations = await fetch("http://localhost:3000/api/locations");
+    const locations = await fetch("http://localhost:3000/api/locations");
     return await locations.json();   
   } catch (error) {
     console.log(error);

@@ -1,27 +1,41 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const { Location } = require('../db/models');
 
 const router = express.Router();
 
-router.post('/userLC/location_form', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-  // location_title: string;
-  const {location_district} = req.body.location_district;
-  const {location_address} = req.body.location_address;
-  // location_price: number | '';
-  const {location_photo} = req.body.location_photo;
-  const {location_category} = req.body.location_category;
-  // location_contact: string;
-  // const {coordinateX} = req.body.coordinateX;
-  // const {coordinateY} = req.body.coordinateY;
-  const {profile_id_loc} = req.session.user.profile_id
- 
-    const location = await Location.create({location_district, location_address, location_photo, location_category, profile_id_loc
-    })
+    const {
+      location_title,
+      location_district,
+      location_address,
+      coordinateX,
+      coordinateY,
+    } = req.body;
+    const { id } = req.session?.user;
+    if (
+      !location_title ||
+      !location_district ||
+      !location_address ||
+      !coordinateX ||
+      !coordinateY
+    ) {
+      return res.status(400).json({ message: 'Не все поля заполнены' });
+    }
 
+    const location = await Location.create({
+      location_title,
+      location_district,
+      location_address,
+      user_id_loc: id,
+      coordinateX,
+      coordinateY,
+    });
+    return res.json(location);
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    return res.sendStatus(500);
   }
-  res.json(location)
-})
+});
+
+module.exports = router;

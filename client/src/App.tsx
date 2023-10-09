@@ -9,18 +9,18 @@ import Main from './components/Main/Main';
 import ProfileForm from './components/userLC/components_LC/profile_form/ProfileForm';
 import ActivityForm from './components/userLC/components_LC/activity_form/ActivityForm';
 import LocationForm from './components/userLC/components_LC/location_form/LocationForm';
-import EventCard from './components/userLC/components_LC/activity_events/EventCard';
+import EventCard from './components/userLC/components_LC/events/EventCardLC/EventCardLC';
 import Locations from './components/Locations/Locations';
-import { useAppSelector } from './store/hooks';
-
-import { useAppDispatch } from './store/hooks';
+import { useAppDispatch, useAppSelector } from './store/hooks';
 import { checkAuth } from './store/userSlice/thunkUser';
+import { getUserProfile } from './store/profileSlice/asyncThunk';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(checkAuth());
+    dispatch(getUserProfile());
   }, [dispatch]);
 
   return (
