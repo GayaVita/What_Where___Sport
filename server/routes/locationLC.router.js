@@ -9,7 +9,6 @@ router.post('/', async (req, res) => {
       location_title,
       location_district,
       location_address,
-      location_category,
       coordinateX,
       coordinateY,
     } = req.body;
@@ -18,7 +17,6 @@ router.post('/', async (req, res) => {
       !location_title ||
       !location_district ||
       !location_address ||
-      !location_category ||
       !coordinateX ||
       !coordinateY
     ) {
@@ -29,7 +27,6 @@ router.post('/', async (req, res) => {
       location_title,
       location_district,
       location_address,
-      location_category,
       user_id_loc: id,
       coordinateX,
       coordinateY,

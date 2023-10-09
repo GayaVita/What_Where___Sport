@@ -16,9 +16,12 @@ router.get('/profile_form', async (req, res) => {
 
 router.post('/profile_form', async (req, res) => {
   try {
-    const { id } = req.session.user;
+    const { id } = req.session?.user;
     const { user_name, user_about, user_age, user_tg, user_mobile } =
-      req.body.formData;
+      req.body;
+    if (!user_name || !user_about || !user_age || !user_tg || !user_mobile) {
+      return res.status(400).json({message: 'Не все поля заполнены!'})
+    }  
     // console.log('req.body', req.body);
     const profile = await Profile.create({
       user_name,

@@ -22,9 +22,6 @@ module.exports = {
       location_title: {
         type: Sequelize.STRING
       },
-      location_city: {
-        type: Sequelize.STRING
-      },
       location_address: {
         type: Sequelize.STRING
       },

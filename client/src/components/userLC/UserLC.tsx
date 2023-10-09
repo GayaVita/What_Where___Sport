@@ -1,14 +1,10 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import styles from './userLC.module.css';
-import { ILogin } from '../../types/types'
 
-interface ILocationProps {
-  user: ILogin
-}
 
-export default function UserLC({ user }: ILocationProps): JSX.Element {
-  console.log('user', user)
+export default function UserLC(): JSX.Element {
+
   return (
     <div className={styles.userLC_container}>
       

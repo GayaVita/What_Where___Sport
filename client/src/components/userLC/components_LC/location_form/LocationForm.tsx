@@ -5,35 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import styles from './locationForm.module.css';
 import { useAppDispatch } from '../../../../store/hooks';
 import { fetchLocationLC } from '../../../../store/locationLCSlice/asyncThunk';
-import { ILogin } from '../../../../types/types';
 import Map from '../../../Map/Map';
+import { LocationLCFormType } from '../../../../store/locationLCSlice/types';
 
-export type LocationFormType = {
-  location_title: string;
-  location_address: string;
-  location_district: string;
-  location_price: number | '';
-  location_photo: string;
-  location_category: string;
-  location_contact: string;
-  user_id_loc: number | '';
-  coordinateX: string;
-  coordinateY: string;
-};
-
-interface ILocationProps {
-  user: ILogin;
-}
-
-export default function LocationForm({ user }: ILocationProps): JSX.Element {
-  console.log('user.id', user?.id);
+export default function LocationForm(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [formData, setFormData] = useState<LocationFormType>({
+  const [formData, setFormData] = useState<LocationLCFormType>({
     location_address: '',
     location_title: '',
-    location_category: '',
-    user_id_loc: user.id || '',
+    location_district: '',
     coordinateX: '',
     coordinateY: '',
   });
@@ -42,15 +23,6 @@ export default function LocationForm({ user }: ILocationProps): JSX.Element {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // const formSubmitHandler = (): void => {
-  //   fetch('http://localhost:3002/', {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(formData)
-  //   })
-  // }
 
   const clickHandler = async () => {
     const resultLocation = await dispatch(fetchLocationLC(formData));
@@ -73,11 +45,12 @@ export default function LocationForm({ user }: ILocationProps): JSX.Element {
         </div>
           <input
             className={styles.location_form__input}
-            name="city"
+            name="location_district"
             type="text"
             placeholder="город"
-            value={formData?.location_city}
+            value={formData?.location_district}
             onChange={changeHandler}
+            disabled
           />
 
           <input
@@ -87,6 +60,7 @@ export default function LocationForm({ user }: ILocationProps): JSX.Element {
             placeholder="адрес места"
             value={formData?.location_address}
             onChange={changeHandler}
+            disabled
           />
 
           <input

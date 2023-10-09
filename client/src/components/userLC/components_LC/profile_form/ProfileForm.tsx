@@ -17,7 +17,7 @@ export type ProfileFormType = {
 
 export default function ProfileForm(): JSX.Element {
   const dispatch = useAppDispatch();
-  const { profile } = useAppSelector((store) => store.profile);
+  const { profile, error } = useAppSelector((store) => store.profile);
   console.log('profile', profile);
   const [formData, setFormData] = useState<ProfileFormType>({
     user_name: '',
@@ -98,7 +98,7 @@ export default function ProfileForm(): JSX.Element {
                 onChange={changeHandler}
               />
             </div>
-
+            {error && <p>{error}</p>}
             <Button
               variant="secondary"
               type="button"

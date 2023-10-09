@@ -1,26 +1,29 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { IMapState, getCoords, setCoords } from '../../store/mapSlice/slice';
+import { LocationLCFormType } from '../../store/locationLCSlice/types';
+
 
 interface IMapProps {
-  setFormData: () => void
+  formData: LocationLCFormType
+  setFormData: Dispatch<SetStateAction<LocationLCFormType>>
 }
-export default function Map({setFormData}: IMapProps) {
 
+export default function Map({formData, setFormData}: IMapProps) {
+  console.log('formData', formData);
   const [myMap, setMyMap] = React.useState<ymaps.Map | null>(null);
   // const [address, setAddress] = React.useState({
   //   location_address: ''
   // });
   // const [coords, setCoords] = useState(null);
   const { ymaps } = window;
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const [data, setData] = React.useState<IMapState>({ coords: [], location_address: '' });
+  // const [data, setData] = React.useState<IMapState>({ coords: [], location_address: '' });
   // console.log('data', data);
   // const navigate = useNavigate();
-  const { coords, location_address } = useAppSelector((store) => store.mapSlice);
-  console.log('data', data)
-  console.log(coords, location_address);
+  // const { coords, location_address } = useAppSelector((store) => store.mapSlice);
+  // console.log('data', data)
+  // console.log(coords, location_address);
   React.useEffect(() => {
     function init() {
       const map = new ymaps.Map(
@@ -59,7 +62,7 @@ export default function Map({setFormData}: IMapProps) {
       const coords = e.get('coords');
       // console.log('address', address);
       const myGeocoder = ymaps.geocode(coords);
-      console.log('myGeocoder', myGeocoder);
+      // console.log('myGeocoder', myGeocoder);
       let city = '';
       let address = '';
       myGeocoder
@@ -69,7 +72,6 @@ export default function Map({setFormData}: IMapProps) {
           // console.log('city', nearest.properties._data.description);
           city = nearest.properties.get('description').toString();
           address = nearest.properties.get('name').toString();
-          // setFormData({...formData, coords: coords, location_address: address })
           // setData({ ...data, city: city.toString(), address: address.toString() });
           // console.log('city', nearest.properties.get('description'));
           // console.log('address', nearest.properties._data.name);
@@ -92,7 +94,7 @@ export default function Map({setFormData}: IMapProps) {
               .getElementById('addPlaceButton')
               .addEventListener('click', () => {
              
-                setFormData({...formData, coords: coords, location_address: address }); // ЛОГИКА КЛИКА ПО КНОПКЕ ЗДЕСЬ
+                setFormData({...formData, location_address: address, coordinateX: coords[0], coordinateY: coords[1], location_district: city}) // ЛОГИКА КЛИКА ПО КНОПКЕ ЗДЕСЬ
               });
           }, 0);
         });
