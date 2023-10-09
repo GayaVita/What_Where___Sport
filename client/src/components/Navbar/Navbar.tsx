@@ -3,7 +3,7 @@ import { IPropsLogin, IPropsNavbar } from '../../types/types';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { Nav, Navbar } from 'react-bootstrap';
-// import styles from './navbar.style.css'
+import styles from './navbar.module.css'
 
 export default function NavBar({ user, setUser }: IPropsNavbar): JSX.Element {
   console.log(user.login);
@@ -22,24 +22,24 @@ export default function NavBar({ user, setUser }: IPropsNavbar): JSX.Element {
 
   return (
     <>
-     <Navbar bg="light" data-bs-theme="light">
+     <Navbar className={styles.navbar} bg="light" data-bs-theme="light">
         <Container>
-          <Navbar.Brand href="/">Sport Mate</Navbar.Brand>
-          <Nav className="me-auto">
+          <Navbar.Brand className={styles.navlink} href="/">Sport Mate</Navbar.Brand>
+          <Nav className={styles.nav}>
           {user.login ? (
             <>
-              <Nav.Link href="/activities">Активности</Nav.Link>
-              <Nav.Link href="/locations">Локации</Nav.Link>
-              <Nav.Link href="/userLC">Личный кабинет</Nav.Link>
-              <Nav.Link onClick={logoutHandler}>Выйти
+              <Nav.Link className={styles.navlink} href="/activities">Активности</Nav.Link>
+              <Nav.Link className={styles.navlink} href="/locations">Локации</Nav.Link>
+              <Nav.Link className={styles.navlink} href="/userLC">Личный кабинет</Nav.Link>
+              <Nav.Link className={styles.navlink} onClick={logoutHandler}>Выйти
               </Nav.Link>
             </>
           ) : (
             <>
-              <Nav.Link href="/activities">Активности</Nav.Link>
-              <Nav.Link href="/locations">Локации</Nav.Link>
-              <Nav.Link href="/userLC">Личный кабинет</Nav.Link>
-              <Nav.Link onClick={logoutHandler}>Выйти
+              <Nav.Link className={styles.navlink} href="/activities">Активности</Nav.Link>
+              <Nav.Link className={styles.navlink} href="/locations">Локации</Nav.Link>
+              <Nav.Link className={styles.navlink} href="/userLC">Личный кабинет</Nav.Link>
+              <Nav.Link className={styles.navlink} onClick={logoutHandler}>Выйти
               </Nav.Link>
           </>
           )}

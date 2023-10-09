@@ -13,7 +13,6 @@ export default function Main() {
         <div className={styles.main_div}>
           <div className={styles.main_title}>
             <div className={styles.main_text}>Найди себе партнера для спорта или игрока в команду</div>
-            <Button variant="light" className={styles.main_button}>Войти</Button>
           </div>
             <div className={styles.main_photo}>
               <div className={styles.vertical_gradient}></div>

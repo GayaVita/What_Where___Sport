@@ -1,0 +1,16 @@
+.navbar {
+    --bs-bg-opacity: upset;
+    background-color: var(--green);
+}
+.nav {
+    display: flex;
+    align-content: flex-start;
+    color: var(--white);
+}
+.navlink {
+    color: var(--white);
+    font-size: 1.3rem;
+}
+.navlink:hover {
+    color: var(--orange);
+}
