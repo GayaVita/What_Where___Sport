@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ProfileFormType } from './types';
-import { fetchProfile } from './asyncThunk';
+import { fetchProfile, getUserProfile } from './asyncThunk';
 
 export interface IProfileState {
   profile: ProfileFormType | null
@@ -18,6 +18,9 @@ export const profileSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(fetchProfile.fulfilled, (state, action) => {
+      state.profile = action.payload;
+    })
+    builder.addCase(getUserProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
     })
   },

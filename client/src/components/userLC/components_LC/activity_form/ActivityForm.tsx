@@ -11,6 +11,7 @@ export type ActivityFormType = {
   activity_time: string;
   activity_message: string;
   location_id: number | '';
+  location_photo: string;
 
 };
 
@@ -23,34 +24,36 @@ export default function ActivityForm(): JSX.Element {
     activity_time: '',
     activity_message: '',
     location_id: '',
+    location_photo: '',
   });
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // const formSubmitHandler = (): void => {
-  //   fetch('http://localhost:3002/', {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(formData)
-  //   })
-  // }
+  const clickHandler = async () => {
+    const resultActivity = await dispatch(fetchLocationLC(formData));
+    if (fetchActivity.fulfilled.match(resultActivity)) {
+      navigate('/userLC/events/');
+    }
+  };
 
   return (
     <div className={styles.activity_form__wrapper}>
-      <div className={styles.form_activity}>
-        <div className={styles.activity_form__location}>
-          Иноформация о Локации из БД (location_id)
-        </div>
+      <form className={styles.form_activity}>
+        <h5 className={styles.location_form_title}>Создай активность!</h5>
+        <select className={styles.activity_form__location__select} name="choice">
+          <option value="first">location title</option>
+          <option value="second" selected>location title</option>
+          <option value="third">location title</option>
+        </select>
+        
         <div className={styles.activity_form__inputs}>
           <input
             className={styles.activity_form__input}
             name="activity_type"
             type="text"
-            placeholder="вид вашего спорта или активность..."
+            placeholder="вид спорта или активности..."
             value={formData?.activity_type}
             onChange={changeHandler}
           />
@@ -59,7 +62,7 @@ export default function ActivityForm(): JSX.Element {
             className={styles.activity_form__input}
             name="activity_date"
             type="text"
-            placeholder="дата в формате ХХ.ХХ.ХХХХ (день.месяц.год))"
+            placeholder="дата (день.месяц.год))"
             value={formData?.activity_date}
             onChange={changeHandler}
           />
@@ -68,26 +71,37 @@ export default function ActivityForm(): JSX.Element {
             className={styles.activity_form__input}
             name="activity_time"
             type="text"
-            placeholder="время в формате XX:XX, например 18:30"
+            placeholder="время (например 18:30)"
             value={formData?.activity_time}
             onChange={changeHandler}
           />
 
-          <input
-            className={styles.activity_form__input}
+          <textarea
+            className={styles.activity_form__textarea}
             name="activity_message"
             type="text"
-            placeholder="опиши свою активность"
+            placeholder="опиши свою активность (например: привет, ищу напарника для тенниса...)"
             value={formData?.activity_message}
             onChange={changeHandler}
           />
-     
-        </div>
+          </div>
 
-        <Button variant="secondary" type="button" className={styles.profile_form__button}>
+          <label>Приложите фото вашей локации
+          <input
+            className={styles.activity_form__photo}
+            id="location_photo"
+            name="location_photo"
+            type="file"
+            placeholder="фото локации"
+            value={formData?.location_photo}
+            onChange={changeHandler}
+            ></input>
+          </label>
+
+        <Button variant="secondary" type="button" className={styles.profile_form__button}  onClick={clickHandler}>
           Cоздать твою Aктивность!
         </Button>
-      </div>
+      </form>
     </div>
   );
 }

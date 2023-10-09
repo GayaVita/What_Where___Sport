@@ -1,11 +1,18 @@
-// const express = require("express");
-// const { Card } = require("../db/models");
+const express = require('express');
+const { Op } = require('sequelize');
+const { Location } = require('../db/models');
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.get("/", async (req, res) => {
-//   const cards = await Card.findAll();
-//   res.json(cards);
-// });
+router.get('/', async (req, res) => {
+  const locations = await Location.findAll({
+    where: {
+      admin_id: {
+        [Op.eq]: null,
+      },
+    },
+  });
+  res.json(locations);
+});
 
-// module.exports = router;
+module.exports = router;

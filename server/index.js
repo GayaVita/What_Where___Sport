@@ -9,6 +9,9 @@ const FileStore = require('session-file-store')(session)
 
 const accessRouter = require('./routes/access.router');
 const profileRouter = require('./routes/profile.router');
+const locationLCRouter = require('./routes/locationLC.router');
+const activityRouter = require('./routes/activity.router');
+const indexRouter = require ('./routes/index.router')
 
 const sessionConfig = {
     name: 'SelfGameCookie',
@@ -33,9 +36,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(session(sessionConfig))
 
+app.use('/', indexRouter);
 app.use('/user', accessRouter);
 app.use('/api/locations', locationRouter);
 app.use('/userLC', profileRouter);
+app.use('/userLC/location_form', locationLCRouter);
+app.use('/userLC/activity_form', activityRouter);
 
 app.listen(PORT, () => {
     console.log(`Server has started on PORT ${PORT}`);
