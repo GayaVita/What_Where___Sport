@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+
 .location {
   display: flex;
   flex-direction: row;
@@ -9,12 +12,18 @@
   margin-top: 2rem;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
   padding: 0 3rem;
+  font-family: "Montserrat";
+  color: rgb(54,139,123);
+  background-color: rgb(246,246,246);
 }
 .location_large_title {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Montserrat";
+  font-weight: bold;
+  color: rgb(246,114,99);
 }
 .location_ul {
   list-style-type: none;
@@ -26,6 +35,11 @@
   width: 20rem;
   height: 15rem;
   border-radius: 5%;
+}
+.location_title {
+  color: rgb(42, 105, 92);
+  text-align: center;
+  font-weight: bold;
 }
 .location_picture {
   position:relative;
@@ -40,6 +54,9 @@
   background-color: pink;
   border-radius: 5%;
   font-weight: bold;
+  color: black;
+  background-color: rgb(246,114,99);
+  color: white;
 }
 .location_info {
   display: flex;
@@ -55,10 +72,30 @@
   font-size: 15px;
 }
 .btnBookLocation {
-  /* margin-top: 1rem; */
+  background-color: rgb(246,114,99);
+  color: white;
+  
+  font-weight: bold;
+}
+.btnBookLocation:hover {
+  background-color: rgb(231, 183, 177);
+  color: rgb(240, 45, 24);
+  font-weight: bold;
+}
+.btnFilter {
+  background-color: rgb(54,139,123);
+  font-size: 0.9rem;
+}
+.btnSort {
+  color: rgb(54,139,123);
+  font-weight: bold;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
 }
 .btn_filter_category {
   width: 15rem;
+  font-weight: bold;
 }
 .isVisibleBtn {
   display: flex;
@@ -66,15 +103,21 @@
   position: absolute;
   width: 21rem;
   height: 12rem;
-  background-color: antiquewhite;
+  background-color: rgb(236,240,239);
   z-index: 2;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   border-radius: 4%;
+  top: 2.4rem;
 }
-.btnFind {
-  width: 9rem;
+.btnFind, .btnReset {
+  background-color: rgb(54,139,123);
+  font-size: 0.9rem;
+}
+.btnsFilter {
+  display: flex;
+  gap: 1rem;
 }
 .btnBookLocationDiv {
   display: flex;
@@ -85,11 +128,25 @@
   width: 17rem;
 }
 .locationList {
+  height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .filter {
-  margin-left: 21rem;
+  margin: 0 auto;
   margin-top: 2rem;
+  font-family: "Montserrat";
+  display: flex;
+  position: relative;
+  width: 45rem;
+}
+.sortUp, .sortDown  {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  fill: rgb(54,139,123);
+}
+.sortUp:hover, .sortDown:hover {
+  fill: rgb(246,114,99);
 }

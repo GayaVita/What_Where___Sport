@@ -7,7 +7,12 @@ const logger = require("morgan");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 
+<<<<<<< HEAD
 const accessRouter = require("./routes/access.router");
+=======
+const accessRouter = require('./routes/access.router');
+const profileRouter = require('./routes/profile.router');
+>>>>>>> dev
 
 const sessionConfig = {
   name: "SelfGameCookie",
@@ -32,12 +37,18 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(session(sessionConfig));
 
+<<<<<<< HEAD
 app.use((req, res, next) => {
   res.locals.user = req.session.user;
   next();
 });
 app.use("/user", accessRouter);
 app.use("/api/locations", locationRouter);
+=======
+app.use('/user', accessRouter);
+app.use('/api/locations', locationRouter);
+app.use('/userLC', profileRouter);
+>>>>>>> dev
 
 app.listen(PORT, () => {
   console.log(`Server has started on PORT ${PORT}`);

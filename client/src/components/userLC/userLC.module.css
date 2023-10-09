@@ -7,12 +7,15 @@
 
 .left_form__wrapper {
   display: flex;
-  background-color: rgb(40, 45, 51);
+  /* background-color: rgb(40, 45, 51); */
+  background-color: rgb(246,114,99);
   width: 20vw;
   align-content: center;
-  height: 100vh;
+  /*Denis*/
+  height: 80vh;
   padding-top: 30px;
   color: rgb(207, 223, 228);
+ 
 }
 
 .right_form__wrapper {
@@ -20,7 +23,7 @@
   justify-content: center;
   align-items: center;
   width: 80vw;
-  height: 100vh;
+  height: 80vh;
   text-align: center;
   padding-top: 20px;
   background-image: url('/public/oboi-1.jpg'); 
