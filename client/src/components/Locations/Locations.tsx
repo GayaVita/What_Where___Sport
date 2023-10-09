@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getFilteredLocations, getLocations } from '../../store/locationsSlices/thunkActions';
 import { Button, Form } from 'react-bootstrap';
 import { ILocation } from '../types';
+import { setSortedLocationsASC, setSortedLocationsDESC } from '../../store/locationsSlices/locationsSlice';
 
 
 export default function Locations(): JSX.Element {
@@ -13,9 +14,7 @@ export default function Locations(): JSX.Element {
   });
   const [isVisible, setIsVisible] = useState(false);
   const { locations, filteredLocations } = useAppSelector((store) => store.locations);
-  const [sortedLocations, setSortedLocations] = useState({
-    sortedLocations: locations
-  }); 
+
   const dispatch = useAppDispatch();
 
  useEffect(() => {
@@ -51,13 +50,11 @@ export default function Locations(): JSX.Element {
   }
 
   const sortByPriceASC = () => {
-    const sortedLocations = [...locations].sort((a, b) => a.location_price - b.location_price);
-    setSortedLocations(sortedLocations);
+    dispatch(setSortedLocationsASC(filteredLocations));
   }
 
   const sortByPriceDESC = () => {
-    const sortedLocations = [...locations].sort((a, b) => b.location_price - a.location_price);
-    setSortedLocations(sortedLocations);
+    dispatch(setSortedLocationsDESC(filteredLocations));
   }
 
   const toggleVisibility = () => {
@@ -93,18 +90,18 @@ export default function Locations(): JSX.Element {
                 ))}
               </Form.Select>
               <div className={styles.btnsFilter}>
-                <Button className={styles.btnReset}variant="success" onClick={resetFilteringLocations} >
+                <Button className={styles.btnReset} variant="success" onClick={resetFilteringLocations} >
                   Cбросить
                 </Button>
-                <Button className={styles.btnFind}variant="success" onClick={filteringLocations} >
+                <Button className={styles.btnFind} variant="success" onClick={filteringLocations} >
                   Найти
                 </Button>
               </div>
             </div>
             )}
             <div className={styles.btnSort}>Сортировать по цене</div>    
-              <svg className={styles.sortByPriceASC} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" onClick={sortUpLocations} ><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z" /></svg>    
-              <svg className={styles.sortByPriceDESC} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" onClick={sortDownLocations}><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" /></svg>         
+              <svg className={styles.sortUp} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" onClick={sortByPriceASC} ><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z" /></svg>    
+              <svg className={styles.sortDown} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" onClick={sortByPriceDESC}><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" /></svg>         
             </div>
       <div className={styles.locationList}>
           {filteredLocations && 
@@ -139,7 +136,7 @@ export default function Locations(): JSX.Element {
                   </ul>
                   <div className={styles.btnBookLocationDiv}>
                     <a href='https://t.me/+xdQ_Bp9MU6hkMDY6' target='_blank'>
-                    <button className={styles.btnBookLocation}>Связаться</button>
+                    <Button className={styles.btnBookLocation}variant="success">Связаться</Button>
                     </a>
                   </div>
               </div>

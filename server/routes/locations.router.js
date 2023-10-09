@@ -4,9 +4,10 @@ const { Location } = require('../db/models');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const locations = await Location.findAll({ raw: true, order: [['createdAt', 'DESC']] });
+  const locations = await Location.findAll({ where: { admin_id: 1 }, raw: true, order: [['createdAt', 'DESC']] });
   res.json(locations);
 });
+
 
 router.get('/search', async (req, res) => {
   try {
@@ -25,7 +26,7 @@ router.get('/search', async (req, res) => {
 
     // Выполняем запрос с учетом условий
     const filteredLocations = await Location.findAll({
-      where: whereClause,
+      where: { ...whereClause, admin_id: 1 },
       raw: true,
       order: [['createdAt', 'DESC']],
     });

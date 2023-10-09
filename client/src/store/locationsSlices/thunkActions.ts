@@ -23,3 +23,5 @@ export const getFilteredLocations = createAsyncThunk("filteredLocations/all", as
     console.log(error);
   }
 })
+
+
