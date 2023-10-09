@@ -1,0 +1,51 @@
+.main_div {
+  /* max-width: 91.6666666667rem; */
+  /* margin: 0 auto; */
+}
+.main {
+  position: relative;
+}
+.main_photo {
+  position: absolute;
+  right: -23rem;
+  z-index: -1;
+}
+.main_img {
+  width: 70%;
+  height: auto;
+  /* background-image: url('../public/img/main/image-two-tennis-people.jpg');  */
+}
+.main_title {
+  position: relative;
+}
+.main_text {
+  position: absolute;
+  top: 9rem;
+  left: 6rem;
+  color: rgb(246,114,99);
+  max-width: 36.6111111111rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+.main_button {
+  position: absolute;
+  top: 18rem;
+  left: 20rem;
+}
+.vertical_gradient {
+  background: linear-gradient(90deg,white,#4d6cdc00);
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 13rem;
+}
+.horizontal_gradient {
+  position: absolute;
+  height: 12.847222222199999rem;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(0deg,white,#4d6cdc00);
+}

@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import UserLC from './components/userLC/UserLC';
 import Registration from './components/Registration/Registration';
-import Navbar from './components/Navbar/Navbar';
+import NavBar from './components/Navbar/Navbar';
 import Main from './components/Main/Main';
 import ProfileForm from './components/userLC/components_LC/profile_form/ProfileForm';
 import ActivityForm from './components/userLC/components_LC/activity_form/ActivityForm';
@@ -25,7 +25,7 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <Navbar/>
+      <NavBar/>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/access" element={<Registration />} />
@@ -38,7 +38,6 @@ function App(): JSX.Element {
         <Route path="/locations" element={<Locations />} />
       </Routes>
     </div>
-
   );
 }
 

@@ -26,7 +26,7 @@ const sessionConfig = {
 
 const app = express();
 const PORT = process.env.PORT || 3002;
-const locationRouter = require("./routes/locations.route");
+const locationRouter = require('./routes/locations.router');
 
 app.use(logger("dev"));
 app.use(cors({ credentials: true, origin: true }));
