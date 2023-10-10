@@ -1,5 +1,5 @@
 import { IInput, IRegProps } from '../../types/types';
-import './reg.style.css';
+import styles from './reg.module.css';
 import type { MouseEvent, ChangeEvent } from 'react';
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -52,7 +52,7 @@ export default function Registration(): JSX.Element {
   };
 
   return (
-    <div className="regContainer">
+    <div className={styles.regContainer}>
       <div className={show ? 'container right-panel-active' : 'container'} id="container">
         <div className="form-container sign-up-container">
           <form action="#">

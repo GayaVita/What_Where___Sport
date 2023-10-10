@@ -1,6 +1,6 @@
-
+/* 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-
+*/
 .regContainer {
 	height: 500px;
 	width: 600px;
@@ -242,4 +242,4 @@ footer i {
 footer a {
     color: #3c97bf;
     text-decoration: none;
-}
+} 

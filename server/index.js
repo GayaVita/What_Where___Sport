@@ -30,6 +30,7 @@ const sessionConfig = {
 
 const app = express();
 const PORT = process.env.PORT || 3002;
+const locationRouter = require('./routes/locations.router');
 
 app.use(session(sessionConfig));
 app.use(logger('dev'));

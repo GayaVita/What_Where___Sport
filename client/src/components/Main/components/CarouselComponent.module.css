@@ -1,0 +1,30 @@
+.carusel {
+  margin-top: 35rem;
+  margin-bottom: 2rem;
+}
+.carusel_img {
+  width: 22rem;
+  height: 11rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  transition: all 0.3s ease;
+}
+.carusel_img:hover {
+  width: 22.2rem;
+  height: 11.2rem;
+}
+.card_carusel {
+  width: 22rem;
+  height: 11rem;
+  background-color: #567942;
+  border-radius: 12px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding: 2rem 2rem;
+  color: var(--white);
+  font-size: 1.5rem;
+  text-align: center;
+}
+.card_carusel:hover {
+  color: var(--orange);
+}

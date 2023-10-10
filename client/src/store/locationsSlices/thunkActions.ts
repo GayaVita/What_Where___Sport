@@ -25,6 +25,8 @@ export const getFilteredLocations = createAsyncThunk("filteredLocations/all", as
   }
 })
 
+
+
 export const getUsers = createAsyncThunk("users/all", async () => {
   try {
     const locations = await fetch(`${DOMEN_SERVER}/`);

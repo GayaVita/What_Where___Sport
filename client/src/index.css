@@ -1,9 +1,24 @@
-/* * {
+@font-face {
+  font-family: "Soyuz Grotesk";
+  src: url("../public/fonts/Soyuz-Grotesk-Bold.otf") format("opentype");
+}
+
+:root {
+  --green: #496937;
+  --orange: #e7632a;
+  --white: #dcdcdc;
+}
+
+body {
+  font-family: "Soyuz Grotesk";
+  background-color: var(--green);
+}
+/*
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 :root {
     font-family: Montserrat, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -30,12 +45,9 @@
   }
   
   body {
-<<<<<<< HEAD
     margin: 0;
     display: flex;
     place-items: center;
-=======
->>>>>>> dev
     min-width: 320px;
     min-height: 100vh;
   }
@@ -56,11 +68,10 @@
     cursor: pointer;
     transition: border-color 0.25s;
   }
-  /* button:hover {
+  button:hover {
     border-color: #646cff;
-  } */
+  } 
 
-  /*
   button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;

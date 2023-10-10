@@ -13,8 +13,8 @@ router.post('/registration', async (req, res) => {
   try {
     const { login, email, password } = req.body;
 
-    if (!(login, email, password)) {
-      return res.status(400).json({ message: 'Please provide all fields' });
+    if (!(login || email || password)) {
+      return res.status(400).json({ message: "Please provide all fields" });
     }
     const hashpass = await bcrypt.hash(password, 10);
     const [user, created] = await User.findOrCreate({
