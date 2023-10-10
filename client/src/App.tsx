@@ -9,9 +9,10 @@ import Main from './components/Main/Main';
 import ProfileForm from './components/userLC/components_LC/profile_form/ProfileForm';
 import ActivityForm from './components/userLC/components_LC/activity_form/ActivityForm';
 import LocationForm from './components/userLC/components_LC/location_form/LocationForm';
+import All_activities from './components/All_activities/All_activities';
 import EventCard from './components/userLC/components_LC/events/EventCardLC/EventCardLC';
 import Locations from './components/Locations/Locations';
-import { useAppDispatch, useAppSelector } from './store/hooks';
+import { useAppDispatch } from './store/hooks';
 import { checkAuth } from './store/userSlice/thunkUser';
 import { getUserProfile } from './store/profileSlice/asyncThunk';
 
@@ -28,6 +29,7 @@ function App(): JSX.Element {
       <NavBar/>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/all_activities" element={<All_activities />}/>
         <Route path="/access" element={<Registration />} />
         <Route path="/userLC" element={<UserLC />}>
           <Route path="profile_form" element={<ProfileForm />} />
@@ -36,7 +38,7 @@ function App(): JSX.Element {
           <Route path="events" element={<EventCard />} />
         </Route>
         <Route path="/locations" element={<Locations />} />
-        {/* <Route path="/activities" element={<All_activities />} /> */}
+        <Route path="/activities" element={<All_activities />} />
       </Routes>
     </div>
   );

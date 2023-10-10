@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IUser } from './types';
-import { checkAuth, fetchUserLogin, fetchUserLogout, fetchUserRegister, fetchUserUpdate } from './thunkUser';
+import {
+  checkAuth,
+  fetchUserLogin,
+  fetchUserLogout,
+  fetchUserRegister,
+  updateUser,
+} from './thunkUser';
 
 interface IUserState {
   user: IUser | null;
@@ -55,7 +61,9 @@ export const sliceUser = createSlice({
       state.status = 'empty';
     });
     builder.addCase(checkAuth.fulfilled, (state, action) => {
-      state.user = action.payload;
+      if (action.payload) {
+        state.user = action.payload;
+      }
       state.error = null;
       state.status = 'logged';
     });
@@ -63,12 +71,17 @@ export const sliceUser = createSlice({
       state.user = null;
       state.status = 'empty';
     });
-    builder.addCase(fetchUserUpdate.fulfilled, (state, action) => {
+    builder.addCase(updateUser.fulfilled, (state, action) => {
       state.user = action.payload;
       state.error = null;
       state.status = 'logged';
     });
-
+    builder.addCase(updateUser.rejected, (state, action) => {
+      if (action.payload) {
+        state.error = action.payload.message;
+      }
+      state.status = 'logged';
+    });
   },
 });
 

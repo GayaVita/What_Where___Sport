@@ -9,7 +9,7 @@ import styles from './navbar.module.css'
 
 export default function NavBar(): JSX.Element {
   const { user } = useAppSelector((store) => store.user);
-  console.log(user);
+  console.log('user', user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 // export default function NavBar({ user, setUser }: IPropsNavbar): JSX.Element {

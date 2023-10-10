@@ -11,6 +11,7 @@
 }
 
 .form {
+  height: 344px;
   width: 100%;
   padding-top: 30px;
   padding-bottom: 15px;
@@ -45,6 +46,12 @@
   align-self: center;
   background-color: rgb(246,114,99);
   border-color: unset;
+}
+
+.error_message {
+  color: red;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .error {
