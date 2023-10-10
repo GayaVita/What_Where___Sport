@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const { user } = useAppSelector((store) => store.user);
-  console.log(user);
+  console.log('user', user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -36,7 +36,7 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="activities">
+                <Link className="nav-link active" aria-current="page" to="/all_activities">
                   Активности
                 </Link>
               </li>

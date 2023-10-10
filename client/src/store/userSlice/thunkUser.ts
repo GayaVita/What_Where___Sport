@@ -62,17 +62,31 @@ export const checkAuth = createAsyncThunk(
   },
 );
 
-// опционально (для добавления аватара для пользователя с помощью мультера)
-export const fetchUserUpdate = createAsyncThunk('user/fetchUserUpdate', async (params: IUser) => {
+// Добавление профиля к юзеру
+export const updateUser = createAsyncThunk<IUser, IUser, { rejectValue: ValidationErrors }>('user/updateUser', async (formData, { rejectWithValue }) => {
   try {
-    const { id } = params;
-    const response = await axios.put(`http://localhost:3000/user/${id}`, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.log(error);
+    const response = await axios.post<IUser>(`user/${formData?.Profile?.user_id}`, formData);
+    return response.data as IUser;
+  } catch (err) {
+    const error: AxiosError<ValidationErrors> = err as AxiosError<ValidationErrors>;
+    if (!error.response) {
+      throw err;
+    }
+    return rejectWithValue(error.response.data);
   }
-});
+})
+
+// опционально (для добавления аватара для пользователя с помощью мультера)
+// export const fetchUserUpdate = createAsyncThunk('user/fetchUserUpdate', async (params: IUser) => {
+//   try {
+//     const { id } = params;
+//     const response = await axios.put(`http://localhost:3000/user/${id}`, {
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });

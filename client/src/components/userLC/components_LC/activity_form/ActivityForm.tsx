@@ -38,7 +38,7 @@ export default function ActivityForm(): JSX.Element {
     e.preventDefault();
     const resultActivity = await dispatch(fetchActivity(formData));
     if (fetchActivity.fulfilled.match(resultActivity)) {
-      navigate('/');
+      navigate('/userLC/events');
     }
   };
 
