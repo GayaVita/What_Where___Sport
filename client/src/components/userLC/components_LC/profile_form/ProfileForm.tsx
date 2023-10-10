@@ -3,23 +3,26 @@ import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
 import styles from './profileForm.module.css';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { fetchProfile } from '../../../../store/profileSlice/asyncThunk';
+// import { fetchProfile } from '../../../../store/profileSlice/asyncThunk';
 import ProfileCard from '../../../ProfileCard/ProfileCard';
+import { IUser } from '../../../../store/userSlice/types';
+import { updateUser } from '../../../../store/userSlice/thunkUser';
 
-export type ProfileFormType = {
-  user_name: string;
-  user_about: string;
-  user_age?: number | '';
-  user_tg: string;
-  user_mobile: string;
-  user_id?: number;
-};
+// export type ProfileFormType = {
+//   user_name: string;
+//   user_about: string;
+//   user_age?: number | '';
+//   user_tg: string;
+//   user_mobile: string;
+//   user_id?: number;
+// };
 
 export default function ProfileForm(): JSX.Element {
   const dispatch = useAppDispatch();
-  const { profile, error } = useAppSelector((store) => store.profile);
-  console.log('profile', profile);
-  const [formData, setFormData] = useState<ProfileFormType>({
+  // const { profile, error } = useAppSelector((store) => store.profile);
+  const { user, error } = useAppSelector((store) => store.user);
+  // console.log('profile', profile);
+  const [formData, setFormData] = useState<IUser['Profile']>({
     user_name: '',
     user_about: '',
     user_age: '',
@@ -32,8 +35,10 @@ export default function ProfileForm(): JSX.Element {
   };
 
   const submitProfileHandler = () => {
-    dispatch(fetchProfile(formData));
-  }
+    if (formData) {
+      dispatch(updateUser(formData));
+    }
+  };
 
   // const formSubmitHandler = (): void => {
   //   fetch('http://localhost:3002/', {
@@ -47,7 +52,7 @@ export default function ProfileForm(): JSX.Element {
 
   return (
     <>
-      {profile ? (
+      {user?.Profile ? (
         <ProfileCard />
       ) : (
         <div className={styles.profile_form__wrapper}>
@@ -98,7 +103,7 @@ export default function ProfileForm(): JSX.Element {
                 onChange={changeHandler}
               />
             </div>
-            {error && <p>{error}</p>}
+            {error && <p className={styles.error_message}>{error}</p>}
             <Button
               variant="secondary"
               type="button"

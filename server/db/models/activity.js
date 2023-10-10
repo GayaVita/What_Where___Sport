@@ -1,25 +1,30 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Activity extends Model {
-    static associate( { User, Location } ) {
-      this.belongsTo(User, { foreignKey: 'user_id' } );
-      this.belongsTo(Location, { foreignKey: 'location_id' } );
-
+    static associate({ User, Location, Subscriber }) {
+      this.belongsTo(User, { foreignKey: 'user_id' });
+      this.belongsTo(Location, { foreignKey: 'location_id' });
+      this.hasMany(Subscriber, {
+        foreignKey: 'activity_id',
+        onDelete: 'cascade',
+      });
     }
   }
-  Activity.init({
-    user_id: DataTypes.INTEGER,
-    activity_type: DataTypes.STRING,
-    activity_date: DataTypes.DATE,
-    activity_time: DataTypes.STRING,
-    activity_message: DataTypes.STRING,
-    location_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Activity',
-  });
+  Activity.init(
+    {
+      user_id: DataTypes.INTEGER,
+      activity_type: DataTypes.STRING,
+      activity_date: DataTypes.DATE,
+      activity_time: DataTypes.STRING,
+      activity_message: DataTypes.STRING,
+      location_id: DataTypes.INTEGER,
+      status: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: 'Activity',
+    },
+  );
   return Activity;
 };
