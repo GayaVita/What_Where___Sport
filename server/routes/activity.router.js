@@ -1,22 +1,47 @@
-const express = require("express");
-const bcrypt = require("bcrypt");
-const { Activity } = require("../db/models");
+const express = require('express');
+const { Activity, Location } = require('../db/models');
 
 const router = express.Router();
 
-router.post('/userLC/activity_form', async(req, res) => {
+// получение всех локаций одного юзера
+router.get('/', async (req, res) => {
   try {
-    const {activity_type} = req.body.activity.type;
-    const {activity_date} = req.body.activity_date;
-    const {activity_time} = req.body.activity_time;
-    const {activity_message} = req.body.activity_message;
-
-    const activity = Activity.create({activity_type, activity_date, activity_time, activity_message})
-    
-    // profile_id, location_id  - include!!!!
-    
+    console.log(req.session.user);
+    const allUsersLocations = await Location.findAll({
+      where: { user_id_loc: req?.session?.user?.id },
+    });
+    res.json(allUsersLocations);
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    res.sendStatus(500);
   }
-   res.json(activity) 
-})
+});
+
+router.post('/', async (req, res) => {
+  try {
+    const {
+      activity_type,
+      activity_date,
+      activity_time,
+      activity_message,
+      location_id,
+    } = req.body;
+    const { id } = req.session.user;
+
+    const activity = Activity.create({
+      user_id: id,
+      activity_type,
+      activity_date,
+      activity_time,
+      activity_message,
+      location_id,
+    });
+    return res.json(activity);
+    // profile_id, location_id  - include!!!!
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
+  }
+});
+
+module.exports = router;

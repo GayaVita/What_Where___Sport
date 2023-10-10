@@ -5,11 +5,12 @@
   align-items: center;
   margin: 0 auto;
   width: 500px;
+  height: 900px;
 }
 
 .form_location {
-  height: 645px;
-  width: 600px;
+  height: 900px;
+  width: 900px;
   padding-top: 30px;
   padding-bottom: 15px;
   background-color: white;
@@ -55,8 +56,8 @@
   border-color: unset;
 }
 
-.yandex_map {
+/* .yandex_map {
   background-color: rgb(236,240,239);
   height: 300px;
   width: 400px;
-}
+} */

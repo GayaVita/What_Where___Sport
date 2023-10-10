@@ -1,17 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {ActivityFormType} from './types'
+import {ActivityType} from './types';
+import axios, { AxiosError } from 'axios';
 
-export const fetchActivity = createAsyncThunk('activity/add', async (formData: ActivityFormType) => {
+interface ValidationErrors {
+  message: string;
+}
+
+export const fetchActivity = createAsyncThunk<ActivityType, ActivityType, {rejectValue: ValidationErrors }>('locationLC/add', async (formData, { rejectWithValue }) => {
   try {
-    const response = await fetch('http://localhost:3000/userLC/activity_form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({formData})
-    });
-    return response.json()
-  } catch (error) {
-    console.log(error)
+    const response = await axios.post<ActivityType>('http://localhost:3000/userLC/activity_form', formData);
+    return response.data as ActivityType;
+  } catch (err) {
+    const error: AxiosError<ValidationErrors> = err as AxiosError<ValidationErrors>;
+    if (!error.response) {
+      throw err;
+    }
+    return rejectWithValue(error.response.data);
   }
 })

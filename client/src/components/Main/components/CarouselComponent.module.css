@@ -1,0 +1,15 @@
+.carusel {
+  margin-top: 32rem;
+  margin-bottom: 2rem;
+}
+.carusel_img {
+  width: 22rem;
+  height: 11rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  transition: all 0.3s ease;
+}
+.carusel_img:hover {
+  width: 22.2rem;
+  height: 11.2rem;
+}

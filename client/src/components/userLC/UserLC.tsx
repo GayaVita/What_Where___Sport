@@ -1,17 +1,10 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import styles from './userLC.module.css';
-import { ILogin } from '../../types/types'
 
-interface ILocationProps {
-  user: ILogin
-}
-
-export default function UserLC({ user }: ILocationProps): JSX.Element {
-  console.log('user', user)
+export default function UserLC(): JSX.Element {
   return (
     <div className={styles.userLC_container}>
-      
       <div className={styles.left_form__wrapper}>
         <ul className={styles.left_form__list}>
           <li className={styles.left_form__link}>
@@ -21,7 +14,6 @@ export default function UserLC({ user }: ILocationProps): JSX.Element {
                 <path d="M0 0h24v24h-24z" fill="none" />
               </svg>
             </div>
-
             <Link to="/userLC/profile_form">Профиль</Link>
           </li>
           <li className={styles.left_form__link}>
@@ -35,7 +27,6 @@ export default function UserLC({ user }: ILocationProps): JSX.Element {
           </li>
         </ul>
       </div>
-
       <div className={styles.right_form__wrapper}>
         <Outlet />
       </div>

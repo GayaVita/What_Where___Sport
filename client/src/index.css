@@ -1,10 +1,10 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
+/* :root {
     font-family: Montserrat, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 600;
@@ -30,12 +30,9 @@
   }
   
   body {
-<<<<<<< HEAD
     margin: 0;
     display: flex;
     place-items: center;
-=======
->>>>>>> dev
     min-width: 320px;
     min-height: 100vh;
   }
@@ -55,7 +52,7 @@
     background-color: #1a1a1a;
     cursor: pointer;
     transition: border-color 0.25s;
-  }
+  } */
   /* button:hover {
     border-color: #646cff;
   } */
@@ -77,4 +74,4 @@
     button {
       background-color: #f9f9f9;
     }
-  } */
+  }
