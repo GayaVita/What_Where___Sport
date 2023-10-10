@@ -36,6 +36,7 @@ function App(): JSX.Element {
           <Route path="events" element={<EventCard />} />
         </Route>
         <Route path="/locations" element={<Locations />} />
+        {/* <Route path="/activities" element={<All_activities />} /> */}
       </Routes>
     </div>
   );
