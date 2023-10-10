@@ -71,8 +71,8 @@ export default function LocationForm(): JSX.Element {
             value={formData?.location_title}
             onChange={changeHandler}
           />
-        </div>
-        <div >
+        {/* </div> */}
+        {/* <div > */}
           <Button
             variant="secondary"
             type="button"

@@ -2,17 +2,14 @@
     --bs-bg-opacity: upset;
     background-color: var(--green);
 }
-.nav {
-    display: flex;
-    align-content: flex-start;
-    color: var(--white);
-}
+
 .navlink {
     color: var(--white);
-    font-size: 1.3rem;
-    letter-spacing: -0.5px;
+    font-size: 2.3rem;
     text-transform: uppercase;
+    padding-right: 3vh;
 }
+
 .navlink:hover {
     color: var(--orange);
 }

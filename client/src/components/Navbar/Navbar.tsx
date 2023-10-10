@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { IPropsLogin, IPropsNavbar } from '../../types/types';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchUserLogout } from '../../store/userSlice/thunkUser';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import styles from './navbar.module.css'
 
 export default function NavBar(): JSX.Element {
@@ -23,114 +22,75 @@ export default function NavBar(): JSX.Element {
 
   return (
     <>
-     <Navbar className={styles.navbar} bg="light" data-bs-theme="light">
+    {['xxl'].map((expand) => (
+        <Navbar key={expand} expand={expand}>
+          <Container className={styles.navbar} >
+            <Link className={styles.navlink} to='/'>Sport Mate</Link>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+              className={styles.navlink}
+            >
+              <Offcanvas.Header aria-controls={`offcanvasNavbar-expand-${expand}`} closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} className={styles.navlink}>
+                  Меню
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                {user?.login ? ( 
+                    <>
+                      <Link className={styles.navlink} to="/activities">Активности</Link>
+                      <Link className={styles.navlink} to="/locations">Локации</Link>
+                      <Link className={styles.navlink} to="/userLC">Личный кабинет</Link>
+                      <Link className={styles.navlink} onClick={logoutHandler} to='/'>Выйти</Link>
+                    </> 
+                  ) : (
+                    <>
+                      <Link className={styles.navlink} to="/activities">Активности</Link>
+                      <Link className={styles.navlink} to="/locations">Локации</Link>
+                      <Link className={styles.navlink} to="/access">Войти</Link>
+                    </>) 
+                }
+                  
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
+      ))}
+    </>
+  );
+     {/* <Navbar className={styles.navbar} bg="light" data-bs-theme="light">
         <Container>
         <Navbar.Brand className={styles.navlink} href="/">Sport Mate</Navbar.Brand>
           <Nav className={styles.nav}>
           {user?.login ? (
             <>
-              <Nav.Link className={styles.navlink} href="/activities">Активности</Nav.Link>
-              <Nav.Link className={styles.navlink} href="/locations">Локации</Nav.Link>
-              <Nav.Link className={styles.navlink} href="/userLC">Личный кабинет</Nav.Link>
-              <Nav.Link className={styles.navlink} onClick={logoutHandler}>Выйти
-              </Nav.Link>
+              <div>
+                <Link className={styles.navlink} to="/activities">Активности </Link>
+              </div>
+              
+              <div>
+              <br />
+              <Link className={styles.navlink} to="/locations">Локации</Link>
+              </div>
+              
+              <Link className={styles.navlink} to="/userLC">Личный кабинет</Link>
+              <Link className={styles.navlink} onClick={logoutHandler} to='/'>Выйти</Link>
             </>
           ) : (
             <>
-              <Nav.Link className={styles.navlink} href="/activities">Активности</Nav.Link>
-              <Nav.Link className={styles.navlink} href="/locations">Локации</Nav.Link>
-              <Nav.Link className={styles.navlink} href="/access">Войти</Nav.Link>
+              <Link className={styles.navlink} to="/activities">Активности</Link>
+              <Link className={styles.navlink} to="/locations">Локации</Link>
+              <Link className={styles.navlink} to="/access">Войти</Link>
           </>
           )}
           </Nav>
         </Container>
-      </Navbar>
-    </>
-
-    // <Nav className="navbar navbar-expand-lg navbar-light bg-light">
-    //   {user.login ? (
-    //     <div className="container-fluid">
-    //       <Link className="navbar-brand" to="/">
-    //         Главная
-    //       </Link>
-    //       <button
-    //         className="navbar-toggler"
-    //         type="button"
-    //         data-bs-toggle="collapse"
-    //         data-bs-target="#navbarNav"
-    //         aria-controls="navbarNav"
-    //         aria-expanded="false"
-    //         aria-label="Toggle navigation"
-    //       >
-    //         <span className="navbar-toggler-icon"></span>
-    //       </button>
-    //       <div className="collapse navbar-collapse" id="navbarNav">
-    //         <ul className="navbar-nav">
-    //           <li className="nav-item">
-    //             <Link className="nav-link active" aria-current="page" to="activities">
-    //               Активности
-    //             </Link>
-    //           </li>
-    //           <li className="nav-item">
-    //             <Link className="nav-link" to="/locations">
-    //               Локации
-    //             </Link>
-    //           </li>
-    //           <li className="nav-item">
-    //             <Link className="nav-link" to="/userLC">
-    //               Личный кабинет
-    //             </Link>
-    //           </li>
-    //           <li className="nav-item">
-    //             <button className="nav-link" onClick={logoutHandler}>
-    //               Выйти
-    //             </button>
-    //           </li>
-    //         </ul>
-    //       </div>
-    //     </div>
-    //   ) : (
-    //     <div className="container-fluid">
-    //       <Link className="navbar-brand" to="/">
-    //         Главная
-    //       </Link>
-    //       <button
-    //         className="navbar-toggler"
-    //         type="button"
-    //         data-bs-toggle="collapse"
-    //         data-bs-target="#navbarNav"
-    //         aria-controls="navbarNav"
-    //         aria-expanded="false"
-    //         aria-label="Toggle navigation"
-    //       >
-    //         <span className="navbar-toggler-icon"></span>
-    //       </button>
-    //       <div className="collapse navbar-collapse" id="navbarNav">
-    //         <ul className="navbar-nav">
-    //           <li className="nav-item">
-    //             <Link className="nav-link active" aria-current="page" to="#">
-    //               Активности
-    //             </Link>
-    //           </li>
-    //           <li className="nav-item">
-    //             <Link className="nav-link" to="/locations">
-    //               Локации
-    //             </Link>
-    //           </li>
-    //           {/* <li className="nav-item">
-    //             <a className="nav-link" href="/userLC">
-    //               Личный кабинет
-    //             </a>
-    //           </li> */}
-    //           <li className="nav-item">
-    //             <Link className="nav-link" to="/access">
-    //               Войти
-    //             </Link>
-    //           </li>
-    //         </ul>
-    //       </div>
-    //     </div>
-    //   )}
-    // </Nav>
-  );
+      </Navbar> */}
+    // </>
+  // );
 }

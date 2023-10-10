@@ -1,7 +1,9 @@
 .carusel {
   margin-top: 35rem;
-  margin-bottom: 2rem;
+  
+  /* margin-bottom: 2rem; */
 }
+
 .carusel_img {
   width: 22rem;
   height: 11rem;
@@ -9,10 +11,12 @@
   padding-right: 2rem;
   transition: all 0.3s ease;
 }
+
 .carusel_img:hover {
   width: 22.2rem;
   height: 11.2rem;
 }
+
 .card_carusel {
   width: 22rem;
   height: 11rem;
@@ -25,6 +29,7 @@
   font-size: 1.5rem;
   text-align: center;
 }
+
 .card_carusel:hover {
   color: var(--orange);
 }

@@ -1,62 +1,46 @@
-.userLC_container {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  height: 80%;
-}
-
-.left_form__wrapper {
-  display: flex;
-  /* background-color: rgb(40, 45, 51); */
-  background-color: rgb(246,114,99);
-  width: 20vw;
-  align-content: center;
-  /*Denis*/
-  height: 80vh;
-  padding-top: 30px;
-  color: rgb(207, 223, 228);
- 
-}
-
 .right_form__wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 80vw;
+  /* align-items: center; */
+  /* width: 80vw; */
   height: 80vh;
-  text-align: center;
-  padding-top: 20px;
   background-image: url('/public/oboi-1.jpg'); 
-  background-size: cover; 
-  /* background-size: contain   */
+  background-size: cover;
 }
 
 .left_form__list {
   list-style-type: none;
-  padding-top: 20px;
-  font-size: larger;
+  /* padding-top: 20px; */
 }
 
-.left_form__link:not(:last-child) {
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+.left_form__link {
+  color: var(--white);
 }
 
-.left_form__link a {
+/*   background-image: -webkit-linear-gradient(left, #dcdcdc 50%, #496937 50%);
+  background-image: linear-gradient(to right, #dcdcdc 50%, #496937 50%);
+  background-position: 0;
+  background-size: 200%;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+.left_form__link:hover {
+  background-position: -100%;
+} */
+
+/* .left_form__link a {
   text-decoration-line: none;
-  color: white;
-  height: 50px
+  color: #000;
 }
 
 .left_form__link a:hover {
-color: rgb(197, 197, 197);
+  color: rgb(197, 197, 197);
 }
+
 .left_form__svg {
   fill: rgb(197, 197, 197);
 }
 
 .left_form__svg :hover{
   fill: rgb(197, 46, 46);
-}
+} */
