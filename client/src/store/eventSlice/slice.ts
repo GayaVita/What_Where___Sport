@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllEvents } from './asyncThunk';
+import { deleteEvent, getAllEvents } from './asyncThunk';
 import { ActivityType } from '../all_activitiesSlice/types';
 
 
@@ -20,6 +20,10 @@ export const eventSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(getAllEvents.fulfilled, (state, action) => {
       state.events = action.payload;
+      state.error = null;
+    });
+    builder.addCase(deleteEvent.fulfilled, (state, action) => {
+      state.events = state.events.filter((el) => el.id !== action.payload);
       state.error = null;
     });
   },

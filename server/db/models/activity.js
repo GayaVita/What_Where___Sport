@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Location, { foreignKey: 'location_id' });
       this.hasMany(Subscriber, {
         foreignKey: 'activity_id',
-        onDelete: 'cascade',
       });
     }
   }

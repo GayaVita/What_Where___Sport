@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ User, Activity}) {
       this.belongsTo(User, { foreignKey: 'user_id'});
-      this.belongsTo(Activity, { foreignKey: 'activity_id'})
+      this.belongsTo(Activity, { foreignKey: 'activity_id', onDelete: 'cascade' })
     }
   }
   Subscriber.init({

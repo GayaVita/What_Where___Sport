@@ -26,10 +26,10 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/all_activities" element={<All_activities />}/>
+        <Route path="/all_activities" element={<All_activities />} />
         <Route path="/access" element={<Registration />} />
         <Route path="/userLC" element={<UserLC />}>
           <Route path="profile_form" element={<ProfileForm />} />
@@ -38,6 +38,7 @@ function App(): JSX.Element {
           <Route path="events" element={<EventCard />} />
         </Route>
         <Route path="/locations" element={<Locations />} />
+        <Route path="/activities" element={<All_activities />} />
       </Routes>
     </div>
   );
