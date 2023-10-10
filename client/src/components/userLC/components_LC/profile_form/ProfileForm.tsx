@@ -5,6 +5,7 @@ import styles from './profileForm.module.css';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { fetchProfile } from '../../../../store/profileSlice/asyncThunk';
 import ProfileCard from '../../../ProfileCard/ProfileCard';
+import { FloatingLabel, Form } from 'react-bootstrap';
 
 export type ProfileFormType = {
   user_name: string;
@@ -97,8 +98,8 @@ export default function ProfileForm(): JSX.Element {
                 value={formData?.user_mobile}
                 onChange={changeHandler}
               />
-            </div>
-            {error && <p>{error}</p>}
+            
+            {error && <p className={styles.error}>{error}</p>}
             <Button
               variant="secondary"
               type="button"
@@ -107,6 +108,7 @@ export default function ProfileForm(): JSX.Element {
             >
               Отправить
             </Button>
+            </div>
           </div>
         </div>
       )}
