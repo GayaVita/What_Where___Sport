@@ -8,6 +8,7 @@
     font-size: 2.3rem;
     text-transform: uppercase;
     padding-right: 3vh;
+    text-decoration: none;
 }
 
 .navlink:hover {
