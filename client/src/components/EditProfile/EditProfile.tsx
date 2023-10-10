@@ -1,62 +1,71 @@
 import React, { useState } from 'react';
-import { ProfileFormType } from '../userLC/components_LC/profile_form/ProfileForm';
 
+// Создаем интерфейс для данных профиля пользователя
+interface UserProfile {
+  id: number;
+  user_name: string;
+  user_about: string;
+  user_age: number;
+  user_tg: string;
+  user_mobile: string;
+}
 
 interface EditProfileProps {
-  profile: ProfileFormType; // UserProfile - тип данных вашего профиля
-  onSave: (updatedProfile: ProfileFormType) => void;
+  profile: UserProfile;
+  onSave: (updatedProfile: UserProfile) => void;
   onCancel: () => void;
 }
 
 const EditProfile: React.FC<EditProfileProps> = ({ profile, onSave, onCancel }) => {
-  const [editedProfile, setEditedProfile] = useState<ProfileFormType>(profile);
+  // Создаем состояние для редактирования данных профиля
+  const [editedProfile, setEditedProfile] = useState<UserProfile>(profile);
 
+  // Обработчик изменения имени пользователя
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditedProfile({ ...editedProfile, user_name: e.target.value });
+  };
+
+  // Обработчик изменения возраста пользователя
+  const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditedProfile({ ...editedProfile, user_age: Number(e.target.value) });
+  };
+
+  // Обработчик сохранения изменений
   const handleSave = () => {
-    // Вы можете отправить обновленные данные на сервер здесь
-    onSave(editedProfile);
+    onSave(editedProfile); // Вызываем функцию onSave и передаем обновленные данные
   };
 
+  // Обработчик отмены редактирования
   const handleCancel = () => {
-    onCancel();
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEditedProfile({ ...editedProfile, [name]: value });
+    onCancel(); // Вызываем функцию onCancel для закрытия редактирования
   };
 
   return (
     <div>
       <h2>Редактирование профиля</h2>
-      <form>
-        <label>
-          Имя:
-          <input
-            type="text"
-            name="user_name"
-            value={editedProfile.user_name}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Возраст:
-          <input
-            type="number"
-            name="user_age"
-            value={editedProfile.user_age}
-            onChange={handleInputChange}
-          />
-        </label>
-        {/* Добавьте другие поля редактирования здесь */}
-        <button type="button" onClick={handleSave}>
-          Сохранить
-        </button>
-        <button type="button" onClick={handleCancel}>
-          Отмена
-        </button>
-      </form>
+      <label>
+        Имя:
+        <input
+          type="text"
+          value={editedProfile.user_name}
+          onChange={handleNameChange}
+        />
+      </label>
+      <label>
+        Возраст:
+        <input
+          type="number"
+          value={editedProfile.user_age}
+          onChange={handleAgeChange}
+        />
+      </label>
+      {/* Добавьте другие поля для редактирования здесь */}
+      <button onClick={handleSave}>Сохранить</button>
+      <button onClick={handleCancel}>Отмена</button>
     </div>
   );
 };
 
 export default EditProfile;
+
+

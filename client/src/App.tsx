@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import './App.css';
 import UserLC from './components/userLC/UserLC';
 import Registration from './components/Registration/Registration';
 import NavBar from './components/Navbar/Navbar';
