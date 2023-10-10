@@ -1,19 +1,27 @@
 .main_div {
   /* max-width: 91.6666666667rem; */
   /* margin: 0 auto; */
+  background-color: var(--green);
 }
 .main {
   position: relative;
+  
 }
 .main_photo {
-  position: absolute;
-  right: -23rem;
+  position: relative;
   z-index: -1;
 }
 .main_img {
-  width: 70%;
+  position: absolute;
+  width: 50%;
   height: auto;
-  /* background-image: url('../public/img/main/image-two-tennis-people.jpg');  */
+  right: 0;
+}
+.main_img2 {
+  position: absolute;
+  width: 50%;
+  height: auto;
+  right: 20rem;
 }
 .main_title {
   position: relative;
@@ -22,30 +30,46 @@
   position: absolute;
   top: 9rem;
   left: 6rem;
-  color: rgb(246,114,99);
+  color: var(--white);
   max-width: 36.6111111111rem;
   font-style: normal;
   font-weight: 700;
   font-size: 2.5rem;
 }
-.main_button {
+.main_text_second {
   position: absolute;
-  top: 18rem;
-  left: 20rem;
+  top: 20rem;
+  left: 6rem;
+  color: var(--orange);
+  max-width: 36.6111111111rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5rem;
 }
 .vertical_gradient {
-  background: linear-gradient(90deg,white,#4d6cdc00);
-  height: 100%;
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 13rem;
+  /* background-color: yellow; */
+  background: linear-gradient(90deg,var(--green),#4d6cdc00);
+  height: 43rem;
+  right: 53rem;
+  top: 0rem;
+  width: 15rem;
+  z-index: 5;
 }
-.horizontal_gradient {
+.horizontal_gradient_top {
   position: absolute;
-  height: 12.847222222199999rem;
+  height: 30rem;
   width: 100%;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(0deg,white,#4d6cdc00);
+  bottom: -45rem;
+  background: linear-gradient(0deg,var(--green),#4d6cdc00);
+  z-index: 2;
+}
+.horizontal_gradient_bottom {
+  position: absolute;
+  height: 6rem;
+  width: 100%;
+  top: 0rem;
+  /* background-color: blue; */
+  background: linear-gradient(0deg,#4d6cdc00, var(--green));
+  z-index: 2;
 }
