@@ -1,0 +1,40 @@
+.profile_card__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 500px;
+  z-index: 10;
+}
+
+.profile_card__content {
+
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+  
+}
+
+.profile_card__avatar {
+  width: 100px;
+}
+
+.profile_card__username {
+  font-weight: 600;
+}
+
+.profile_card__userabout {
+  font-size: 16px;
+}
+
+.profile_card__userabout span {
+  font-weight: 600;
+  font-size: 16px;
+}

@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import styles from './profileForm.module.css';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { fetchProfile } from '../../../../store/profileSlice/asyncThunk';
+import ProfileCard from '../../../ProfileCard/ProfileCard';
 
 export type ProfileFormType = {
   user_name: string;
@@ -16,7 +17,7 @@ export type ProfileFormType = {
 
 export default function ProfileForm(): JSX.Element {
   const dispatch = useAppDispatch();
-  const { profile } = useAppSelector((store) => store.profile);
+  const { profile, error } = useAppSelector((store) => store.profile);
   console.log('profile', profile);
   const [formData, setFormData] = useState<ProfileFormType>({
     user_name: '',
@@ -45,59 +46,70 @@ export default function ProfileForm(): JSX.Element {
   // }
 
   return (
-    <div className={styles.profile_form__wrapper}>
-      <div className={styles.form}>
-        <div className={styles.profile_form__inputs}>
-          <input
-            className={styles.profile_form__input}
-            name="user_name"
-            type="text"
-            placeholder="Имя"
-            value={formData?.user_name}
-            onChange={changeHandler}
-          />
+    <>
+      {profile ? (
+        <ProfileCard />
+      ) : (
+        <div className={styles.profile_form__wrapper}>
+          <div className={styles.form}>
+            <div className={styles.profile_form__inputs}>
+              <input
+                className={styles.profile_form__input}
+                name="user_name"
+                type="text"
+                placeholder="Имя"
+                value={formData?.user_name}
+                onChange={changeHandler}
+              />
 
-          <input
-            className={styles.profile_form__input}
-            name="user_about"
-            type="text"
-            placeholder="О себе ..."
-            value={formData?.user_about}
-            onChange={changeHandler}
-          />
+              <input
+                className={styles.profile_form__input}
+                name="user_about"
+                type="text"
+                placeholder="О себе ..."
+                value={formData?.user_about}
+                onChange={changeHandler}
+              />
 
-          <input
-            className={styles.profile_form__input}
-            name="user_age"
-            type="text"
-            placeholder="Возраст ..."
-            value={formData?.user_age}
-            onChange={changeHandler}
-          />
+              <input
+                className={styles.profile_form__input}
+                name="user_age"
+                type="text"
+                placeholder="Возраст ..."
+                value={formData?.user_age}
+                onChange={changeHandler}
+              />
 
-          <input
-            className={styles.profile_form__input}
-            name="user_tg"
-            type="text"
-            placeholder="ссылка на Telegram ..."
-            value={formData?.user_tg}
-            onChange={changeHandler}
-          />
+              <input
+                className={styles.profile_form__input}
+                name="user_tg"
+                type="text"
+                placeholder="ссылка на Telegram ..."
+                value={formData?.user_tg}
+                onChange={changeHandler}
+              />
 
-          <input
-            className={styles.profile_form__input}
-            name="user_mobile"
-            type="text"
-            placeholder="телефон"
-            value={formData?.user_mobile}
-            onChange={changeHandler}
-          />
+              <input
+                className={styles.profile_form__input}
+                name="user_mobile"
+                type="text"
+                placeholder="телефон"
+                value={formData?.user_mobile}
+                onChange={changeHandler}
+              />
+            </div>
+            {error && <p>{error}</p>}
+            <Button
+              variant="secondary"
+              type="button"
+              className={styles.profile_form__button}
+              onClick={submitProfileHandler}
+            >
+              Отправить
+            </Button>
+          </div>
         </div>
-
-        <Button variant="secondary" type="button" className={styles.profile_form__button} onClick={submitProfileHandler}>
-          Отправить
-        </Button>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

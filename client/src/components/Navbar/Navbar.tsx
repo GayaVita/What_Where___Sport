@@ -1,32 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IPropsLogin, IPropsNavbar } from '../../types/types';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { fetchUserLogout } from '../../store/userSlice/thunkUser';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { Nav, Navbar } from 'react-bootstrap';
 import styles from './navbar.module.css'
 
-export default function NavBar({ user, setUser }: IPropsNavbar): JSX.Element {
-  console.log(user.login);
+export default function NavBar(): JSX.Element {
+  const { user } = useAppSelector((store) => store.user);
+  console.log(user);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+// export default function NavBar({ user, setUser }: IPropsNavbar): JSX.Element {
+//   console.log(user.login);
 
-  const logoutHandler = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/user/logout', {
-        credentials: 'include'
-      })
-      const res = await response.json()
-      setUser((pre)=> ({...pre, login: res.login, authLogin: false}))
-    } catch (error) {
-      console.log('Не смогли войти', error);
-    }
+  const logoutHandler = async (): Promise<void> => {
+    await dispatch(fetchUserLogout());
+    navigate('/');
   }
 
   return (
     <>
      <Navbar className={styles.navbar} bg="light" data-bs-theme="light">
         <Container>
-          <Navbar.Brand className={styles.navlink} href="/">Sport Mate</Navbar.Brand>
+        <Navbar.Brand className={styles.navlink} href="/">Sport Mate</Navbar.Brand>
           <Nav className={styles.nav}>
-          {user.login ? (
+          {user?.login ? (
             <>
               <Nav.Link className={styles.navlink} href="/activities">Активности</Nav.Link>
               <Nav.Link className={styles.navlink} href="/locations">Локации</Nav.Link>
@@ -38,9 +39,7 @@ export default function NavBar({ user, setUser }: IPropsNavbar): JSX.Element {
             <>
               <Nav.Link className={styles.navlink} href="/activities">Активности</Nav.Link>
               <Nav.Link className={styles.navlink} href="/locations">Локации</Nav.Link>
-              <Nav.Link className={styles.navlink} href="/userLC">Личный кабинет</Nav.Link>
-              <Nav.Link className={styles.navlink} onClick={logoutHandler}>Выйти
-              </Nav.Link>
+              <Nav.Link className={styles.navlink} href="/access">Войти</Nav.Link>
           </>
           )}
           </Nav>

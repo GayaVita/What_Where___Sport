@@ -10,6 +10,8 @@
 .navlink {
     color: var(--white);
     font-size: 1.3rem;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
 }
 .navlink:hover {
     color: var(--orange);

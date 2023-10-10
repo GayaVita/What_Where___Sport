@@ -1,0 +1,85 @@
+.eventHome_form__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.eventHome_slider {
+  height: 300px;
+  width: 700px;
+  background-color: rgb(7, 32, 56);
+  color: white;
+}
+
+.eventHome_form__card {
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.eventHome_form__table {
+  display: flex;
+  /* display: inline-block; */
+  width: 600px;
+}
+
+.eventHome_form__tableMain {
+  width: 50%;
+  align-items: center;
+}
+
+.eventHome_form__tableDate {
+  width: 50%;
+}
+.all_eventHome_users {
+  display: flex;
+  gap: 20px;
+}
+.eventHome_user_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border: solid 1px grey;
+  border-radius: 10px;
+}
+
+.eventHome_user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 200px;
+  align-self: center;
+  vertical-align: middle;
+  padding-bottom: 20px;
+}
+
+.profile_form_delete__button {
+  margin-top: 20px;
+  background-color: brown;
+}
+
+.profile_form_contact__button {
+  /* margin-top: 10px; */
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
+  align-self: center;
+  background-color: rgb(37, 129, 57);
+  border-color: unset;
+}
+
+.profile_form_reject__button {
+  /* margin-top: 10px; */
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
+  align-self: center;
+  background-color: rgb(246, 114, 99);
+  border-color: unset;
+}

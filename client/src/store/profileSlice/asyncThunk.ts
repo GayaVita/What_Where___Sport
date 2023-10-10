@@ -1,18 +1,29 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ProfileFormType } from './types';
+import axios, { AxiosError} from 'axios';
 
-export const fetchProfile = createAsyncThunk('profile/add', async (formData: ProfileFormType) => {
+interface ValidationErrors {
+  message: string;
+}
+
+export const fetchProfile = createAsyncThunk<ProfileFormType, ProfileFormType, { rejectValue: ValidationErrors}>('profile/add', async (formData, {rejectWithValue }) => {
+    try {
+      const response = await axios.post('/userLC/profile_form', formData);
+      return response.data;
+    } catch (err) {
+      const error: AxiosError<ValidationErrors> = err as AxiosError<ValidationErrors>;
+    if (!error.response) {
+      throw err;
+    }
+    return rejectWithValue(error.response.data);
+    }
+  });
+
+export const getUserProfile = createAsyncThunk('profile/get', async () => {
   try {
-    // { user_name, user_about, user_age, user_tg}
-    const response = await fetch('http://localhost:3000/userLC/profile_form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({formData})
-    });
-    return response.json();
+    const response = await axios('/userLC/profile_form');
+    return response.data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
