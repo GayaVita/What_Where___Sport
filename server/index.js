@@ -13,7 +13,6 @@ const activityRouter = require('./routes/activity.router');
 const indexRouter = require('./routes/index.router');
 const all_activitiesRouter = require('./routes/all_activities.router');
 const subscriberRouter = require('./routes/subscriber.router');
-const locationRouter = require('./routes/locations.route');
 const eventRouter = require('./routes/event.router');
 
 const sessionConfig = {
