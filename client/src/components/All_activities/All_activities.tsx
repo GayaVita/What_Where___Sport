@@ -7,6 +7,10 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addSubscriber, getAllActivities } from '../../store/all_activitiesSlice/asyncThunk';
 import { getAllLocations } from '../../store/locationLCSlice/asyncThunk';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 // export type All_ActivitiesType = {
 //   location_title: string;
 //   location_address: string;
@@ -120,8 +124,11 @@ export default function All_activities(): JSX.Element {
   }, [locations]);
 
   return (
-    <div className={styles.page_wrapper}>
-      <div className={styles.all_activities_form__wrapper}>
+    <>
+      <Container>
+        <Row>
+            <Col>
+              <div className={styles.all_activities_form__wrapper}>
         {allActivities?.length > 0 &&
           allActivities.map((card) => (
             <div className={styles.all_activities_form__card} key={card.id}>
@@ -172,9 +179,16 @@ export default function All_activities(): JSX.Element {
             </div>
           ))}
       </div>
-      <div className={styles.card_wrapper}>
-        <div id="map" className="map" style={{ width: '500px', height: '500px' }} />
-      </div>
-    </div>
+             </Col>
+          <Col>
+          <div className={styles.card_wrapper}>
+            <div id="map" className="map" style={{ width: '500px', height: '500px' }} />
+          </div>
+          </Col>
+        </Row>
+      </Container>
+    </>
+    // <div className={styles.page_wrapper}>
+    // </div>
   );
 }

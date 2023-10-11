@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     location_photo: DataTypes.STRING,
     location_category: DataTypes.STRING,
     location_contact: DataTypes.STRING,
+    location_description: DataTypes.TEXT,
     user_id_loc: DataTypes.INTEGER,
     coordinateX: DataTypes.STRING,
     coordinateY: DataTypes.STRING,

@@ -40,6 +40,9 @@ module.exports = {
       location_contact: {
         type: Sequelize.STRING
       },
+      location_description: {
+        type: Sequelize.TEXT
+      },
       coordinateX: {
         type: Sequelize.STRING
       },

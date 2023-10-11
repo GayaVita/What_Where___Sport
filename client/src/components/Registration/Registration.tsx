@@ -54,8 +54,8 @@ export default function Registration(): JSX.Element {
         <div className="form-container sign-up-container">
           <form className='refForm' action="#">
             <h1 className='greetingText'>Создать профиль</h1>
-            <div className="social-container">
-              <a href="#" className="social a">
+            {/* <div className="social-container"> */}
+              {/* <a href="#" className="social a">
                 <i className="fab fa-facebook-f" />
               </a>
               <a href="#" className="social a">
@@ -63,9 +63,9 @@ export default function Registration(): JSX.Element {
               </a>
               <a href="#" className="social a">
                 <i className="fab fa-linkedin-in" />
-              </a>
-            </div>
-            <span className='spanClass'>или использовать почту для регистрации</span>
+              </a> */}
+            {/* </div> */}
+            {/* <span className='spanClass'>или использовать почту для регистрации</span> */}
             <input 
               onChange={inputHandler}
               name="login"
@@ -99,7 +99,7 @@ export default function Registration(): JSX.Element {
         <div className="form-container sign-in-container">
           <form className='refForm' action="#">
             <h1 className='greetingText'>Личный кабинет</h1>
-            <div className="social-container">
+            {/* <div className="social-container">
               <a href="#" className="social a">
                 <i className="fab fa-facebook-f" />
               </a>
@@ -110,7 +110,7 @@ export default function Registration(): JSX.Element {
                 <i className="fab fa-linkedin-in" />
               </a>
             </div>
-            <span className='spanClass'>or use your account</span>
+            <span className='spanClass'>or use your account</span> */}
             <input 
               onChange={inputHandler}
               name="email"
@@ -127,7 +127,7 @@ export default function Registration(): JSX.Element {
               placeholder="Пароль"
               className='regInput'
             />
-            <a href="#" className='a'>Забыли пароль?</a>
+            {/* <a href="#" className='a'>Забыли пароль?</a> */}
             <button className='regBtn' type="button" onClick={signUpButton}>
              Войти
             </button>

@@ -6,16 +6,20 @@
 :root {
   --green: #496937;
   --orange: #e7632a;
-  --white: #dcdcdc;
+  /* --white: #dcdcdc; */
+  --white: #fff;
   --bs-body-bg: none;
 }
 
 body {
   font-family: "Soyuz Grotesk";
-  background-color: var(--green);
+  background-color: var(--white);
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+a {
+  text-decoration: none;
 }
