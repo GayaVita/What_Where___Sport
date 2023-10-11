@@ -61,12 +61,12 @@ export default function All_activities(): JSX.Element {
         {
           center: [55.76, 37.64],
           zoom: 10,
-          controls: ['routePanelControl']
         },
         {
           suppressMapOpenBlock: true,
         },
       );
+
       map.controls.remove('searchControl'); // удаляем поиск
       map.controls.remove('trafficControl'); // удаляем контроль трафика
       map.controls.remove('typeSelector'); // удаляем тип
@@ -121,7 +121,6 @@ export default function All_activities(): JSX.Element {
 
   return (
     <div className={styles.page_wrapper}>
-
       <div className={styles.all_activities_form__wrapper}>
         {allActivities?.length > 0 &&
           allActivities.map((card) => (
@@ -134,7 +133,7 @@ export default function All_activities(): JSX.Element {
                 </div>
 
                 <div className={styles.all_activities_form__tableDate}>
-                  <p className={styles.all_activities_date}>{card.activity_date}</p>
+                  <p className={styles.all_activities_date}>{card.activity_date.slice(0, 10)}</p>
                   <p className={styles.all_activity_time}>{card.activity_time}</p>
                   <p className={styles.all_activities_type}>{card.activity_type}</p>
                 </div>
@@ -159,7 +158,6 @@ export default function All_activities(): JSX.Element {
                     </Button>
                   </>
                 ) : (
-
                   <Button
                     variant="secondary"
                     type="button"
@@ -174,9 +172,8 @@ export default function All_activities(): JSX.Element {
             </div>
           ))}
       </div>
-
-      <div className={styles.map_wrapper}>
-        <div id="map" className="map" style={{ width: '800px', height: '700px' }} />
+      <div className={styles.card_wrapper}>
+        <div id="map" className="map" style={{ width: '500px', height: '500px' }} />
       </div>
     </div>
   );

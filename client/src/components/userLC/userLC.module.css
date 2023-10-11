@@ -10,11 +10,16 @@
 
 .left_form__list {
   list-style-type: none;
+  width: 300px;
   /* padding-top: 20px; */
 }
 
 .left_form__link {
   color: var(--white);
+}
+
+.burger {
+  width: 50px;
 }
 
 /*   background-image: -webkit-linear-gradient(left, #dcdcdc 50%, #496937 50%);

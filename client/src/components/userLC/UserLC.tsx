@@ -18,8 +18,9 @@ export default function UserLC(): JSX.Element {
                 onClick={() => setOpen(!open)}
                 aria-controls="example-collapse-text"
                 aria-expanded={open}
+                style={{width: '100px'}}
               >
-                <i className='bx bx-menu'></i>
+                <i className='bx bx-menu' ></i>
               </Button>
               <Collapse in={open}>
                 <div id="example-collapse-text">
