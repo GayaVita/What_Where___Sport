@@ -8,7 +8,7 @@
   justify-content: center;
   margin-top: 2rem;
 }
-.location {
+.location1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -45,7 +45,7 @@
   transition: 1s; 
   display: block; 
 }
-.scale {
+.scale1 {
   display: inline-block;
   overflow: hidden; 
  }
@@ -137,7 +137,7 @@
   color: var(--green);
 }
 .btnSort {
-  color: var(--white);
+  color: var(--orange);
   font-weight: bold;
   margin-left: 2rem;
   display: flex;
@@ -202,10 +202,10 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  fill: var(--white);
+  fill: var(--orange);
 }
 .sortUp:hover, .sortDown:hover {
-  fill: var(--orange);
+  fill: var(--green);
 }
 @media (min-device-width: 320px) and (max-device-width: 1116px) {
   .location {

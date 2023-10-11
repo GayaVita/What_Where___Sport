@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Col, Collapse, Container, Nav, Row } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
-// import { Link, Outlet } from 'react-router-dom';
 import styles from './userLC.module.css';
 import 'boxicons';
 
@@ -10,18 +9,18 @@ export default function UserLC(): JSX.Element {
   
   return (
     <>
-      <Container fluid>
+      <Container>
         <Row>
           <Col xs="auto" sm="auto" md="auto"className={styles.left_form__list}>
-            <Nav defaultActiveKey="/home" className="flex-column">
+            {/* <Nav defaultActiveKey="/home" className="flex-column">
             <Button
                 onClick={() => setOpen(!open)}
                 aria-controls="example-collapse-text"
                 aria-expanded={open}
               >
-                <i className='bx bx-menu'></i>
+                <i className='bx bx-menu lg'></i>
               </Button>
-              <Collapse in={open}>
+              <Collapse in={open}> */}
                 <div id="example-collapse-text">
                     <Link className={styles.left_form__link} to="/userLC/profile_form">Профиль</Link>
                     <br />
@@ -31,11 +30,10 @@ export default function UserLC(): JSX.Element {
                     <br />
                     <Link className={styles.left_form__link} to="/userLC/events">Отклики</Link>
                 </div>
-              </Collapse>
-            </Nav>
+              {/* </Collapse> */}
+            {/* </Nav> */}
           </Col>
           <Col className={styles.right_form__wrapper}>
-         
             <Outlet />
           </Col>
         </Row>

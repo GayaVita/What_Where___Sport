@@ -68,7 +68,7 @@ export default function Locations(): JSX.Element {
   
   return (
     <>
-    <h1 className={styles.location_large_title}>Площадки для занятий спортом</h1>
+    {/* <h1 className={styles.location_large_title}>Площадки для занятий спортом</h1> */}
 
     <div className={styles.filter}>
      <Button className={styles.btnFilter} variant="success" onClick={() => {toggleVisibility(); handleFilter('')}}>
@@ -111,7 +111,7 @@ export default function Locations(): JSX.Element {
             <Card className={styles.location_card} key={location.id} >
               <Link className={styles.location_link} to={`/locations/${location.id}`}> 
                <div className={styles.location_picture}>
-                  <div className={styles.scale}>
+                  <div className={styles.scale1}>
                     <Card.Img variant="top" src={location.location_photo} className={styles.location_photo}/>
                   </div>
                 <div className={styles.location_price}>{location.location_price} ₽/час</div>

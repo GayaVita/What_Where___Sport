@@ -18,7 +18,7 @@ export default function ProfileCard() {
         <p className={styles.profile_card__userabout}><span>TG: </span><a href={user?.Profile?.user_tg}>{user?.Profile?.user_tg}</a></p>
         <p className={styles.profile_card__userabout}><span>Телефон: </span>{user?.Profile?.user_mobile}</p>
       {/* Условно отображаем кнопку "Редактировать" или форму редактирования */}
-      {isEditing ? (
+      {/* {isEditing ? (
           <EditProfile
             profile={user?.Profile || {}}
             onSave={saveUpdatedProfile}
@@ -26,7 +26,7 @@ export default function ProfileCard() {
           />
         ) : (
           <button onClick={() => setIsEditing(true)}>Редактировать</button>
-        )}
+        )} */}
       </div>
     </div>
   )

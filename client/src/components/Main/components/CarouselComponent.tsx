@@ -14,8 +14,7 @@ export default function CarouselComponent() {
   const { locations } = useAppSelector((store) => store.locations);
 
   return (
-    <>
-      <Marquee className={styles.carusel} speed={30} pauseOnHover>
+      <Marquee speed={30} pauseOnHover className={styles.carusel}>
         <Link to="/locations" >
            <div className={styles.card_carusel}>
             Забронируй классную локацию
@@ -42,6 +41,5 @@ export default function CarouselComponent() {
            </div>
         </Link>
       </Marquee>
-    </>
   )
 }
