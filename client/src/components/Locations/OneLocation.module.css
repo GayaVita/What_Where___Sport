@@ -1,12 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-.locations_container {
+.oneLocation_container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 3rem;
+}
+.back_arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  fill: var(--white);
+}
+.back_arrow:hover {
+  fill: var(--orange);
+}
+.oneLocation_container_card {
+  display: flex;
+  align-items: center;
+}
+.total_container {
+  display: flex;
   justify-content: center;
-  margin-top: 2rem;
+}
+.oneLocation_total_container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+}
+.oneLocation_tite_container {
+  display: flex;
+  align-items: center;
+  line-height: 30px;
+  padding-bottom: 5px;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+.oneLocation_title {
+  color: var(--white);
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.location_description {
+  font-size: 1.5rem;
+}
+.btn_container {
+  display: flex;
+  justify-content: center;
+}
+.address_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.7rem;
+  box-sizing: border-box;
+  z-index: 4;
+  background-color: beige;
+  color: var(--green);
+  border-radius: 12px;
+  opacity: 1;
+  height: 54px;
+  top: 70px;
+  width: 822.5px;
+  left: 15px;
 }
 .location {
   display: flex;
@@ -30,7 +86,6 @@
   justify-content: center;
   font-weight: bold;
   color: var(--white);
-
 }
 .location_ul {
   list-style-type: none;
@@ -39,19 +94,10 @@
   padding-left: 0;
 }
 .location_photo {
-  width: 40rem;
-  height: 28rem;
-  border-radius: 10px;
-  transition: 1s; 
-  display: block; 
+  width: 20rem;
+  height: 15rem;
+  border-radius: 0.7rem;
 }
-.scale {
-  display: inline-block;
-  overflow: hidden; 
- }
- .location_photo:hover {
-  transform: scale(1.2); 
- }
 .location_title {
   color: var(--green);
   text-align: center;
@@ -61,55 +107,28 @@
   position:relative;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .location_price {
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
+  top: -1rem;
+  left: -2rem;
   padding: 8px;
   background-color: var(--orange);
-  border-radius: 35px;
+  border-radius: 0.5rem;
   font-weight: bold;
+  color: black;
   color: white;
-  font-family: "Soyuz Grotesk";
-  font-size: 1.3rem;
-}
-.location_link {
-  margin: 0;
+  font-family: "Soyuz Grotesk"
 }
 .location_info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-.address_container {
-  display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 1.7rem;
-  box-sizing: border-box;
-  position: absolute;
-  z-index: 4;
-  background-color: beige;
-  color: var(--green);
-  border-radius: 12px;
-  opacity: 1;
-  height: 54px;
-  top: 70px;
-  width: 579.5px;
-  left: 15px;
-}
-.location_card {
-  width: 40rem;
-  height: 38rem;
-  border-radius: 10px;
+  align-items: flex-start;
 }
 .location_category, .location_district, .location_address {
   font-size: 15px;
   margin-bottom: 7px;
-  color: var(--green);
 }
 .location_contact {
   font-size: 15px;
@@ -128,13 +147,14 @@
 }
 .btnFilter {
   background-color: var(--orange);
-  font-size: 1.5rem;
+  font-size: 0.9rem;
   border: none;
   font-family: "Soyuz Grotesk"
 }
 .btnFilter:hover {
   background-color: var(--white);
   color: var(--green);
+  font-size: 0.9rem;
 }
 .btnSort {
   color: var(--white);
@@ -142,8 +162,7 @@
   margin-left: 2rem;
   display: flex;
   align-items: center;
-  font-family: "Soyuz Grotesk";
-  font-size: 1.5rem;
+  font-family: "Soyuz Grotesk"
 }
 .btn_filter_category {
   width: 15rem;
@@ -192,11 +211,12 @@
   align-items: center;
 }
 .filter {
+  margin: 0 auto;
   margin-top: 2rem;
   font-family: "Montserrat";
   display: flex;
   position: relative;
-  margin-left: 19rem;
+  width: 45rem;
 }
 .sortUp, .sortDown  {
   display: flex;

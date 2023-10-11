@@ -14,6 +14,7 @@ import Locations from './components/Locations/Locations';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { checkAuth } from './store/userSlice/thunkUser';
 import { getUserProfile } from './store/profileSlice/asyncThunk';
+import { OneLocation } from './components/Locations/OneLocation';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -36,6 +37,7 @@ function App(): JSX.Element {
           <Route path="events" element={<EventCard />} />
         </Route>
         <Route path="/locations" element={<Locations />} />
+        <Route path="/locations/:id" element={<OneLocation />} />
       </Routes>
     </div>
   );
