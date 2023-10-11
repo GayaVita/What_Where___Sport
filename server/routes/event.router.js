@@ -54,19 +54,35 @@ router.delete('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-  const { user_id } = req.body;
-  const rejectedRequest = await Subscriber.update(
-    { status: 'Отклонено' },
-    { where: { 
-      activity_id: { id },
-      user_id 
-    } },
-  );
-  res.json(rejectedRequest)
+    console.log('id', id);
+    const rejectedRequest = await Subscriber.update(
+      { status: 'Отклонено' },
+      { where: { id } },
+    );
+    res.json(rejectedRequest);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-  
 });
+
+router.get('/subscribers', async (req, res) => {
+  try {
+    const allSubscribers = await Subscriber.findAll({
+      where: {
+        user_id: req.session?.user?.id
+      },
+      include: [{
+        model: User,
+        include: Profile,
+      }, {
+        model: Activity
+      }]
+      
+    })
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
+  }
+})
 
 module.exports = router;

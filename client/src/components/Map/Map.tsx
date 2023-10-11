@@ -81,7 +81,7 @@ export default function Map({formData, setFormData}: IMapProps) {
           myMap.balloon.open(coords, {
             contentHeader: 'Вы можете добавить новое место здесь!',
             contentBody: `
-            <div>
+            <div class='baloon_wrapper'>
               <p>${city}</p>
               <p>${address}</p>
             </div>
