@@ -45,6 +45,9 @@ export default function Registration(): JSX.Element {
     }
   };
 
+  // className={`${status ? 'line' : ''}`}
+
+
   return (
     <div className='authContainer' >
       <div className={show ? 'regContainer right-panel-active' : 'regContainer'} id="container">
@@ -149,7 +152,11 @@ export default function Registration(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+        </div>
     </div>
   );
 }
+
+
+
+  

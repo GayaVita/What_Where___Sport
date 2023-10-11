@@ -15,6 +15,7 @@ module.exports = {
           model: 'Activities',
           key: 'id',
         },
+        onDelete: 'cascade'
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -34,13 +35,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    }, {
-      indexes: [
-        {
-          unique: true,
-          fields: ['user_id', 'activity_id']
-        }
-      ]
     });
   },
   async down(queryInterface, Sequelize) {

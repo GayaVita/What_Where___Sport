@@ -1,12 +1,14 @@
+.main {
+  position: relative;
+  
+}
+
 .main_div {
   /* max-width: 91.6666666667rem; */
   /* margin: 0 auto; */
   background-color: var(--green);
 }
-.main {
-  position: relative;
-  
-}
+
 .main_photo {
   position: relative;
   z-index: -1;
@@ -36,27 +38,29 @@
   font-weight: 700;
   font-size: 2.5rem;
 }
+
 .main_text_second {
   position: absolute;
   top: 20rem;
   left: 6rem;
   color: var(--orange);
-  max-width: 36.6111111111rem;
+  /* max-width: 36.6111111111rem; */
   font-style: normal;
   font-weight: 700;
   font-size: 2.5rem;
 }
+
 .vertical_gradient {
   position: absolute;
   /* background-color: yellow; */
-  background: linear-gradient(90deg,var(--green),#4d6cdc00);
-  height: 43rem;
-  right: 53rem;
+  background-color: linear-gradient(90deg,var(--green),#4d6cdc00);
+  /* height: 100%;
+  right: 100%; */
   top: 0rem;
   width: 15rem;
   z-index: 5;
 }
-.horizontal_gradient_top {
+/* .horizontal_gradient_top {
   position: absolute;
   height: 30rem;
   width: 100%;
@@ -70,6 +74,6 @@
   width: 100%;
   top: 0rem;
   /* background-color: blue; */
-  background: linear-gradient(0deg,#4d6cdc00, var(--green));
-  z-index: 2;
-}
+  /* background: linear-gradient(0deg,#4d6cdc00, var(--green));
+  z-index: 2; */
+/* } */

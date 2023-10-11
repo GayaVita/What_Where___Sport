@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import styles from './eventCard.module.css';
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
-import { getAllEvents } from '../../../../../store/eventSlice/asyncThunk';
+import { deleteEvent, getAllEvents } from '../../../../../store/eventSlice/asyncThunk';
 
 // export type EventCardTypeLC = {
 //   location_title: string;
@@ -47,9 +47,9 @@ export default function EventCardLC(): JSX.Element {
   const clickRejectHandler = (): void => {
     navigate('/userLC/location_form/entry_form');
   };
-  const clickDeleteHandler = (): void => {
-    navigate('/userLC/location_form/activity_form');
-  };
+  // const clickDeleteHandler = (id: number): void => {
+  //   dispatch(deleteEvent(id))
+  // };
 
   return (
     <div className={styles.event_container}>
@@ -61,7 +61,7 @@ export default function EventCardLC(): JSX.Element {
                 variant="secondary"
                 type="button"
                 className={styles.profile_form_delete__button}
-                onClick={clickDeleteHandler}
+                onClick={() => dispatch(deleteEvent(event?.id))}
               >
                 Отменить!
               </Button>

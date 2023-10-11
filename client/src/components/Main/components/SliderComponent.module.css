@@ -1,6 +1,6 @@
 .main_slider {
   position: absolute;
-  width: 67%;
-  height: auto;
+  width: 67vw;
+  height: 100vh;
   right: 0;
 }

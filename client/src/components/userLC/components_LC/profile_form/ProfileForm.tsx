@@ -16,6 +16,16 @@ import { updateUser } from '../../../../store/userSlice/thunkUser';
 //   user_mobile: string;
 //   user_id?: number;
 // };
+import { FloatingLabel, Form } from 'react-bootstrap';
+
+export type ProfileFormType = {
+  user_name: string;
+  user_about: string;
+  user_age?: number | '';
+  user_tg: string;
+  user_mobile: string;
+  user_id?: number;
+};
 
 export default function ProfileForm(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -102,8 +112,8 @@ export default function ProfileForm(): JSX.Element {
                 value={formData?.user_mobile}
                 onChange={changeHandler}
               />
-            </div>
-            {error && <p className={styles.error_message}>{error}</p>}
+            
+            {error && <p className={styles.error}>{error}</p>}
             <Button
               variant="secondary"
               type="button"
@@ -112,6 +122,7 @@ export default function ProfileForm(): JSX.Element {
             >
               Отправить
             </Button>
+            </div>
           </div>
         </div>
       )}
