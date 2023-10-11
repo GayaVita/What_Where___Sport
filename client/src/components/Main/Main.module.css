@@ -1,11 +1,4 @@
-.main {
-  position: relative;
-  
-}
-
 .main_div {
-  /* max-width: 91.6666666667rem; */
-  /* margin: 0 auto; */
   background-color: var(--green);
 }
 
@@ -13,67 +6,24 @@
   position: relative;
   z-index: -1;
 }
-.main_img {
-  position: absolute;
-  width: 50%;
-  height: auto;
-  right: 0;
-}
-.main_img2 {
-  position: absolute;
-  width: 50%;
-  height: auto;
-  right: 20rem;
-}
-.main_title {
-  position: relative;
-}
-.main_text {
-  position: absolute;
-  top: 9rem;
-  left: 6rem;
-  color: var(--white);
-  max-width: 36.6111111111rem;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 2.5rem;
-}
-
-.main_text_second {
-  position: absolute;
-  top: 20rem;
-  left: 6rem;
-  color: var(--orange);
-  /* max-width: 36.6111111111rem; */
-  font-style: normal;
-  font-weight: 700;
-  font-size: 2.5rem;
-}
 
 .vertical_gradient {
-  position: absolute;
-  /* background-color: yellow; */
-  background-color: linear-gradient(90deg,var(--green),#4d6cdc00);
+  /* position: absolute; */
+  background-image: linear-gradient(90deg,var(--green),#4d6cdc00);
   /* height: 100%;
   right: 100%; */
-  top: 0rem;
-  width: 15rem;
-  z-index: 5;
+  /* top: 0rem;
+  width: 15rem; */
+  /* z-index: 5; */
 }
-/* .horizontal_gradient_top {
+.horizontal_gradient_top {
   position: absolute;
-  height: 30rem;
-  width: 100%;
-  bottom: -45rem;
-  background: linear-gradient(0deg,var(--green),#4d6cdc00);
+  background: linear-gradient(180deg, var(--green), #4d6cdc00);
   z-index: 2;
 }
 .horizontal_gradient_bottom {
-  position: absolute;
-  height: 6rem;
-  width: 100%;
-  top: 0rem;
-  /* background-color: blue; */
-  /* background: linear-gradient(0deg,#4d6cdc00, var(--green));
-  z-index: 2; */
-/* } */
+  position: relative;
+  background-color: blue;
+  background: linear-gradient(0deg,#4d6cdc00, var(--green));
+  z-index: 2;
+}

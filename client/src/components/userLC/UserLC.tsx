@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Col, Collapse, Container, Nav, Row } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
-// import { Link, Outlet } from 'react-router-dom';
 import styles from './userLC.module.css';
 import 'boxicons';
 
@@ -19,7 +18,7 @@ export default function UserLC(): JSX.Element {
                 aria-controls="example-collapse-text"
                 aria-expanded={open}
               >
-                <i className='bx bx-menu'></i>
+                <i className='bx bx-menu lg'></i>
               </Button>
               <Collapse in={open}>
                 <div id="example-collapse-text">
@@ -35,7 +34,6 @@ export default function UserLC(): JSX.Element {
             </Nav>
           </Col>
           <Col className={styles.right_form__wrapper}>
-         
             <Outlet />
           </Col>
         </Row>
