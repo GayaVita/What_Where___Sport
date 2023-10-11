@@ -2,8 +2,17 @@ import React from 'react';
 import styles from './CarouselComponent.module.css';
 import Marquee from "react-fast-marquee";
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../../store/hooks';
+
+interface caruselItem {
+  img: string,
+  href: string,
+}
 
 export default function CarouselComponent() {
+
+  const { locations } = useAppSelector((store) => store.locations);
+
   return (
       <Marquee speed={30} pauseOnHover className={styles.carusel}>
         <Link to="/locations" >

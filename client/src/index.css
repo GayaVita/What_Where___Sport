@@ -13,7 +13,7 @@
 
 body {
   font-family: "Soyuz Grotesk";
-  background-color: var(--green);
+  background-color: var(--white);
 }
 * {
   margin: 0;

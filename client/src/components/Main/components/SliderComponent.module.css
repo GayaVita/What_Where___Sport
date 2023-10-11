@@ -8,4 +8,14 @@
   
 .main_text:nth-child(2) {
     color: var(--orange);
+.main_text {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--white);
+    line-height: 1.5;
+}
+  
+.main_text:nth-child(2) {
+    color: var(--orange);
 }

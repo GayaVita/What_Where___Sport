@@ -6,7 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 export default function Main() {
   return (
     <>
-      <Container fluid>
+      <Container >
         <Row>
           <Col>
             <SliderComponent />
