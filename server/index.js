@@ -37,14 +37,18 @@ app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(session(sessionConfig));
+
 app.use((req, res, next) => {
   res.locals.user = req.session.user;
   next();
 });
+
 app.use('/user', accessRouter);
 app.use('/api/locations', locationRouter);
 app.use('/', indexRouter);
 app.use('/userLC', profileRouter);
+app.use('/', indexRouter);
 app.use('/userLC/location_form', locationLCRouter);
 app.use('/userLC/activity_form', activityRouter);
 app.use('/userLC/event', eventRouter);

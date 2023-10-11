@@ -13,8 +13,9 @@
 body {
   font-family: "Soyuz Grotesk";
   background-color: var(--green);
+  display: flex;
+  justify-content: center;
 }
-/*
 * {
   margin: 0;
   padding: 0;
@@ -36,7 +37,7 @@ body {
     -webkit-text-size-adjust: 100%;
   }
   
-  a {
+  /* a {
     font-weight: 500;
     color: #646cff;
     text-decoration: inherit;
@@ -45,20 +46,12 @@ body {
     color: #535bf2;
   }
   
-  body {
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
-  }
-  
   h1 {
     font-size: 3.2em;
     line-height: 1.1;
-  }
+  } */
   
-  button {
+  /* button {
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
@@ -71,14 +64,14 @@ body {
   }
   button:hover {
     border-color: #646cff;
-  } 
+  }  */
 
-  button:focus,
+  /* button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
-  }
+  } */
   
-  @media (prefers-color-scheme: light) {
+  /* @media (prefers-color-scheme: light) {
     :root {
       color: #213547;
       background-color: #ffffff;

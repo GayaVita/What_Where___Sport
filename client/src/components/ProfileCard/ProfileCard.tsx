@@ -4,7 +4,10 @@ import styles from './ProfileCard.module.css'
 import { useAppSelector } from '../../store/hooks';
 
 export default function ProfileCard() {
+  const { profile } = useAppSelector((store) => store.profile);
   const { user } = useAppSelector((store) => store.user);
+
+
   return (
     <div className={styles.profile_card__wrapper}>
       <div className={styles.profile_card__content}>
@@ -14,6 +17,16 @@ export default function ProfileCard() {
         <p className={styles.profile_card__userabout}><span>Возраст: </span>{user?.Profile?.user_age}</p>
         <p className={styles.profile_card__userabout}><span>TG: </span><a href={user?.Profile?.user_tg}>{user?.Profile?.user_tg}</a></p>
         <p className={styles.profile_card__userabout}><span>Телефон: </span>{user?.Profile?.user_mobile}</p>
+      {/* Условно отображаем кнопку "Редактировать" или форму редактирования */}
+      {isEditing ? (
+          <EditProfile
+            profile={user?.Profile || {}}
+            onSave={saveUpdatedProfile}
+            onCancel={cancelEditing}
+          />
+        ) : (
+          <button onClick={() => setIsEditing(true)}>Редактировать</button>
+        )}
       </div>
     </div>
   )
