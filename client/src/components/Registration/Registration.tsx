@@ -53,7 +53,7 @@ export default function Registration(): JSX.Element {
       <div className={show ? 'regContainer right-panel-active' : 'regContainer'} id="container">
         <div className="form-container sign-up-container">
           <form className='refForm' action="#">
-            <h1 className='greetingText'>Create Account</h1>
+            <h1 className='greetingText'>Создать профиль</h1>
             <div className="social-container">
               <a href="#" className="social a">
                 <i className="fab fa-facebook-f" />
@@ -65,13 +65,13 @@ export default function Registration(): JSX.Element {
                 <i className="fab fa-linkedin-in" />
               </a>
             </div>
-            <span className='spanClass'>or use your email for registration</span>
+            <span className='spanClass'>или использовать почту для регистрации</span>
             <input 
               onChange={inputHandler}
               name="login"
               value={inputs.login}
               type="text"
-              placeholder="Login"
+              placeholder="Логин"
               className='regInput'
             />
             <input 
@@ -79,7 +79,7 @@ export default function Registration(): JSX.Element {
               name="email"
               value={inputs.email}
               type="email"
-              placeholder="Email"
+              placeholder="Электронная почта"
               className='regInput'
             />
             <input 
@@ -87,18 +87,18 @@ export default function Registration(): JSX.Element {
               name="password"
               value={inputs.password}
               type="password"
-              placeholder="Password"
+              placeholder="Пароль"
               className='regInput'
             />
             <button className='regBtn' type="button" onClick={signInButton}>
-              Sign Up
+              Войти
             </button>
             {error && <p className='inputText' style={{ color: 'red' }}>{error}</p>}
           </form>
         </div>
         <div className="form-container sign-in-container">
           <form className='refForm' action="#">
-            <h1 className='greetingText'>Sign in</h1>
+            <h1 className='greetingText'>Личный кабинет</h1>
             <div className="social-container">
               <a href="#" className="social a">
                 <i className="fab fa-facebook-f" />
@@ -116,7 +116,7 @@ export default function Registration(): JSX.Element {
               name="email"
               value={inputs.email}
               type="email"
-              placeholder="Email"
+              placeholder="Электронная почта"
               className='regInput'
             />
             <input 
@@ -124,12 +124,12 @@ export default function Registration(): JSX.Element {
               name="password"
               value={inputs.password}
               type="password"
-              placeholder="Password"
+              placeholder="Пароль"
               className='regInput'
             />
-            <a href="#" className='a'>Forgot your password?</a>
+            <a href="#" className='a'>Забыли пароль?</a>
             <button className='regBtn' type="button" onClick={signUpButton}>
-              Sign In
+             Войти
             </button>
             {error && <p className='inputText' style={{ color: 'red' }}>{error}</p>}
           </form>
@@ -137,17 +137,17 @@ export default function Registration(): JSX.Element {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
-              <h1 className='greetingText'>Welcome Back!</h1>
-              <p className='inputText'>To keep connected with us please login with your personal info</p>
+              <h1 className='greetingText'>Вернулись?</h1>
+              <p className='inputText'>Для входа введите свой логин и пароль</p>
               <button type="button" onClick={changeAccessButton} className="ghost regBtn" id="signIn">
-                Sign In
+              Войти
               </button>
             </div>
             <div className="overlay-panel overlay-right">
-              <h1 className='greetingText'>Hello, Friend!</h1>
-              <p className='inputText'>Enter your personal details and start journey with us</p>
+              <h1 className='greetingText'>Привет!</h1>
+              <p className='inputText'>Введите свои логин, электронную почту и пароль и начните путешествие с нами</p>
               <button type="button" onClick={changeAccessButton} className="ghost regBtn" id="signUp">
-                Sign Up
+               Регистрация
               </button>
             </div>
           </div>
