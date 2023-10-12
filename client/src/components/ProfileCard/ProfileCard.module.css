@@ -3,10 +3,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
+  margin: 5rem 0;
   z-index: 10;
-  
-  
+  width: 30rem;
+  height: 40rem;
+  background-color: rgba(255, 255, 255, 0.5); /* Прозрачный фон */
+  backdrop-filter: blur(10px); /* Размытие фона */
 }
 
 .profile_card__content {
@@ -18,44 +20,54 @@
   width: 100%;
   padding-top: 30px;
   padding-bottom: 15px;
-  font-family: 'Montserrat', sans-serif;
   font-size:xx-large;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  border-radius: 20px;
-  /* box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1); */
-
-
-  
+  border-radius: 20px; 
 }
 
 .profile_card__avatar {
-  width: 200px;
-  height: 300px;
-  border-radius: 25%;
+  margin-top: 1.2rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 15px;
 }
 
 .profile_card__username {
   font-weight: 600;
+  text-align: center;
+  color: var(--orange);
 }
 
 .profile_card__userabout {
-  width: 400px;
-  padding: 20px;
+  width: 25rem;
+  /* padding: 20px; */
   font-size: 16px;
-  font-family: 'Montserrat', sans-serif;
-  font-size:large;
+  /* font-size:large; */
+  border-top-left-radius: 10px; /* Скругление верхнего левого угла */
+  border-top-right-radius: 10px; 
 }
 
 .profile_card__userabout span {
   font-weight: 600;
   font-size: 16px;
-  
 }
 
 .profile_card_avatar__form {
   text-align: center;
+  
+}
+
+.profile_form__button {
+  margin-top: 1rem;
+}
+
+.profile_card_tg_link {
+  color: var(--black);
+}
+.profile_card_tg_link:hover {
+  color: var(--orange);
 }

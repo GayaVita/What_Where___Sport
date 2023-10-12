@@ -78,17 +78,12 @@ export default function NavBar(): JSX.Element {
                     </>
                   ) : (
                     <>
-                      <Link className={styles.navlink} to="/activities">
-                        Активности
-                      </Link>
-                      <Link className={styles.navlink} to="/locations">
-                        Локации
-                      </Link>
-                      <Link className={styles.navlink} to="/access">
-                        Войти
-                      </Link>
-                    </>
-                  )}
+                      {/* <Link className={styles.navlink} to="/activities">Активности</Link> */}
+                      <Link className={styles.navlink} to="/locations">Локации</Link>
+                      <Link className={styles.navlink} to="/access">Войти</Link>
+                    </>) 
+                }
+                  
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
