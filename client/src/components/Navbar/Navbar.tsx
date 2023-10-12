@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { IPropsLogin, IPropsNavbar } from '../../types/types';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchUserLogout } from '../../store/userSlice/thunkUser';
 import { useNavigate } from 'react-router-dom';
@@ -9,12 +8,9 @@ import styles from './navbar.module.css';
 
 export default function NavBar(): JSX.Element {
   const { user } = useAppSelector((store) => store.user);
-  const { profile } = useAppSelector((store) => store.profile);
-  console.log('user', user);
+  // console.log('user', user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  // export default function NavBar({ user, setUser }: IPropsNavbar): JSX.Element {
-  //   console.log(user.login);
 
   const logoutHandler = async (): Promise<void> => {
     await dispatch(fetchUserLogout());
@@ -26,8 +22,14 @@ export default function NavBar(): JSX.Element {
       {['xxl'].map((expand) => (
         <Navbar key={expand} expand={expand}>
           <Container className={styles.navbar}>
-            <Link className={styles.navlink} to="/">
+            {/* <Link className={styles.navlink} to="/">
               Что?Где?Спорт!
+            </Link> */}
+            <Link to="/">
+              <img 
+                    src='../../../public/photos/logo-RogerSoviet.png' 
+                    alt='Что?Где?Спорт!' 
+                    className={styles.logo} />
             </Link>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
@@ -48,7 +50,6 @@ export default function NavBar(): JSX.Element {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   {user?.login ? (
                     <>
-                   
                         <Link className={styles.navlink} to="/activities">
                           Активности
                         </Link>
@@ -64,11 +65,13 @@ export default function NavBar(): JSX.Element {
                    
                       <div className={styles.profile_card_nav__content}>
                         {user?.Profile && (
-                          <img
-                            className={styles.profile_card_nav__avatar}
-                            src={`/public/photos/${user?.Profile?.user_photo}`}
-                            alt="avatar"
-                          />
+                          <Link to="/userLC">
+                            <img
+                              className={styles.profile_card_nav__avatar}
+                              src={`/public/photos/${user?.Profile?.user_photo}`}
+                              alt="avatar"
+                            />
+                          </Link>
                         )}
 
                         <div className={styles.profile_card_nav__user}>
@@ -83,7 +86,6 @@ export default function NavBar(): JSX.Element {
                       <Link className={styles.navlink} to="/access">Войти</Link>
                     </>) 
                 }
-                  
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
@@ -92,36 +94,4 @@ export default function NavBar(): JSX.Element {
       ))}
     </>
   );
-  {
-    /* <Navbar className={styles.navbar} bg="light" data-bs-theme="light">
-        <Container>
-        <Navbar.Brand className={styles.navlink} href="/">Sport Mate</Navbar.Brand>
-          <Nav className={styles.nav}>
-          {user?.login ? (
-            <>
-              <div>
-                <Link className={styles.navlink} to="/activities">Активности </Link>
-              </div>
-              
-              <div>
-              <br />
-              <Link className={styles.navlink} to="/locations">Локации</Link>
-              </div>
-              
-              <Link className={styles.navlink} to="/userLC">Личный кабинет</Link>
-              <Link className={styles.navlink} onClick={logoutHandler} to='/'>Выйти</Link>
-            </>
-          ) : (
-            <>
-              <Link className={styles.navlink} to="/activities">Активности</Link>
-              <Link className={styles.navlink} to="/locations">Локации</Link>
-              <Link className={styles.navlink} to="/access">Войти</Link>
-          </>
-          )}
-          </Nav>
-        </Container>
-      </Navbar> */
-  }
-  // </>
-  // );
 }
