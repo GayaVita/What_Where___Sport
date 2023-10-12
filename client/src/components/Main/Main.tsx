@@ -9,7 +9,8 @@ export default function Main() {
       <Container >
         <Row>
           <Col>
-            <SliderComponent />
+            <img src="../../../public/img/main/people-getting-ready-tennis-game-winter-time.jpg" alt="" style={{width: "calc(100%-10px)", height: "50vh"}} />
+            {/* <SliderComponent /> */}
           </Col>
         </Row>
         <Row>
