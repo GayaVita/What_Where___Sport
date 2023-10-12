@@ -28,6 +28,7 @@
   font-weight: bold;
   color: var(--orange);
   margin-top: 2.25rem;
+  text-transform: uppercase;
 }
 .location_ul {
   list-style-type: none;
