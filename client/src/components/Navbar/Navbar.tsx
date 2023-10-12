@@ -44,14 +44,14 @@ export default function NavBar(): JSX.Element {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                 {user?.login ? ( 
                     <>
+                      <Link className={styles.navlink} to="/userLC">Личный кабинет</Link>
                       <Link className={styles.navlink} to="/activities">Активности</Link>
                       <Link className={styles.navlink} to="/locations">Локации</Link>
-                      <Link className={styles.navlink} to="/userLC">Личный кабинет</Link>
                       <Link className={styles.navlink} onClick={logoutHandler} to='/'>Выйти</Link>
                     </> 
                   ) : (
                     <>
-                      <Link className={styles.navlink} to="/activities">Активности</Link>
+                      {/* <Link className={styles.navlink} to="/activities">Активности</Link> */}
                       <Link className={styles.navlink} to="/locations">Локации</Link>
                       <Link className={styles.navlink} to="/access">Войти</Link>
                     </>) 
