@@ -22,7 +22,7 @@ export const rejectSubscribersRequest = createAsyncThunk(
   async (id: number) => {
     try {
       const response = await axios.patch(`/userLC/event/${id}`);
-      return response.data as SubscriberType;
+      return response.data as ActivityType;
     } catch (error) {
       console.log(error);
     }

@@ -7,23 +7,23 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       user_name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       user_about: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       user_age: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       user_tg: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       user_mobile: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -35,17 +35,20 @@ module.exports = {
           key: 'id',
         },
       },
+      user_photo: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Profiles');
-  }
+  },
 };

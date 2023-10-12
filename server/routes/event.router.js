@@ -55,11 +55,33 @@ router.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     console.log('id', id);
-    const rejectedRequest = await Subscriber.update(
+    await Subscriber.update(
       { status: 'Отклонено' },
       { where: { id } },
     );
-    res.json(rejectedRequest);
+    const updatedSubscribe = await Subscriber.findByPk(id);
+    const updatedActivity = await Activity.findOne({
+      where: {
+        id: updatedSubscribe.activity_id,
+      },
+      include: [
+        {
+          model: Location,
+        },
+        {
+          model: User,
+          include: Profile,
+        },
+        {
+          model: Subscriber,
+          include: {
+            model: User,
+            include: Profile,
+          }
+        }
+      ]
+    });
+    res.json(updatedActivity);
   } catch (error) {
     console.log(error);
   }

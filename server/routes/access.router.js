@@ -116,6 +116,7 @@ router.post('/:id', async (req, res) => {
       user_tg,
       user_mobile,
       user_id: id,
+      user_photo: 'avatar.jpg'
     });
     const foundUser = await User.findOne({ where: { id }, include: Profile });
     const user = JSON.parse(JSON.stringify(foundUser));

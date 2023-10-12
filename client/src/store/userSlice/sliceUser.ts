@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IUser } from './types';
 import {
+  addImageToProfile,
   checkAuth,
   fetchUserLogin,
   fetchUserLogout,
@@ -80,6 +81,11 @@ export const sliceUser = createSlice({
       if (action.payload) {
         state.error = action.payload.message;
       }
+      state.status = 'logged';
+    });
+    builder.addCase(addImageToProfile.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.error = null;
       state.status = 'logged';
     });
   },

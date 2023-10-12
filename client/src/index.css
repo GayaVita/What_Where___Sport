@@ -8,7 +8,7 @@
   --orange: #e7632a;
   /* --white: #dcdcdc; */
   --white: #fff;
-  --bs-body-bg: none;
+  --bs-body-bg: rgb(214, 214, 214);
 }
 
 body {

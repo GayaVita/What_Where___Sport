@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import { IUser } from './types';
+import { ProfileFormType } from '../profileSlice/types';
 
 interface ValidationErrors {
   message: string;
@@ -50,43 +51,50 @@ export const fetchUserLogout = createAsyncThunk<void>('user/fetchUserLogout', as
 });
 
 // Асинхронный запрос на проверку юзера, нужен для сохранения юзера после обновления страницы(иначе будет слетать на фронте)
-export const checkAuth = createAsyncThunk(
-  'user/checkAuth',
-  async () => {
+export const checkAuth = createAsyncThunk('user/checkAuth', async () => {
+  try {
+    const response = await axios<IUser>('http://localhost:3000/user/checkAuth');
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// Добавление профиля к юзеру
+export const updateUser = createAsyncThunk<IUser, IUser, { rejectValue: ValidationErrors }>(
+  'user/updateUser',
+  async (formData, { rejectWithValue }) => {
     try {
-      const response = await axios<IUser>('http://localhost:3000/user/checkAuth');
-      return response.data;
+      const response = await axios.post<IUser>(`user/${formData?.Profile?.user_id}`, formData);
+      return response.data as IUser;
     } catch (err) {
-      console.log(err);
+      const error: AxiosError<ValidationErrors> = err as AxiosError<ValidationErrors>;
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
     }
   },
 );
 
-// Добавление профиля к юзеру
-export const updateUser = createAsyncThunk<IUser, IUser, { rejectValue: ValidationErrors }>('user/updateUser', async (formData, { rejectWithValue }) => {
-  try {
-    const response = await axios.post<IUser>(`user/${formData?.Profile?.user_id}`, formData);
-    return response.data as IUser;
-  } catch (err) {
-    const error: AxiosError<ValidationErrors> = err as AxiosError<ValidationErrors>;
-    if (!error.response) {
-      throw err;
-    }
-    return rejectWithValue(error.response.data);
-  }
-})
-
 // опционально (для добавления аватара для пользователя с помощью мультера)
-// export const fetchUserUpdate = createAsyncThunk('user/fetchUserUpdate', async (params: IUser) => {
-//   try {
-//     const { id } = params;
-//     const response = await axios.put(`http://localhost:3000/user/${id}`, {
-//       headers: {
-//         'Content-Type': 'multipart/form-data',
-//       },
-//     });
-//     return response.data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+export const addImageToProfile = createAsyncThunk<IUser, ProfileFormType>(
+  'user/fetchUserUpdate',
+  async (formData) => {
+    try {
+      const { id, user_photo } = formData;
+      const response = await axios.patch(
+        `/userLC/profile_form/${id}`,
+        { user_photo },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);

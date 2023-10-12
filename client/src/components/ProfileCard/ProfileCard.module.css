@@ -4,34 +4,38 @@
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  width: 500px;
   z-index: 10;
-
-
+  
+  
 }
 
 .profile_card__content {
+  background: rgba(0,0,0,0.56);
+  border-radius: 5vh;
+  width: 400px;
+  height: 550px;
   margin-top: 20px;
   width: 100%;
   padding-top: 30px;
   padding-bottom: 15px;
   font-family: 'Montserrat', sans-serif;
   font-size:xx-large;
-  color: rgb(59, 55, 55);
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 5px;
   border-radius: 20px;
   /* box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1); */
 
-  background: white;
-  border-radius: 5vh;
+
   
 }
 
 .profile_card__avatar {
-  width: 100px;
+  width: 200px;
+  height: 300px;
+  border-radius: 25%;
 }
 
 .profile_card__username {
@@ -39,6 +43,8 @@
 }
 
 .profile_card__userabout {
+  width: 400px;
+  padding: 20px;
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
   font-size:large;
@@ -47,4 +53,9 @@
 .profile_card__userabout span {
   font-weight: 600;
   font-size: 16px;
+  
+}
+
+.profile_card_avatar__form {
+  text-align: center;
 }

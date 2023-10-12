@@ -31,7 +31,8 @@ export const eventSlice = createSlice({
     builder.addCase(rejectSubscribersRequest.fulfilled, (state, action) => {
       // state.subscribers = state.subscribers.map((el) => el.id === action?.payload?.id ? {...el, status: action?.payload?.status} : el)  
       state.error = null;
-      state.events = state.events.map((event) => event.Subscribers?.map((subscriber) => subscriber.id === action?.payload?.id ? action.payload : subscriber))
+      // state.events = state.events.map((event) => event.Subscribers?.map((subscriber) => subscriber.id === action?.payload?.id ? action.payload : subscriber))
+      state.events = state.events.map((event) => event.id === action?.payload?.id ? action.payload : event)
     });
   },
 });
