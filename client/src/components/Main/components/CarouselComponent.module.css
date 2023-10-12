@@ -18,7 +18,7 @@
 .card_carusel {
   width: 22rem;
   height: 11rem;
-  background-color: #567942;
+  background-color: var(--green);
   border-radius: 12px;
   margin-left: 2rem;
   margin-right: 2rem;
