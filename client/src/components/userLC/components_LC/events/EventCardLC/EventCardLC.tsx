@@ -4,7 +4,12 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import styles from './eventCard.module.css';
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
-import { deleteEvent, getAllEvents } from '../../../../../store/eventSlice/asyncThunk';
+import {
+  deleteEvent,
+  getAllEvents,
+  rejectSubscribersRequest,
+} from '../../../../../store/eventSlice/asyncThunk';
+import SubscriberCard from '../SubscriberCard/SubscriberCard';
 
 // export type EventCardTypeLC = {
 //   location_title: string;
@@ -22,8 +27,9 @@ import { deleteEvent, getAllEvents } from '../../../../../store/eventSlice/async
 export default function EventCardLC(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { events } = useAppSelector((store) => store.events);
+  const { events, subscribers } = useAppSelector((store) => store.events);
   console.log('events', events);
+  console.log('subscribers', subscribers);
   // const [formData, setFormData] = useState<EventCardType>({
   //   location_title: '',
   //   location_address: '',
@@ -44,9 +50,7 @@ export default function EventCardLC(): JSX.Element {
   // const clickContactHandler = (): void => {
   //   navigate('/userLC/location_form/entry_form');
   // };
-  const clickRejectHandler = (): void => {
-    navigate('/userLC/location_form/entry_form');
-  };
+ 
   // const clickDeleteHandler = (id: number): void => {
   //   dispatch(deleteEvent(id))
   // };
@@ -68,9 +72,9 @@ export default function EventCardLC(): JSX.Element {
 
               <div className={styles.event_form__table}>
                 <div className={styles.event_form__tableMain}>
-                  <p className={styles.event_title}>{event.Location.location_title}</p>
-                  <p className={styles.event_city}>{event.Location.location_district}</p>
-                  <p className={styles.event_address}>{event.Location.location_address}</p>
+                  <p className={styles.event_title}>{event?.Location?.location_title}</p>
+                  <p className={styles.event_city}>{event?.Location?.location_district}</p>
+                  <p className={styles.event_address}>{event?.Location?.location_address}</p>
                   {/* <p className={styles.event_type}>activity_type</p> */}
                 </div>
 
@@ -81,30 +85,10 @@ export default function EventCardLC(): JSX.Element {
               </div>
 
               <div className={styles.all_event_users}>
-                {event.Subscribers.length > 0 &&
-                  event.Subscribers.map((subscriber) => (
-                    <div className={styles.event_user_container}  key={subscriber.id}>
-                      <p className={styles.event_user}>{subscriber?.User?.login}</p>
-
-                      <Button
-                        variant="secondary"
-                        type="button"
-                        className={styles.profile_form_contact__button}
-                      >
-                        <a href={subscriber?.User?.Profile?.user_tg} target='_blank'>Связаться</a>
-                        
-                      </Button>
-
-                      <Button
-                        variant="secondary"
-                        type="button"
-                        className={styles.profile_form_reject__button}
-                        onClick={clickRejectHandler}
-                      >
-                        Отклонить
-                      </Button>
-                    </div>
-                  ))}
+                {event?.Subscribers?.length > 0 &&
+                  event?.Subscribers?.map((subscriber) => 
+                   <SubscriberCard key={subscriber.id} subscriber={subscriber} />
+                  )}
               </div>
             </div>
           </div>

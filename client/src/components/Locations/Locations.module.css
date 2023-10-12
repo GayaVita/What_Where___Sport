@@ -1,7 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-
-.location {
+.locations_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.location1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -12,7 +17,6 @@
   margin-top: 1.7rem;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
   padding: calc(6vw + 5px);
-  font-family: "Montserrat";
   color: var(--green);
   background-color: rgb(246,246,246);
   border-radius: 0.7rem;
@@ -22,7 +26,8 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  color: var(--white);
+  color: var(--orange);
+  margin-top: 2.25rem;
 }
 .location_ul {
   list-style-type: none;
@@ -31,12 +36,21 @@
   padding-left: 0;
 }
 .location_photo {
-  width: 20rem;
-  height: 15rem;
-  border-radius: 0.7rem;
+  width: 40rem;
+  height: 28rem;
+  border-radius: 10px;
+  transition: 1s; 
+  display: block; 
 }
+.scale1 {
+  display: inline-block;
+  overflow: hidden; 
+ }
+ .location_photo:hover {
+  transform: scale(1.2); 
+ }
 .location_title {
-  color: var(--green);
+  color: var(--black);
   text-align: center;
   font-weight: bold;
 }
@@ -44,28 +58,63 @@
   position:relative;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .location_price {
   position: absolute;
-  top: -1rem;
-  left: -2rem;
-  padding: 8px;
+  top: 1.5rem;
+  left: 1.5rem;
+  padding: 0.5rem 1.2rem;
   background-color: var(--orange);
-  border-radius: 0.5rem;
+  border-radius: 35px;
   font-weight: bold;
-  color: black;
   color: white;
-  font-family: "Soyuz Grotesk"
+  font-size: 1.3rem;
+}
+.location_link {
+  margin: 0;
 }
 .location_info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  position: relative;
 }
-.location_category, .location_district, .location_address {
+.address_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.1rem;
+  box-sizing: border-box;
+  /* position: absolute; */
+  z-index: 4;
+  background-color: rgba(54, 139, 123, 0.06);
+  color: var(--green);
+  border-radius: 12px;
+  opacity: 1;
+  height: 54px;
+  top: 70px;
+  width: 579.5px;
+  left: 15px;
+}
+.location_card {
+  width: 40rem;
+  height: 38rem;
+  border-radius: 10px;
+  background-color: var(--light-grey);
+}
+.location_category {
   font-size: 15px;
   margin-bottom: 7px;
+  color: var(--black);
+  text-align: center;
+  background-color: var(--light-grey);
+}
+.location_district, .location_address {
+  font-size: 15px;
+  margin-bottom: 7px;
+  color: var(--green);
+  text-align: center;
 }
 .location_contact {
   font-size: 15px;
@@ -75,7 +124,6 @@
   color: white;
   font-weight: bold;
   border-color: var(--orange);
-  font-family: "Soyuz Grotesk"
 }
 .btnBookLocation:hover {
   background-color: var(--white);
@@ -83,23 +131,23 @@
   font-weight: bold;
 }
 .btnFilter {
-  background-color: var(--orange);
-  font-size: 0.9rem;
+  background-color: var(--green);
+  font-size: 1.5rem;
   border: none;
-  font-family: "Soyuz Grotesk"
+  outline: solid;
 }
 .btnFilter:hover {
   background-color: var(--white);
   color: var(--green);
-  font-size: 0.9rem;
+  outline: solid var(--green);
 }
 .btnSort {
-  color: var(--white);
+  color: var(--green);
   font-weight: bold;
   margin-left: 2rem;
   display: flex;
   align-items: center;
-  font-family: "Soyuz Grotesk"
+  font-size: 1.5rem;
 }
 .btn_filter_category {
   width: 15rem;
@@ -117,17 +165,21 @@
   align-items: center;
   gap: 1rem;
   border-radius: 0.5rem;
-  top: 2.4rem;
+  top: 3.4000000000000004rem;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+.isVisibleBtn:hover {
+  outline: solid var(--green);
 }
 .btnFind, .btnReset {
   background-color: var(--orange);
   font-size: 0.9rem;
-  font-family: "Soyuz Grotesk"
+  border: none;
 }
 .btnFind:hover, .btnReset:hover {
   background-color: var(--white);
   color: var(--green);
+  outline: solid var(--green);
 }
 .btnsFilter {
   display: flex;
@@ -148,18 +200,16 @@
   align-items: center;
 }
 .filter {
-  margin: 0 auto;
   margin-top: 2rem;
-  font-family: "Montserrat";
   display: flex;
   position: relative;
-  width: 45rem;
+  margin-left: 19rem;
 }
 .sortUp, .sortDown  {
   display: flex;
   align-items: center;
   cursor: pointer;
-  fill: var(--white);
+  fill: var(--green);
 }
 .sortUp:hover, .sortDown:hover {
   fill: var(--orange);

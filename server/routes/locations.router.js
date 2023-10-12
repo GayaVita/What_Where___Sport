@@ -37,4 +37,15 @@ router.get('/search', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const response = await Location.findByPk(id);
+    console.log(response);
+    res.json(response);
+  } catch (error) {
+    console.log('Ошибка на сервере', error);
+  }
+})
+
 module.exports = router;

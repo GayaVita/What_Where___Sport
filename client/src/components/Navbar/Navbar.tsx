@@ -32,6 +32,8 @@ export default function NavBar(): JSX.Element {
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
               className={styles.navlink}
+              
+              
             >
               <Offcanvas.Header aria-controls={`offcanvasNavbar-expand-${expand}`} closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} className={styles.navlink}>

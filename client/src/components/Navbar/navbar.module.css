@@ -1,14 +1,15 @@
 .navbar {
     --bs-bg-opacity: upset;
-    background-color: var(--green);
+    background-color: var(--white);
 }
 
 .navlink {
-    color: var(--white);
-    font-size: 2.3rem;
+    color: var(--green); 
+    font-size: 1.5rem;
     text-transform: uppercase;
     padding-right: 3vh;
     text-decoration: none;
+        
 }
 
 .navlink:hover {

@@ -25,8 +25,8 @@ router.post('/:id', async (req, res) => {
   }
 });
 
-router.patch('/:id', async (req, res) => {
+// router.patch('/:id', async (req, res) => {
   
-})
+// })
 
 module.exports = router;

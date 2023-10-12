@@ -6,4 +6,5 @@ export type ProfileFormType = {
   user_tg?: string;
   user_mobile?: string;
   user_id?: number;
+  user_photo?: File | string;
 };

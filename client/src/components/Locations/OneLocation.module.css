@@ -1,0 +1,230 @@
+.oneLocation_container {
+  display: flex;
+}
+.back_arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  fill: var(--orange);
+}
+.back_arrow:hover {
+  fill: var(--green);
+}
+.oneLocation_container_card {
+  display: flex;
+  align-items: center;
+  background-color: var(--light-grey);
+}
+.oneLocation_category_listItem {
+  background-color: var(--light-grey);
+}
+.total_container {
+  display: flex;
+  justify-content: center;
+}
+.oneLocation_total_container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+}
+.oneLocation_tite_container {
+  display: flex;
+  align-items: center;
+  line-height: 30px;
+  padding-bottom: 5px;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+.oneLocation_title {
+  color: var(--orange);
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.location_description {
+  font-size: 1.5rem;
+  color: var(--black);
+}
+.btn_container {
+  display: flex;
+  justify-content: center;
+}
+.address_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.7rem;
+  box-sizing: border-box;
+  z-index: 4;
+  background-color: rgba(54, 139, 123, 0.06);
+  color: var(--green);
+  border-radius: 12px;
+  opacity: 1;
+  height: 54px;
+  top: 70px;
+  width: 100%;
+  left: 15px;
+  font-size: 1.3rem;
+  padding: 0 2rem;
+}
+.location {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  width: calc(56vw + 18px);
+  height: calc(24vw + -15px);
+  border: solid rgba(0, 0, 0, 0.1);
+  margin-top: 1.7rem;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+  padding: calc(6vw + 5px);
+  color: var(--green);
+  background-color: rgb(246,246,246);
+  border-radius: 0.7rem;
+}
+.location_large_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--white);
+}
+.location_ul {
+  list-style-type: none;
+  text-align: left;
+  margin-top: 1rem;
+  padding-left: 0;
+}
+.location_photo {
+  width: 20rem;
+  height: 15rem;
+  border-radius: 0.7rem;
+}
+.location_title {
+  color: var(--green);
+  text-align: center;
+  font-weight: bold;
+}
+.location_picture {
+  position:relative;
+  display: flex;
+  align-items: center;
+}
+.location_price {
+  position: absolute;
+  top: -1rem;
+  left: -2rem;
+  padding: 8px;
+  background-color: var(--orange);
+  border-radius: 0.5rem;
+  font-weight: bold;
+  color: black;
+  color: white;
+  font-family: "Soyuz Grotesk"
+}
+.location_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.location_contact {
+  font-size: 15px;
+}
+.btnBookOneLocation {
+  background-color: var(--orange);
+  color: white;
+  font-weight: bold;
+  border-color: var(--orange);
+  font-size: 1.3rem;
+}
+.btnBookOneLocation:hover {
+  background-color: var(--white);
+  color: var(--green);
+  font-weight: bold;
+}
+.btnFilter {
+  background-color: var(--orange);
+  font-size: 0.9rem;
+  border: none;
+}
+.btnFilter:hover {
+  background-color: var(--white);
+  color: var(--green);
+  font-size: 0.9rem;
+}
+.btnSort {
+  color: var(--white);
+  font-weight: bold;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+}
+.btn_filter_category {
+  width: 15rem;
+  font-weight: bold;
+}
+.isVisibleBtn {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 21rem;
+  height: 12rem;
+  background-color: rgb(236,240,239);
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  top: 2.4rem;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+.btnFind, .btnReset {
+  background-color: var(--orange);
+  font-size: 0.9rem;
+}
+.btnFind:hover, .btnReset:hover {
+  background-color: var(--white);
+  color: var(--green);
+}
+.btnsFilter {
+  display: flex;
+  gap: 1rem;
+}
+.btnBookLocationDiv {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.selectCategory, .selectDistrict  {
+  width: 17rem;
+}
+.locationList {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.filter {
+  margin: 0 auto;
+  margin-top: 2rem;
+  display: flex;
+  position: relative;
+  width: 45rem;
+}
+.sortUp, .sortDown  {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  fill: var(--white);
+}
+.sortUp:hover, .sortDown:hover {
+  fill: var(--orange);
+}
+@media (min-device-width: 320px) and (max-device-width: 1116px) {
+  .location {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -7,6 +7,10 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addSubscriber, getAllActivities } from '../../store/all_activitiesSlice/asyncThunk';
 import { getAllLocations } from '../../store/locationLCSlice/asyncThunk';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 // export type All_ActivitiesType = {
 //   location_title: string;
 //   location_address: string;
@@ -24,7 +28,7 @@ export default function All_activities(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((store) => store.user);
-  const [disabled, setDisabled] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
   // const [formData, setFormData] = useState<EventCardType>({
   //   location_title: '',
   //   location_district: '',
@@ -41,13 +45,28 @@ export default function All_activities(): JSX.Element {
   const allActivities = activities.filter((activity) => activity.user_id !== user?.id);
   console.log('allActivities', allActivities);
 
+  const allApprovedActivities = allActivities?.filter(
+    (activity) =>
+      activity.Subscribers.length > 0 &&
+      activity.Subscribers.find((subscriber) => subscriber.user_id === user?.id),
+  );
+
+  const allNewActivities = allActivities?.filter(
+    (activity) =>
+      activity.Subscribers.length === 0 ||
+      activity.Subscribers.find((subscriber) => subscriber.user_id !== user?.id),
+  );
+  console.log('allNewActivities', allNewActivities);
+  console.log('allApprovedActivities', allApprovedActivities);
+  
+  
+
   const clickContactHandler = (id: number): void => {
     dispatch(addSubscriber(id));
-    setDisabled(!disabled);
   };
   useEffect(() => {
     dispatch(getAllActivities());
-  }, [disabled]);
+  }, [isApproved]);
 
   const [myMap, setMyMap] = React.useState<ymaps.Map | null>(null);
   const { ymaps } = window;
@@ -120,61 +139,107 @@ export default function All_activities(): JSX.Element {
   }, [locations]);
 
   return (
-    <div className={styles.page_wrapper}>
-      <div className={styles.all_activities_form__wrapper}>
-        {allActivities?.length > 0 &&
-          allActivities.map((card) => (
-            <div className={styles.all_activities_form__card} key={card.id}>
-              <div className={styles.all_activities_form__table}>
-                <div className={styles.all_activities_form__tableMain}>
-                  <p className={styles.all_activities_title}>{card.Location.location_title}</p>
-                  <p className={styles.all_activities_city}>{card.Location.location_district}</p>
-                  <p className={styles.all_activities_address}>{card.Location.location_address}</p>
-                </div>
+    <>
+      <Container>
+        <Row>
+          <Col>
+            <div className={styles.all_activities_form__wrapper}>
+              <h1>Новые активности</h1>
+              {allNewActivities &&
+                allNewActivities.map((card) => (
+                  <div className={styles.all_activities_form__card} key={card.id}>
+                    <div className={styles.all_activities_form__table}>
+                      <div className={styles.all_activities_form__tableMain}>
+                        <p className={styles.all_activities_title}>
+                          {card?.Location?.location_title}
+                        </p>
+                        <p className={styles.all_activities_city}>
+                          {card?.Location?.location_district}
+                        </p>
+                        <p className={styles.all_activities_address}>
+                          {card?.Location?.location_address}
+                        </p>
+                      </div>
 
-                <div className={styles.all_activities_form__tableDate}>
-                  <p className={styles.all_activities_date}>{card.activity_date}</p>
-                  <p className={styles.all_activity_time}>{card.activity_time}</p>
-                  <p className={styles.all_activities_type}>{card.activity_type}</p>
-                </div>
-              </div>
-              <div>
-                <p className={styles.all_activities_message}>{card.activity_message}</p>
-                <p className={styles.all_activities_message}>{card.User?.Profile?.user_name}</p>
-              </div>
+                      <div className={styles.all_activities_form__tableDate}>
+                        <p className={styles.all_activities_date}>
+                          {card?.activity_date?.slice(0, 10)}
+                        </p>
+                        <p className={styles.all_activity_time}>{card.activity_time}</p>
+                        <p className={styles.all_activities_type}>{card.activity_type}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className={styles.all_activities_message}>{card.activity_message}</p>
+                      <p className={styles.all_activities_message}>
+                        {card.User?.Profile?.user_name}
+                      </p>
+                    </div>
 
-              <div className={styles.all_activities_user_container}>
-                {card?.Subscribers?.length > 0 &&
-                card?.Subscribers?.find((el) => el.user_id === user?.id) ? (
-                  <>
-                    <Button
-                      variant="secondary"
-                      type="button"
-                      className={styles.profile_form_contact__button}
-                      disabled
-                      onClick={() => clickContactHandler(card?.id)}
-                    >
-                      Отклик
-                    </Button>
-                  </>
-                ) : (
-                  <Button
-                    variant="secondary"
-                    type="button"
-                    className={styles.profile_form_contact__button}
-                    disabled={disabled}
-                    onClick={() => clickContactHandler(card?.id)}
-                  >
-                    Отклик
-                  </Button>
-                )}
-              </div>
+                    <div className={styles.all_activities_user_container}>
+                      <Button
+                        variant="secondary"
+                        type="button"
+                        className={styles.profile_form_contact__button}
+                        onClick={() => {
+                          clickContactHandler(card?.id);
+                          setIsApproved(!isApproved);
+                        }}
+                      >
+                        Отклик
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              <h1>Отправленные заявки</h1>
+              {allApprovedActivities &&
+                allApprovedActivities.map((card) => (
+                  <div className={styles.all_activities_form__card} key={card.id}>
+                    <div className={styles.all_activities_form__table}>
+                      <div className={styles.all_activities_form__tableMain}>
+                        <p className={styles.all_activities_title}>
+                          {card?.Location?.location_title}
+                        </p>
+                        <p className={styles.all_activities_city}>
+                          {card?.Location?.location_district}
+                        </p>
+                        <p className={styles.all_activities_address}>
+                          {card?.Location?.location_address}
+                        </p>
+                      </div>
+
+                      <div className={styles.all_activities_form__tableDate}>
+                        <p className={styles.all_activities_date}>
+                          {card?.activity_date?.slice(0, 10)}
+                        </p>
+                        <p className={styles.all_activity_time}>{card.activity_time}</p>
+                        <p className={styles.all_activities_type}>{card.activity_type}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className={styles.all_activities_message}>{card.activity_message}</p>
+                      <p className={styles.all_activities_message}>
+                        {card.User?.Profile?.user_name}
+                      </p>
+                    </div>
+                    <div>
+                      {card?.Subscribers?.find((el) => el.user_id === user?.id) && (
+                        <p>{card.Subscribers[0].status}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
             </div>
-          ))}
-      </div>
-      <div className={styles.card_wrapper}>
-        <div id="map" className="map" style={{ width: '500px', height: '500px' }} />
-      </div>
-    </div>
+          </Col>
+          <Col>
+            <div className={styles.card_wrapper}>
+              <div id="map" className="map" style={{ width: '500px', height: '500px' }} />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </>
+    // <div className={styles.page_wrapper}>
+    // </div>
   );
 }
