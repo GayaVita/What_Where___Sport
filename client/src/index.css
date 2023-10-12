@@ -16,6 +16,8 @@
   /* --white: #dcdcdc; */
   --white: #fff;
   --bs-body-bg: #fffdfd;
+  --black: rgb(48, 38, 37);
+  --light-grey: rgb(246, 246, 246);
 }
 
 body {
