@@ -1,6 +1,7 @@
 .navbar {
     --bs-bg-opacity: upset;
     background-color: var(--white);
+    align-items: center;
 }
 
 .navlink {
@@ -9,9 +10,38 @@
     text-transform: uppercase;
     padding-right: 3vh;
     text-decoration: none;
+    /* vertical-align: center; */
+    display: flex;
+    flex-direction: column;
+    align-self: center;
         
 }
 
 .navlink:hover {
     color: var(--orange);
+}
+
+.profile_card_nav__content {
+    margin-left: 1.5rem;
+
+}
+
+.profile_card_nav__avatar {
+        /* width: 100px;
+        border-radius: 50%; */
+        object-fit: cover;
+        vertical-align: middle; 
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
+
+
+
+}
+
+.profile_card_nav__user {
+    color: var(--orange); 
+    font-size: 1.0rem;
+    text-align: center;
 }
