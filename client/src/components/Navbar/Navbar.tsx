@@ -53,7 +53,7 @@ export default function NavBar(): JSX.Element {
                           Активности
                         </Link>
                         <Link className={styles.navlink} to="/locations">
-                          Локации
+                          Аренда локаций
                         </Link>
                         <Link className={styles.navlink} to="/userLC">
                           Личный кабинет
