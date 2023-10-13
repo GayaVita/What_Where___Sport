@@ -1,11 +1,13 @@
 .right_form__wrapper {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   /* width: 80vw; */
   height: 80vh;
   background-image: url('/public/img/LC/basket4.jpg'); 
+  box-shadow: outset 15px 15px 15px 15px rgba(133, 133, 133, 0.6);
   background-size: cover;
+
 }
 
 .left_form__list {

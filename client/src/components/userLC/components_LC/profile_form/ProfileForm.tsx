@@ -16,7 +16,7 @@ import { updateUser } from '../../../../store/userSlice/thunkUser';
 //   user_mobile: string;
 //   user_id?: number;
 // };
-import { FloatingLabel, Form } from 'react-bootstrap';
+import { Card, FloatingLabel, Form } from 'react-bootstrap';
 
 export type ProfileFormType = {
   user_name: string;
@@ -65,7 +65,75 @@ export default function ProfileForm(): JSX.Element {
       {user?.Profile ? (
         <ProfileCard />
       ) : (
-        <div className={styles.profile_form__wrapper}>
+        <Card className={styles.profile_form__wrapper}>
+          <div className={styles.form}>
+            <Card.Title className={styles.profile_form__title}>
+              Заполните профиль
+            </Card.Title>
+              <Form.Control
+                className={styles.profile_form__input}
+                name="user_name"
+                type="text"
+                placeholder="Имя"
+                value={formData?.user_name}
+                onChange={changeHandler}
+              />
+
+              <Form.Control as="textarea" rows={2}
+                className={styles.profile_form__input}
+                name="user_about"
+                type="text"
+                placeholder="О себе ..."
+                value={formData?.user_about}
+                onChange={changeHandler}
+              />
+
+              <Form.Control
+                className={styles.profile_form__input}
+                name="user_age"
+                type="text"
+                placeholder="Возраст"
+                value={formData?.user_age}
+                onChange={changeHandler}
+              />
+
+              <Form.Control
+                className={styles.profile_form__input}
+                name="user_tg"
+                type="text"
+                placeholder="Ссылка на Telegram"
+                value={formData?.user_tg}
+                onChange={changeHandler}
+              />
+
+              <Form.Control
+                className={styles.profile_form__input}
+                name="user_mobile"
+                type="text"
+                placeholder="Телефон"
+                value={formData?.user_mobile}
+                onChange={changeHandler}
+              />
+            
+            {error && <p className={styles.error}>{error}</p>}
+            <Button
+              variant="secondary"
+              type="button"
+              className={styles.profile_form__button}
+              onClick={submitProfileHandler}
+            >
+              Сохранить
+            </Button>
+            </div>
+    
+        </Card>
+      )}
+    </>
+  );
+}
+
+
+{/* <div className={styles.profile_form__wrapper}>
           <div className={styles.form}>
             <div className={styles.profile_form__inputs}>
               <input
@@ -90,7 +158,7 @@ export default function ProfileForm(): JSX.Element {
                 className={styles.profile_form__input}
                 name="user_age"
                 type="text"
-                placeholder="Возраст ..."
+                placeholder="Возраст"
                 value={formData?.user_age}
                 onChange={changeHandler}
               />
@@ -99,7 +167,7 @@ export default function ProfileForm(): JSX.Element {
                 className={styles.profile_form__input}
                 name="user_tg"
                 type="text"
-                placeholder="ссылка на Telegram ..."
+                placeholder="Ссылка на Telegram"
                 value={formData?.user_tg}
                 onChange={changeHandler}
               />
@@ -108,7 +176,7 @@ export default function ProfileForm(): JSX.Element {
                 className={styles.profile_form__input}
                 name="user_mobile"
                 type="text"
-                placeholder="телефон"
+                placeholder="Телефон"
                 value={formData?.user_mobile}
                 onChange={changeHandler}
               />
@@ -120,12 +188,8 @@ export default function ProfileForm(): JSX.Element {
               className={styles.profile_form__button}
               onClick={submitProfileHandler}
             >
-              Отправить
+              Создать профиль
             </Button>
             </div>
           </div>
-        </div>
-      )}
-    </>
-  );
-}
+        </div> */}

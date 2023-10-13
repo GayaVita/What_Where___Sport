@@ -109,8 +109,8 @@ export default function Map({formData, setFormData}: IMapProps) {
         id="map"
         className="map"
         style={{
-          width: '500px',
-          height: '500px',
+          width: '30vw',
+          height: '50vh',
           marginLeft: 'auto',
           marginRight: 'auto',
         }}
