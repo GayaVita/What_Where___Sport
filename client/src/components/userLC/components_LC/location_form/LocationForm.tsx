@@ -33,7 +33,7 @@ export default function LocationForm(): JSX.Element {
 
   return (
     <div className={styles.location_form__wrapper}>
-      <div className={styles.form_location}>ProfileCard.module.css
+      <div className={styles.form_location}>
         <div className={styles.location_form__inputs}>
 
           <h5 className={styles.location_form_title}>Создай локацию для спорта!</h5>
