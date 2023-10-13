@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import styles from './activityForm.module.css';
 import { ActivityType } from '../../../../store/activitySlice/types';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { fetchActivity } from '../../../../store/activitySlice/asyncThunk';
 import { getAllUserLocations } from '../../../../store/locationLCSlice/asyncThunk';
+import { Form, Button, Card, ListGroup } from 'react-bootstrap';
 
 export default function ActivityForm(): JSX.Element {
   const navigate = useNavigate();
@@ -47,11 +46,10 @@ export default function ActivityForm(): JSX.Element {
   }, []);
 
   return (
-    <div className={styles.activity_form__wrapper}>
-      <form className={styles.form_activity} onSubmit={submitHandler}>
+      <Form className={styles.form_activity} onSubmit={submitHandler}>
         <h5 className={styles.location_form_title}>Создай активность!</h5>
 
-        <select
+        <Form.Select
           className={styles.activity_formlocationselect}
           name="location_id"
           onChange={changeSelectHandler}
@@ -65,10 +63,8 @@ export default function ActivityForm(): JSX.Element {
                 {location.location_title}
               </option>
             ))}
-        </select>
-
-        <div className={styles.activity_form__inputs}>
-          <input
+        </Form.Select>
+          <Form.Control
             className={styles.activity_form__input}
             name="activity_type"
             type="text"
@@ -77,7 +73,7 @@ export default function ActivityForm(): JSX.Element {
             onChange={changeHandler}
           />
 
-          <input
+          <Form.Control
             className={styles.activity_form__input}
             name="activity_date"
             type="date"
@@ -86,7 +82,7 @@ export default function ActivityForm(): JSX.Element {
             onChange={changeHandler}
           />
 
-          <input
+          <Form.Control
             className={styles.activity_form__input}
             name="activity_time"
             type="time"
@@ -95,14 +91,15 @@ export default function ActivityForm(): JSX.Element {
             onChange={changeHandler}
           />
 
-          <textarea
-            className={styles.activity_form__textarea}
+          <Form.Control
+            className={styles.activity_form__input}
+            as="textarea" rows={3}
             name="activity_message"
             placeholder="опиши свою активность (например: привет, ищу напарника для тенниса...)"
             value={formData?.activity_message}
             onChange={changeTextAreaHandler}
           />
-        </div>
+        {/* </div> */}
 {/* 
         <label>
           Приложите фото вашей локации
@@ -124,7 +121,89 @@ export default function ActivityForm(): JSX.Element {
         >
           Cоздать твою Aктивность!
         </Button>
-      </form>
-    </div>
+      </Form>
   );
 }
+
+
+// return (
+//   <div className={styles.activity_form__wrapper}>
+//     <form className={styles.form_activity} onSubmit={submitHandler}>
+//       <h5 className={styles.location_form_title}>Создай активность!</h5>
+
+//       <select
+//         className={styles.activity_formlocationselect}
+//         name="location_id"
+//         onChange={changeSelectHandler}
+//       >
+//         <option disabled selected>
+//           Выберите локацию
+//         </option>
+//         {locations &&
+//           locations.map((location) => (
+//             <option key={location.id} value={location.id}>
+//               {location.location_title}
+//             </option>
+//           ))}
+//       </select>
+
+//       <div className={styles.activity_form__inputs}>
+//         <input
+//           className={styles.activity_form__input}
+//           name="activity_type"
+//           type="text"
+//           placeholder="вид спорта или активности..."
+//           value={formData?.activity_type}
+//           onChange={changeHandler}
+//         />
+
+//         <input
+//           className={styles.activity_form__input}
+//           name="activity_date"
+//           type="date"
+//           placeholder="дата (день.месяц.год))"
+//           value={formData?.activity_date}
+//           onChange={changeHandler}
+//         />
+
+//         <input
+//           className={styles.activity_form__input}
+//           name="activity_time"
+//           type="time"
+//           placeholder="время (например 18:30)"
+//           value={formData?.activity_time}
+//           onChange={changeHandler}
+//         />
+
+//         <textarea
+//           className={styles.activity_form__textarea}
+//           name="activity_message"
+//           placeholder="опиши свою активность (например: привет, ищу напарника для тенниса...)"
+//           value={formData?.activity_message}
+//           onChange={changeTextAreaHandler}
+//         />
+//       </div>
+// {/* 
+//       <label>
+//         Приложите фото вашей локации
+//         <input
+//           className={styles.activity_form__photo}
+//           id="location_photo"
+//           name="location_photo"
+//           type="file"
+//           placeholder="фото локации"
+//           value={formData?.location_photo}
+//           onChange={changeHandler}
+//         ></input>
+//       </label> */}
+
+//       <Button
+//         variant="secondary"
+//         type="submit"
+//         className={styles.profile_form__button}
+//       >
+//         Cоздать твою Aктивность!
+//       </Button>
+//     </form>
+//   </div>
+// );
