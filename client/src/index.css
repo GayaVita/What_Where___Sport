@@ -18,6 +18,7 @@
   --black: rgb(48, 38, 37);
   --light-grey: rgb(246, 246, 246);
   /* --bs-primary-bg-subtle: #cfe2ff; */
+  /* --bs-offcanvas-width: 20vw; */
 }
 
 body {
@@ -32,4 +33,27 @@ body {
 }
 a {
   text-decoration: none;
+}
+
+.offcanvas.offcanvas-end {
+    width: calc(50% - 20vw);
+    text-align: left;
+    display: flow;
+}
+
+.navbar-nav {
+  flex-direction: column-reverse;
+  text-align: left;
+}
+
+/* ._profile_card_nav__user_jgxse_34 {
+  text-align: left;
+}
+
+._profile_card_nav__avatar_baxkn_26 {
+  margin-top: 5vh;
+} */
+
+._profile_card_nav__content_jgxse_22 {
+  margin-left: 0rem;
 }
