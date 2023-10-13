@@ -3,3 +3,9 @@
   
 }
 
+
+.all_event_users {
+  display: flex;
+  justify-content: center;
+  gap: 15px
+}
