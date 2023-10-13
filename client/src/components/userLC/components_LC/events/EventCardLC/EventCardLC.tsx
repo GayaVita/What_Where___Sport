@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Card, ListGroup, Accordion } from 'react-bootstrap';
+import { Form, Button, Card, ListGroup, Accordion, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import styles from './eventCard.module.css';
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
@@ -9,6 +9,10 @@ import {
   rejectSubscribersRequest,
 } from '../../../../../store/eventSlice/asyncThunk';
 import SubscriberCard from '../SubscriberCard/SubscriberCard';
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function EventCardLC(): JSX.Element {
   const navigate = useNavigate();
@@ -22,91 +26,107 @@ export default function EventCardLC(): JSX.Element {
   }, []);
 
   return (
+    <>
+      <Container>
+        <Row style={{ marginTop: '5vh' }}>
+          <Col>
+            {events &&
+              events.map((event) => (
+                <Accordion defaultActiveKey={event.id}>
+                  <Accordion.Item eventKey={event.id}>
+                    <Accordion.Header>{event.activity_type}</Accordion.Header>
+                    <Accordion.Body>
+                      <div style={{ alignItems: 'center', textAlign: 'center', marginBottom: '15px' }}>
+                        <Button
+                          variant="secondary"
+                          type="button"
+                          onClick={() => dispatch(deleteEvent(event?.id))}
+                          style={{margin: "auto 0"}}
+                        >
+                          Отменить!
+                        </Button>
+                      </div>
+                      <Table striped hover>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img
+                                src="/public/img/LC/stadium.svg"
+                                alt="object"
+                                className={styles.event_svg}
+                              />
+                            </td>
 
-    
-    // <Accordion defaultActiveKey="0">
-    // <Accordion.Item eventKey={event.id}>
-    //   <Accordion.Header>Accordion Item #1</Accordion.Header>
-    //   <Accordion.Body>
-    //     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            <td>
+                              <ListGroup>
+                                <ListGroup.Item>{event?.Location?.location_title}</ListGroup.Item>
+                              </ListGroup>
+                            </td>          
+                            <td>
+                              <img
+                                src="/public/img/LC/map2.svg"
+                                alt="street"
+                                className={styles.event_svg}
+                              />
+                            </td>
 
-    //   </Accordion.Body>
-    // </Accordion.Item>
-    // </Accordion>
+                            <td>
+                              <ListGroup>
+                                <ListGroup.Item>
+                                  {event?.Location?.location_district},{' '}
+                                  {event?.Location?.location_address}
+                                </ListGroup.Item>
+                              </ListGroup>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img
+                                src="/public/img/LC/calendar.svg"
+                                alt="date"
+                                className={styles.event_svg}
+                              />
+                            </td>
 
+                            <td>
+                              <ListGroup>
+                                <ListGroup.Item>
+                                  {event?.activity_date?.slice(0, 10)}{' '}
+                                </ListGroup.Item>
+                              </ListGroup>
+                            </td>
 
+                            <td>
+                              <img
+                                src="/public/img/LC/time.svg"
+                                alt="time"
+                                className={styles.event_svg}
+                              />
+                            </td>
 
-
-    
-    <div className={styles.profile_card__wrapper}>
-      {events &&
-        events.map((event) => (
-          <div className={styles.event_form__wrapper} key={event.id}>
-            <div className={styles.event_form__card}>
-              <Button
-                variant="secondary"
-                type="button"
-                className={styles.profile_form_delete__button}
-                onClick={() => dispatch(deleteEvent(event?.id))}
-              >
-                Отменить!
-              </Button>
-
-              <div className={styles.event_form__table}>
-                <div className={styles.event_form__tableMain}>
-                  <div className={styles.event_svg__wrapper}>
-                    <img
-                      src="/public/img/LC/stadium.svg"
-                      alt="object"
-                      className={styles.event_svg}
-                    />
-                    <p className={styles.event_title}>{event?.Location?.location_title}</p>
-                  </div>
-
-                  <div className={styles.event_svg__wrapper}>
-                    <img src="/public/img/LC/map1.svg" alt="street" className={styles.event_svg} />
-                    <p className={styles.event_city}>{event?.Location?.location_district}</p>
-                  </div>
-
-                  <div className={styles.event_svg__wrapper}>
-                    <img src="/public/img/LC/map2.svg" alt="street" className={styles.event_svg} />
-                    <p className={styles.event_address}>{event?.Location?.location_address}</p>
-                  </div>
-                </div>
-
-                <div className={styles.event_form__tableDate}>
-                  <div className={styles.event_svg__wrapper}>
-                    <img
-                      src="/public/img/LC/calendar.svg"
-                      alt="date"
-                      className={styles.event_svg}
-                    />
-                    <p className={styles.event_date}>{event?.activity_date?.slice(0, 10)}</p>
-                  </div>
-                  <div className={styles.event_svg__wrapper}>
-                    <img src="/public/img/LC/time.svg" alt="time" className={styles.event_svg} />
-                    <p className={styles.event_time}>{event.activity_time}</p>
-                  </div>
-                  <div className={styles.event_svg__wrapper}>
-                    <img
-                      src="/public/img/LC/calendar.svg"
-                      alt="date"
-                      className={styles.event_svg}
-                    />
-                    <p className={styles.event_time}>{event.activity_type}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.all_event_users}>
-                {event?.Subscribers?.length > 0 &&
-                  event?.Subscribers?.map((subscriber) => (
-                    <SubscriberCard key={subscriber.id} subscriber={subscriber} />
-                  ))}
-              </div>
-            </div>
-          </div>
-        ))}
-    </div>
+                            <td>
+                              <ListGroup>
+                                <ListGroup.Item>{event?.activity_time} </ListGroup.Item>
+                              </ListGroup>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <td colSpan={4}>
+                          <div className={styles.all_event_users}>
+                            {event?.Subscribers?.length > 0 &&
+                              event?.Subscribers?.map((subscriber) => (
+                                <SubscriberCard key={subscriber.id} subscriber={subscriber} />
+                              ))}
+                          </div>
+                        </td>
+                      </Table>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              ))}
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }

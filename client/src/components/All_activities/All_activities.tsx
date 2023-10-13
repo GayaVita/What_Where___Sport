@@ -58,8 +58,6 @@ export default function All_activities(): JSX.Element {
   );
   console.log('allNewActivities', allNewActivities);
   console.log('allApprovedActivities', allApprovedActivities);
-  
-  
 
   const clickContactHandler = (id: number): void => {
     dispatch(addSubscriber(id));
@@ -138,110 +136,146 @@ export default function All_activities(): JSX.Element {
     });
   }, [locations]);
 
-return (
-  <>
+  return (
+    <>
       <Container>
-        <Row style={{marginTop: '5vh'}}>
+        <Row style={{ marginTop: '5vh' }}>
           <Col>
             <h1 className={styles.title}>Новые активности</h1>
             {allNewActivities &&
-                allNewActivities.map((card) => (
-              <Accordion defaultActiveKey={card?.id}>
-                <Accordion.Item eventKey={card?.id}>
-                  <Accordion.Header>{card?.Location?.location_title}</Accordion.Header>
-                  <Accordion.Body>
-                    <>
-                    <Table striped hover>
-                      <tbody>
-                        <tr>
-                          <td>Город, район</td>
-                          <td>{card?.Location?.location_district}, {card?.Location?.location_address}</td>
-                        </tr>
-                        <tr>
-                          <td>Дата и время</td>
-                          <td>{card?.activity_date?.slice(0, 10)}, {card.activity_time}</td>
-                        </tr>
-                        <tr>
-                          <td>Вид активности</td>
-                          <td>{card.activity_type}</td>
-                        </tr>
-                        <tr>
-                          <td>Сообщение</td>
-                          <td>{card.activity_message || `К сожалению, ${card.User?.Profile?.user_name} не оставил(а) комментария`}</td>
-                        </tr>
-                        <tr>
-                          <td>Имя пользователя</td>
-                          <td>{card.User?.Profile?.user_name}</td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                    <Button
-                        variant="success"
-                        type="button"
-                        className={styles.profile_form_contact__button}
-                        onClick={() => {
-                          clickContactHandler(card?.id);
-                          setIsApproved(!isApproved);
-                        }}
-                      >
-                        Откликуться
-                      </Button>
-                    </>
-                  </Accordion.Body>
-                </Accordion.Item>                
-              </Accordion>
-             ))}
+              allNewActivities.map((card) => (
+                <Accordion defaultActiveKey={card?.id}>
+                  <Accordion.Item eventKey={card?.id}>
+                    <Accordion.Header>{card?.Location?.location_title}</Accordion.Header>
+                    <Accordion.Body>
+                      <>
+                        <Table striped hover>
+                          <tbody>
+                            <tr>
+                              <img
+                                src={`/public/photos/${card.User?.Profile?.user_photo}`}
+                                alt="avatar"
+                                className={styles.card_avatar}
+                              />
+                            </tr>
+
+                            <tr>
+                              <td>Город, район</td>
+                              <td>
+                                {card?.Location?.location_district},{' '}
+                                {card?.Location?.location_address}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>Дата и время</td>
+                              <td>
+                                {card?.activity_date?.slice(0, 10)}, {card.activity_time}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>Вид активности</td>
+                              <td>{card.activity_type}</td>
+                            </tr>
+                            <tr>
+                              <td>Сообщение</td>
+                              <td>
+                                {card.activity_message ||
+                                  `К сожалению, ${card.User?.Profile?.user_name} не оставил(а) комментария`}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>Имя пользователя</td>
+                              <td>{card.User?.Profile?.user_name}</td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                        <Button
+                          variant="success"
+                          type="button"
+                          className={styles.profile_form_contact__button}
+                          onClick={() => {
+                            clickContactHandler(card?.id);
+                            setIsApproved(!isApproved);
+                          }}
+                        >
+                          Откликуться
+                        </Button>
+                      </>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              ))}
           </Col>
           <Col>
             <h1 className={styles.title}>Отправленные заявки</h1>
-              {allApprovedActivities &&
-                allApprovedActivities.map((card) => (
-                  <Accordion defaultActiveKey={card?.id}>
-                    <Accordion.Item eventKey={card?.id}>
-                      <Accordion.Header>{card?.Location?.location_title}</Accordion.Header>
-                      <Accordion.Body>
-                            <>
-                            <Table striped hover >
-                              <tbody>
-                                <tr>
-                                  <td>Город, район</td>
-                                  <td>{card?.Location?.location_district}, {card?.Location?.location_address}</td>
-                                </tr>
-                                <tr>
-                                  <td>Дата и время</td>
-                                  <td>{card?.activity_date?.slice(0, 10)}, {card.activity_time}</td>
-                                </tr>
-                                <tr>
-                                  <td>Вид активности</td>
-                                  <td>{card.activity_type}</td>
-                                </tr>
-                                <tr>
-                                  <td>Сообщение</td>
-                                  <td>{card.activity_message || `К сожалению, ${card.User?.Profile?.user_name} не оставил(а) комментария`}</td>
-                                </tr>
-                                <tr>
-                                  <td>Имя пользователя</td>
-                                  <td>{card.User?.Profile?.user_name}</td>
-                                </tr>
-                                
-                              </tbody>
-                            </Table>
-                            {card?.Subscribers?.find((el) => el.user_id === user?.id) && (
-                              <ListGroup>
-                                <ListGroup.Item variant="warning">{card.Subscribers[0].status}</ListGroup.Item>  
-                              </ListGroup> 
-                            )}
-                          </>
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                  ))}
+            {allApprovedActivities &&
+              allApprovedActivities.map((card) => (
+                <Accordion defaultActiveKey={card?.id}>
+                  <Accordion.Item eventKey={card?.id}>
+                    <Accordion.Header>{card?.Location?.location_title}</Accordion.Header>
+                    <Accordion.Body>
+                      <>
+                        <Table striped hover>
+                          <tbody>
+                            <tr>
+                              <img
+                                src={`/public/photos/${card.User?.Profile?.user_photo}`}
+                                alt="avatar"
+                                className={styles.card_avatar}
+                              />
+                            </tr>
+                            <tr>
+                              <td>Город, район</td>
+                              <td>
+                                {card?.Location?.location_district},{' '}
+                                {card?.Location?.location_address}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>Дата и время</td>
+                              <td>
+                                {card?.activity_date?.slice(0, 10)}, {card.activity_time}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>Вид активности</td>
+                              <td>{card.activity_type}</td>
+                            </tr>
+                            <tr>
+                              <td>Сообщение</td>
+                              <td>
+                                {card.activity_message ||
+                                  `К сожалению, ${card.User?.Profile?.user_name} не оставил(а) комментария`}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>Имя пользователя</td>
+                              <td>{card.User?.Profile?.user_name}</td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                        {card?.Subscribers?.find((el) => el.user_id === user?.id) && (
+                          <ListGroup>
+                            <ListGroup.Item variant="warning">
+                              {card.Subscribers[0].status}
+                            </ListGroup.Item>
+                          </ListGroup>
+                        )}
+                      </>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              ))}
           </Col>
         </Row>
         <Row>
           <Col>
             <div className={styles.map_wrapper}>
-              <div id="map" className="map" style={{ width: 'calc(100% - 10px)', height: '500px' }} />
+              <div
+                id="map"
+                className="map"
+                style={{ width: 'calc(100% - 10px)', height: '500px' }}
+              />
             </div>
           </Col>
         </Row>
