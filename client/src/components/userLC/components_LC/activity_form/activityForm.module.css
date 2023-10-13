@@ -30,19 +30,19 @@
 
   border-radius: 5vh;
 }
-.activity_form__location {
+/* .activity_form__location {
   height: 400px;
   width: 400px;
   color: white;
-  /* background-color: rgb(236,240,239); */
-}
+  background-color: rgb(236,240,239);
+} */
 .activity_formlocationselect{
-  width: 70%;
+  width: 50%;
   text-align: center;
 }
 
 .activity_form__input {
-  width: 70%;
+  width: 50%;
   border-radius: 5px;
   padding-left: 0.7rem;
   padding-top: 0.2rem;
