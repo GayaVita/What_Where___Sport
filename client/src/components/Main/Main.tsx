@@ -1,15 +1,15 @@
 import React from 'react';
 import CarouselComponent from './components/CarouselComponent';
-import SliderComponent from './components/SliderComponent';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Image } from 'react-bootstrap';
 
 export default function Main() {
   return (
     <>
       <Container >
         <Row>
-          <Col>
-            <SliderComponent />
+          <Col >
+            <Image src="../../../public/img/main/photo1.jpg" 
+                   fluid />
           </Col>
         </Row>
         <Row>
